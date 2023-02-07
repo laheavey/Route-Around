@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -8,11 +8,12 @@ import ListSubheader from '@mui/material/ListSubheader';
 
 export default function PopularInfo() {
   const dispatch = useDispatch();
+  const popRoutes = useSelector((store) => store.popRoutes)
 
   useEffect(() => {
       dispatch({ type: 'FETCH_POPULAR_ROUTES' });
       // dispatch({ type: 'FETCH_POPULAR_POINTS' });
-  },)
+  },[])
 
   return (
     <List
@@ -30,9 +31,9 @@ export default function PopularInfo() {
         <li key={`section-${sectionId}`}>
           <ul>
             <ListSubheader>{`${sectionId}`}</ListSubheader>
-            {[0, 1, 2,3,4].map((item) => (
-              <ListItem key={`item-${sectionId}-${item}`}>
-                <ListItemText primary={`Item ${item}`} />
+            {popRoutes.map((route) => (
+              <ListItem key={`item-${sectionId}-${route}`}>
+                <ListItemText primary={`${route.route_long_name}`} />
               </ListItem>
             ))}
           </ul>

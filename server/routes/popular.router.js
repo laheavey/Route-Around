@@ -13,7 +13,8 @@ const router = express.Router();
     JOIN "completed_trips"
       ON "completed_trips"."transit_route_id" = "transit_routes"."transit_route_id"
     GROUP BY "transit_routes"."route_long_name"
-    ORDER BY "number_completed" DESC;
+    ORDER BY "number_completed" DESC
+    LIMIT 4;
   `
   pool.query(sqlQuery)
 

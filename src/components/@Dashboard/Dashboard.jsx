@@ -1,16 +1,14 @@
 import React, { useRef, useEffect, useState } from 'react';
 import {useSelector} from 'react-redux';
 import { useDispatch } from 'react-redux';
+import mapboxgl from '!mapbox-gl';
 
 import PopularInfo from './PopularInfo.jsx';
 import './Dashboard.css';
 
+mapboxgl.accessToken = 'pk.eyJ1IjoibGFoZWF2ZXkiLCJhIjoiY2xkczZ5MzlsMDJhNTNwbWx6Nnk1bm1hNyJ9.7_Y-O03vhnebg8xOsSN0GQ';
 
-
-import mapboxgl from '!mapbox-gl'; 
-
-function Dashboard(props) {
-  const user = useSelector((store) => store.user);
+function Dashboard() {
 
   useEffect(() => {
     var map = new mapboxgl.Map({
@@ -26,7 +24,7 @@ function Dashboard(props) {
   
   return (
     <>
-      <div id='map' style={{width: '400px', height: '300px'}}></div>
+      <div id='map' style={{width: '100%', height: '300px'}}></div>
       <PopularInfo />
     </>
   )
