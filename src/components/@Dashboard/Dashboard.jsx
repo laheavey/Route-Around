@@ -1,14 +1,15 @@
 import React, { useRef, useEffect, useState } from 'react';
-import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector} from 'react-redux';
 import { useDispatch } from 'react-redux';
 
+import PopularInfo from './PopularInfo.jsx';
 import './Dashboard.css';
 
-//MAPBOX
+
+
 import mapboxgl from '!mapbox-gl'; 
 
-function Dashboard() {
+function Dashboard(props) {
   const user = useSelector((store) => store.user);
 
   useEffect(() => {
@@ -24,17 +25,11 @@ function Dashboard() {
   })
   
   return (
-    <div className="container">
-      <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
-      <div>
-      
+    <>
       <div id='map' style={{width: '400px', height: '300px'}}></div>
-      </div>
-      <LogOutButton className="btn" />
-    </div>
-  );
+      <PopularInfo />
+    </>
+  )
 }
 
-// this allows us to use <App /> in index.js
 export default Dashboard;
