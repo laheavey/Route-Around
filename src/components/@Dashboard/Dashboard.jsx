@@ -6,10 +6,11 @@ import mapboxgl from '!mapbox-gl';
 import PopularInfo from './PopularInfo.jsx';
 import './Dashboard.css';
 
+// Access token for MapBox, public scope
 mapboxgl.accessToken = 'pk.eyJ1IjoibGFoZWF2ZXkiLCJhIjoiY2xkczZ5MzlsMDJhNTNwbWx6Nnk1bm1hNyJ9.7_Y-O03vhnebg8xOsSN0GQ';
 
 function Dashboard() {
-
+  // Map rendering specifications
   useEffect(() => {
     var map = new mapboxgl.Map({
       container: 'map',
@@ -22,6 +23,8 @@ function Dashboard() {
     map.addControl(new mapboxgl.FullscreenControl());
   })
   
+  // Div where map renders, PopularInfo component lists routes & 
+  // points of interest
   return (
     <>
       <div id='map' style={{width: '100%', height: '300px'}}></div>

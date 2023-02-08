@@ -15,6 +15,7 @@ export default function PopularInfo() {
       // dispatch({ type: 'FETCH_POPULAR_POINTS' });
   },[])
 
+  // List of popular routes and points of interest
   return (
     <List
       sx={{
