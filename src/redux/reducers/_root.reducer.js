@@ -6,12 +6,8 @@ import popRoutes from './popularRoutes.reducer';
 import popPoints from './popularPoints.reducer';
 import allRoutes from './allRoutes.reducer';
 import allPoints from './allPoints.reducer';
-// rootReducer is the primary reducer for our entire project
-// It bundles up all of the other reducers so our project can use them.
-// This is imported in index.js as rootSaga
+import routeDetail from './routeDetail.reducer';
 
-// Lets make a bigger object for our store, with the objects from our reducers.
-// This is what we get when we use 'state' inside of 'mapStateToProps'
 const rootReducer = combineReducers({
   errors, // registrationMessage and loginMessage
   user, // id and username, if someone is logged in
@@ -19,7 +15,8 @@ const rootReducer = combineReducers({
   popRoutes, // popular routes
   popPoints, // popular points of interest
   allRoutes, 
-  allPoints, 
+  allPoints,
+  routeDetail, // id, name, description, url, ride history, and POIs for route
 });
 
 export default rootReducer;

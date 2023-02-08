@@ -8,13 +8,16 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 
-export default function routeDetail() {
+export default function RouteDetail() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const routeDetail = useSelector((store) => store.routeDetail)
 
   useEffect(() => {
-      dispatch({ type: 'FETCH_ROUTE_DETAIL/:id' });
+      dispatch({ 
+        type: 'FETCH_ROUTE_DETAIL/:id',
+        payload: id
+      });
 
       var map = new mapboxgl.Map({
         container: 'map',
@@ -28,6 +31,7 @@ export default function routeDetail() {
 
   },[])
 
+  console.log('routeDetail: ', routeDetail);
   // Route details
   return (
     <>
@@ -46,8 +50,8 @@ export default function routeDetail() {
         <ul>
           <ListSubheader>{`Route Detail ->`}</ListSubheader>
           {routeDetail.map((route) => (
-            <ListItem key={`${route.id}`}>
-              <ListItemText primary={`${route.name}`} />
+            <ListItem key={`${route.route_id}`}>
+              <ListItemText primary={`${route.route_name}`} />
             </ListItem>
           ))}
         </ul>

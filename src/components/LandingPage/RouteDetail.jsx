@@ -1,4 +1,4 @@
-function RouteDetail() {
+function NotRouteDetail() {
   // const user = useSelector((store) => store.user);
   const lineCoordinates = useSelector((store) => store.line);
   // const usableCoordinates = lineCoordinates.map((pair) => Number(Object.values(pair)));

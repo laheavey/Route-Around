@@ -7,6 +7,7 @@ import popPointsSaga from './popularPoints.saga'
 import popRoutesSaga from './popularRoutes.saga'
 import allRoutesSaga from './allRoutes.saga';
 import allPointsSaga from './allPoints.saga';
+import routeDetail from './routeDetail.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -25,5 +26,6 @@ export default function* rootSaga() {
     popRoutesSaga(),
     allRoutesSaga(),
     allPointsSaga(),
+    routeDetail(),
   ]);
 }
