@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
+// Fetches and returns the following for route id specified:
+// completed_on; poi_id; poi_name; route_desc; route_id; route_name; route_url
 function* fetchRouteDetail (action) {
-  console.log('fetchRouteDetail, action.payload: ', action.payload)
   try {
     const response = yield axios.get(`/routeDetail/${action.payload}`)
       yield put({
@@ -16,7 +17,7 @@ function* fetchRouteDetail (action) {
 }
 
 function* fetchRouteDetailSaga() {
-  yield takeLatest('FETCH_ROUTE_DETAIL', fetchRouteDetail)
+  yield takeLatest('FETCH_ROUTE_DETAIL/:id', fetchRouteDetail)
 }
 
 export default fetchRouteDetailSaga;

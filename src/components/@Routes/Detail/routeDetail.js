@@ -11,7 +11,8 @@ import ListSubheader from '@mui/material/ListSubheader';
 export default function RouteDetail() {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const routeDetail = useSelector((store) => store.routeDetail)
+  const routeDetail = useSelector((store) => store.routeDetail) 
+  // ⬆ completed_on; poi_id; poi_name; route_desc; route_id; route_name; route_url
 
   useEffect(() => {
       dispatch({ 
@@ -28,11 +29,9 @@ export default function RouteDetail() {
       });
   
       map.addControl(new mapboxgl.FullscreenControl());
-
+      console.log('routeDetail: ', routeDetail);
   },[])
 
-  console.log('routeDetail: ', routeDetail);
-  // Route details
   return (
     <>
     <div id='map' style={{width: '100%', height: '300px'}}></div>
@@ -52,6 +51,15 @@ export default function RouteDetail() {
           {routeDetail.map((route) => (
             <ListItem key={`${route.route_id}`}>
               <ListItemText primary={`${route.route_name}`} />
+              <ListItemText secondary={`${route.route_desc}`} />
+              
+            </ListItem>
+          ))}
+        </ul>
+        <ul>
+        {routeDetail.map((route) => (
+            <ListItem key={`${route.route_id}`}>
+              <ListItemText inset secondary={`${route.route_url}`} />
             </ListItem>
           ))}
         </ul>
