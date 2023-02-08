@@ -8,11 +8,12 @@ const router = express.Router();
   const sqlQuery =`
     SELECT 
       "transit_routes"."route_long_name",
+      "transit_routes"."route_id",
       COUNT("completed_trips"."transit_route_id") AS "number_completed"
     FROM "transit_routes"
     JOIN "completed_trips"
       ON "completed_trips"."transit_route_id" = "transit_routes"."transit_route_id"
-    GROUP BY "transit_routes"."route_long_name"
+    GROUP BY "transit_routes"."route_long_name", "transit_routes"."route_id"
     ORDER BY "number_completed" DESC
     LIMIT 4;
   `

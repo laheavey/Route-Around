@@ -27,18 +27,22 @@ export default function PopularInfo() {
       }}
       subheader={<li />}
       >
-      {['Popular Routes ->', 'Popular Points of Interest ->' ].map((sectionId) => (
-        <li key={`section-${sectionId}`}>
-          <ul>
-            <ListSubheader>{`${sectionId}`}</ListSubheader>
-            {popRoutes.map((route) => (
-              <ListItem key={`item-${sectionId}-${route}`}>
-                <ListItemText primary={`${route.route_long_name}`} />
-              </ListItem>
-            ))}
-          </ul>
-        </li>
-      ))}
+        <ul>
+          <ListSubheader>{`Popular Routes ->`}</ListSubheader>
+          {popRoutes.map((route) => (
+            <ListItem key={`${route.route_id}`}>
+              <ListItemText primary={`${route.route_long_name}`} />
+            </ListItem>
+          ))}
+        </ul>
+        <ul>
+          <ListSubheader>{`Popular Points of Interest ->`}</ListSubheader>
+          {[1,2,3,4,5].map((point) => (
+            <ListItem key={`id-${point}`}>
+              <ListItemText primary={`Point ${point}`} />
+            </ListItem>
+          ))}
+        </ul>
     </List>
   );
 }
