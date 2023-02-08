@@ -9,10 +9,10 @@ import ListSubheader from '@mui/material/ListSubheader';
 
 export default function AllRoutes() {
   const dispatch = useDispatch();
-  const allRoutes = useSelector((store) => store.allRoutes)
+  const allPoints = useSelector((store) => store.allPoints)
 
   useEffect(() => {
-      dispatch({ type: 'FETCH_ALL_ROUTES' });
+      dispatch({ type: 'FETCH_ALL_POINTS' });
 
       var map = new mapboxgl.Map({
         container: 'map',
@@ -42,10 +42,10 @@ export default function AllRoutes() {
       subheader={<li />}
       >
         <ul>
-          <ListSubheader>{`All Routes ->`}</ListSubheader>
-          {allRoutes.map((route) => (
-            <ListItem key={`${route.id}`}>
-              <ListItemText primary={`${route.route_name} // ${route.route_desc}`} />
+          <ListSubheader>{`All Points of Interest ->`}</ListSubheader>
+          {allPoints.map((point) => (
+            <ListItem key={`${point.id}`}>
+              <ListItemText primary={`${point.name}`} />
             </ListItem>
           ))}
         </ul>
