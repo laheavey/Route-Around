@@ -10,9 +10,10 @@ const passport = require('./strategies/user.strategy');
 // Route includes
 const userRouter = require('./routes/user.router');
 const polylineRouter = require('./routes/polyline.router');
-const popularRouter = require('./routes/popular.router');
+const popularRouter = require('./routes/popularRoutes.router');
 const allRoutesRouter = require('./routes/allRoutes.router');
 const allPointsRouter = require('./routes/allPoints.router');
+const routeDetailRouter = require('./routes/routeDetail.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -31,6 +32,7 @@ app.use('/polyline',polylineRouter);
 app.use('/popular', popularRouter);
 app.use('/allRoutes', allRoutesRouter);
 app.use('/allPoints', allPointsRouter);
+app.use('/routeDetail', routeDetailRouter);
 
 // Serve static files
 app.use(express.static('build'));

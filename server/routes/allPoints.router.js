@@ -2,7 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
- /** ---------- GET ALL ROUTES---------- **/
+ /** ---------- GET ALL POINTS---------- **/
  router.get('/', (req, res) => {
   console.log('req.body:', req.body);
   const sqlQuery =`
@@ -18,7 +18,7 @@ const router = express.Router();
     res.send(results.rows)
   })
   .catch((error => {
-    console.log('Error in GET /allRoutes: ', error);
+    console.log('Error in GET /allPoints: ', error);
     res.sendStatus(500);
   }))
 });
