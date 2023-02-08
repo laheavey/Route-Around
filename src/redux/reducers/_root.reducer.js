@@ -2,9 +2,10 @@ import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './user.reducer';
 import line from './polylines.reducer';
-import popRoutes from './popular.routes.reducer';
-import popPoints from './popular.points.reducer';
-import allRoutes from './all.routes.reducer';
+import popRoutes from './popularRoutes.reducer';
+import popPoints from './popularPoints.reducer';
+import allRoutes from './allRoutes.reducer';
+import allPoints from './allPoints.reducer';
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   line, // coordinates for polyline creation
   popRoutes, // popular routes
   popPoints, // popular points of interest
-  allRoutes, // all routes
+  allRoutes, 
+  allPoints, 
 });
 
 export default rootReducer;

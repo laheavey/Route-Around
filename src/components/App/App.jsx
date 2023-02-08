@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Dashboard from '../@Dashboard/Dashboard';
 import AllRoutes from '../@Routes/AllRoutes/AllRoutes';
+import AllPoints from '../@PointsOfInterest/AllPoints/AllPoints';
 
 import './App.css';
 
@@ -76,6 +77,14 @@ function App() {
             path="/allRoutes"
           >
             <AllRoutes />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows AllPoints else shows LoginPage
+            exact
+            path="/allPoints"
+          >
+            <AllPoints />
           </ProtectedRoute>
 
           <Route

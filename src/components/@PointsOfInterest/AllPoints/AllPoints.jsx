@@ -7,7 +7,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 
-export default function AllRoutes() {
+export default function AllPoints() {
   const dispatch = useDispatch();
   const allPoints = useSelector((store) => store.allPoints)
 

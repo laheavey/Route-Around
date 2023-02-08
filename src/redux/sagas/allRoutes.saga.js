@@ -9,7 +9,7 @@ function* fetchAllRoutes () {
         payload: response.data
     })
   } catch (error) {
-    console.error('Error in fetchPopularRoutes:', error)
+    console.error('Error in fetchAllRoutes:', error)
   }
 }
 
