@@ -1,22 +1,35 @@
 import React, { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import mapboxgl from '!mapbox-gl';
 
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 
-export default function PopularInfo() {
+export default function AllRoutes() {
   const dispatch = useDispatch();
-  const popRoutes = useSelector((store) => store.popRoutes)
+  const allRoutes = useSelector((store) => store.allRoutes)
 
   useEffect(() => {
-      dispatch({ type: 'FETCH_POPULAR_ROUTES' });
-      // dispatch({ type: 'FETCH_POPULAR_POINTS' });
+      dispatch({ type: 'FETCH_ALL_ROUTES' });
+
+      var map = new mapboxgl.Map({
+        container: 'map',
+        center: [-93.19426931505215, 44.9480407119586],
+        zoom: 10,
+        interactive: false,
+        style: 'mapbox://styles/mapbox/streets-v11'
+      });
+  
+      map.addControl(new mapboxgl.FullscreenControl());
+
   },[])
 
   // List of popular routes and points of interest
   return (
+    <>
+    <div id='map' style={{width: '100%', height: '300px'}}></div>
     <List
       sx={{
         width: '100%',
@@ -29,21 +42,14 @@ export default function PopularInfo() {
       subheader={<li />}
       >
         <ul>
-          <ListSubheader>{`Popular Routes ->`}</ListSubheader>
-          {popRoutes.map((route) => (
+          <ListSubheader>{`All Routes ->`}</ListSubheader>
+          {allRoutes.map((route) => (
             <ListItem key={`${route.id}`}>
-              <ListItemText primary={`${route.route_name}`} />
-            </ListItem>
-          ))}
-        </ul>
-        <ul>
-          <ListSubheader>{`Popular Points of Interest ->`}</ListSubheader>
-          {[1,2,3,4,5].map((point) => (
-            <ListItem key={`id-${point}`}>
-              <ListItemText primary={`Point ${point}`} />
+              <ListItemText primary={`${route.route_name} // ${route.route_desc}`} />
             </ListItem>
           ))}
         </ul>
     </List>
+    </>
   );
 }

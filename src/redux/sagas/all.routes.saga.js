@@ -14,7 +14,7 @@ function* fetchAllRoutes () {
 }
 
 function* allRoutesSaga() {
-  yield takeLatest('FETCH_POPULAR_ROUTES', fetchAllRoutes);
+  yield takeLatest('FETCH_ALL_ROUTES', fetchAllRoutes);
 }
 
 export default allRoutesSaga;

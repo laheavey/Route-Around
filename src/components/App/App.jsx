@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Dashboard from '../@Dashboard/Dashboard';
+import AllRoutes from '../@Routes/AllRoutes/AllRoutes';
 
 import './App.css';
 
@@ -67,6 +68,14 @@ function App() {
             path="/info"
           >
             <InfoPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows AllRoutes else shows LoginPage
+            exact
+            path="/allRoutes"
+          >
+            <AllRoutes />
           </ProtectedRoute>
 
           <Route

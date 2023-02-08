@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import mapboxgl from '!mapbox-gl';
 
