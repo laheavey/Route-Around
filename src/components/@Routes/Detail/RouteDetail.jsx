@@ -16,7 +16,7 @@ export default function RouteDetail() {
   // 💡 Zoom out; find array midpoint, use as center?
   const [lng, setLng] = useState(-93.0918);
   const [lat, setLat] = useState(44.9481);
-  const [zoom, setZoom] = useState(14);
+  const [zoom, setZoom] = useState(9.5);
 
   // ARRAY OF ARRAYS: ↓ Coordinates for polyline, can probably be refactored. REVIEW
   const lineCoordinates = useSelector((store) => store.line);
@@ -25,6 +25,7 @@ export default function RouteDetail() {
   // OBJECT: ↓ Completed_on; poi_id; poi_name; route_desc; route_id; route_name; route_url
   const routeDetail = useSelector((store) => store.routeDetail) 
   
+  let completedTrips = routeDetail.completed_trips;
 
   useEffect(() => {
       dispatch({ type: 'FETCH_ROUTE_DETAIL/:id', payload: id});
@@ -54,7 +55,7 @@ export default function RouteDetail() {
               },
               'geometry': {
                 'type': 'LineString',
-                'coordinates': usableCoordinates
+                'coordinates': (usableCoordinates && usableCoordinates)
               }
             }]
           }
@@ -69,7 +70,16 @@ export default function RouteDetail() {
           }
         });
       });
+      
   },[])
+
+  const setCenter = () => {
+    let halfArray = parseInt((usableCoordinates.length)/2)
+    setLng(usableCoordinates[halfArray][0]);
+    setLat(usableCoordinates[halfArray][1]);
+
+    return [lng, lat];
+  }
 
   return (
     <>
@@ -110,14 +120,18 @@ export default function RouteDetail() {
           </ListItem>
 
         </ul>
+        {completedTrips && 
         <ul>
         <ListSubheader disableSticky>{`Ride History →`}</ListSubheader>
-
-          <ListItem >
-            <ListItemText inset secondary={`${routeDetail.completed_on}`} />
-          </ListItem>
-
+          {completedTrips.map((trip) => {
+            return (
+              <ListItem key={`1-${trip}-${routeDetail.id}`}>
+                <ListItemText inset secondary={`${trip}`} />
+              </ListItem>
+            )
+          })}
         </ul>
+        }
     </List>
     </>
   );
