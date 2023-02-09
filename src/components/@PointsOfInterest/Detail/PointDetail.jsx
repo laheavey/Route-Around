@@ -7,6 +7,9 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
+import ImageListItem from '@mui/material/ImageListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Avatar from '@mui/material/Avatar';
 
 export default function PointDetail() {
   const dispatch = useDispatch();
@@ -38,10 +41,10 @@ export default function PointDetail() {
 
   return (
     <>
-    <div id='map' style={{width: '100%', height: '300px'}}></div>
-    {pointDetail.map((point) => (
-    <List
-      sx={{
+      <div id='map' style={{width: '100%', height: '300px'}}></div>
+      {pointDetail.map((point) => (
+      <List
+        sx={{
         width: '100%',
         bgcolor: 'background.paper',
         position: 'relative',
@@ -49,24 +52,25 @@ export default function PointDetail() {
         maxHeight: 360,
         '& ul': { padding: 0 }
       }}
-      subheader={<li />}
-      >
+      key={`${point.id}`}
+      subheader={<li />}>
         <ul>
           <ListSubheader>{`Point Detail →`}</ListSubheader>
-            <ListItem key={`${point.id}`}>
-              <ListItemText Primary={`IMG Placeholder`} />
-              <ListItemText secondary={`${point.name}`} />
+            <ListItem>
+              <ListItemAvatar>
+                <Avatar alt={`${point.name}`} src={`${point.image_url}`} />
+              </ListItemAvatar>
+              <ListItemText primary={`${point.name}`} />
+              {/* <ListItemText secondary={`${routeDetail.map((route) => )}`} */}
             </ListItem>
         </ul>
         <ul>
-            
           <ListItem>
             <ListItemText secondary={`${point.description}`} />
           </ListItem>
           <ListItem key={`${point.id}`}>
             <ListItemText primary={`${point.sources_cited}`} />
           </ListItem>
-          
         </ul>
         
     </List>
@@ -74,3 +78,12 @@ export default function PointDetail() {
     </>
   );
 }
+
+            {/* <ImageListItem>
+              <img
+                src={`${point.image_url}?w=10&h=100&fit=crop&auto=format`}
+                srcSet={`${point.image_url}?w=10&h=100&fit=crop&auto=format&dpr=2 2x`}
+                alt={point.name}
+                loading="lazy"
+              />
+            </ImageListItem> */}

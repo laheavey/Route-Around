@@ -27,4 +27,26 @@ const router = express.Router();
   }))
 });
 
+ /** ---------- GET ROUTE INFO FOR POINT DETAIL ---------- **/
+ router.get('/:id/routeInfo', (req, res) => {
+  const sqlQueryPoint =`
+    SELECT
+      "gtfs_routes"."route_name",
+      "gtfs_routes"."route_desc"
+    FROM "poi_routes"
+    JOIN "gtfs_routes"
+      ON "poi_routes"."route_id" = "gtfs_routes"."id"
+    WHERE "poi_routes"."poi_id" = $1;`;
+  const sqlValues = [req.params.id];
+  pool.query(sqlQueryPoint, sqlValues)
+  .then((results) => {
+    // console.log('Success in GET routeDetail.router!')
+    res.send(results.rows)
+  })
+  .catch((error => {
+    console.log('Error in GET /pointDetail/:id: ', error);
+    res.sendStatus(500);
+  }))
+});
+
 module.exports = router;
