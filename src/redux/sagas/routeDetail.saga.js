@@ -11,7 +11,7 @@ function* fetchRouteDetail (action) {
       // route_color, completed_on, poi_id, poi_name
     })
   } catch (error) {
-    console.error('Error in fetchRouteDetail:', error);
+    console.error('Error in SAGA/fetchRouteDetail:', error);
   }
 }
 

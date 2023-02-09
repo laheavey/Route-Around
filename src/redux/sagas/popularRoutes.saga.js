@@ -9,7 +9,7 @@ function* fetchPopularRoutes () {
       payload: response.data // route_name, route_id
     })
   } catch (error) {
-    console.error('Error in fetchPopularRoutes:', error);
+    console.error('Error in SAGA/fetchPopularRoutes:', error);
   }
 }
 

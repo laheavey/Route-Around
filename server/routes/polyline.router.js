@@ -5,9 +5,15 @@ const router = express.Router();
  /** ---------- GET POLYLINE ---------- **/
  router.get('/:id', (req, res) => {
   const sqlQuery =`
-    SELECT "shape_pt_lon", "shape_pt_lat"
+  SELECT "shape_pt_lon", "shape_pt_lat"
+  FROM "gtfs_shapes"
+  WHERE "shape_id" = (
+    SELECT "shape_id"
     FROM "gtfs_shapes"
-    WHERE "route_id" = $1`
+    WHERE "route_id" = $1
+    ORDER BY "shape_dist_traveled" DESC
+    LIMIT 1
+  );`
   const sqlValues = [req.params.id];
   pool.query(sqlQuery, sqlValues)
   .then((results) => {

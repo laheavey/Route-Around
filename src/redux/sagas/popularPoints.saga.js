@@ -9,7 +9,7 @@ function* fetchPopularPoints () {
       payload: response.data // name, id, count_saved
     })
   } catch (error) {
-    console.error('Error in fetchPopularPoints:', error)
+    console.error('Error in SAGA/fetchPopularPoints:', error)
   }
 }
 

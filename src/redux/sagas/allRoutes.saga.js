@@ -9,7 +9,7 @@ function* fetchAllRoutes () {
       payload: response.data // id, route_name, route_desc
     })
   } catch (error) {
-    console.error('Error in fetchAllRoutes:', error);
+    console.error('Error in SAGA/fetchAllRoutes:', error);
   }
 }
 

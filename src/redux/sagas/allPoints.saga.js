@@ -9,7 +9,7 @@ function* fetchAllPoints () {
       payload: response.data // id, name
     })
   } catch (error) {
-    console.error('Error in fetchAllPoints:', error);
+    console.error('Error in SAGA/fetchAllPoints:', error);
   }
 }
 

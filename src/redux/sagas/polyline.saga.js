@@ -9,7 +9,7 @@ function* fetchLine (action) {
       payload: response.data // shape_pt_lon, shape_pt_lat
     })
   } catch (error) {
-    console.error('Error in fetchLine:', error);
+    console.error('Error in SAGA/fetchLine:', error);
   }
 }
 
