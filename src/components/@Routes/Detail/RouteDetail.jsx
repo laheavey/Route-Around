@@ -13,15 +13,16 @@ export default function RouteDetail() {
   const { id } = useParams();
   const mapContainer = useRef(null);
   const map = useRef(null);
+  // 💡 Zoom out; find array midpoint, use as center?
   const [lng, setLng] = useState(-93.0918);
   const [lat, setLat] = useState(44.9481);
   const [zoom, setZoom] = useState(14);
 
-  // ↓ Coordinates for polyline, can probably be refactored. REVIEW
+  // ARRAY OF ARRAYS: ↓ Coordinates for polyline, can probably be refactored. REVIEW
   const lineCoordinates = useSelector((store) => store.line);
   const usableCoordinates = (lineCoordinates.map((pair) => Object.values(pair)));
 
-  // ↓ Completed_on; poi_id; poi_name; route_desc; route_id; route_name; route_url
+  // OBJECT: ↓ Completed_on; poi_id; poi_name; route_desc; route_id; route_name; route_url
   const routeDetail = useSelector((store) => store.routeDetail) 
   
 
@@ -37,7 +38,7 @@ export default function RouteDetail() {
         center: [lng, lat],
         zoom: zoom
       });
-  
+
       // Had to add .current for this to work, found solution in StackOverflow;
       // Otherwise, map.on was not a function.
       map.current.on('load', () => {
@@ -49,7 +50,7 @@ export default function RouteDetail() {
               'type': 'Feature',
               'properties': {
                 // ↓ could use routeDetail.color but no hash - concatenate or fix table?
-                'color':  '#33C9EB' 
+                'color': `#${routeDetail.route_color}` || '#33C9EB' 
               },
               'geometry': {
                 'type': 'LineString',
@@ -86,36 +87,36 @@ export default function RouteDetail() {
       >
         <ul>
           <ListSubheader>{`Route Detail →`}</ListSubheader>
-          {routeDetail.map((route) => (
-            <ListItem key={`${route.route_id}`}>
-              <ListItemText secondary={`${route.route_name}`} />
-              <ListItemText secondary={`${route.route_desc}`} />
+          
+            <ListItem >
+              <ListItemText secondary={`${routeDetail.route_name}`} />
+              <ListItemText secondary={`${routeDetail.route_desc}`} />
               
             </ListItem>
-          ))}
+          
         </ul>
         <ul>
-          {routeDetail.map((route) => (
-          <ListItem key={`${route.route_id}`}>
-            <ListItemText inset secondary={`${route.route_url}`} />
+          
+          <ListItem >
+            <ListItemText inset secondary={`${routeDetail.route_url}`} />
           </ListItem>
-          ))}
+          
         </ul>
         <ul>
         <ListSubheader disableSticky>{`Points of Interest →`}</ListSubheader>
-          {routeDetail.map((route) => (
-          <ListItem key={`${route.route_id}`}>
-            <ListItemText inset secondary={`${route.poi_name}`} />
+
+          <ListItem >
+            <ListItemText inset secondary={`${routeDetail.poi_name}`} />
           </ListItem>
-          ))}
+
         </ul>
         <ul>
         <ListSubheader disableSticky>{`Ride History →`}</ListSubheader>
-          {routeDetail.map((route) => (
-          <ListItem key={`${route.route_id}`}>
-            <ListItemText inset secondary={`${route.completed_on}`} />
+
+          <ListItem >
+            <ListItemText inset secondary={`${routeDetail.completed_on}`} />
           </ListItem>
-          ))}
+
         </ul>
     </List>
     </>

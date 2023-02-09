@@ -4,7 +4,7 @@ const router = express.Router();
 
  /** ---------- GET POPULAR ROUTES ---------- **/
  router.get('/', (req, res) => {
-  console.log('req.body:', req.body);
+  // console.log('req.body:', req.body);
   const sqlQuery =`
       SELECT 
         "gtfs_routes"."route_name",

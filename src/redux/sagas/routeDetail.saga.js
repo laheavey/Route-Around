@@ -7,7 +7,7 @@ function* fetchRouteDetail (action) {
     yield put({
       type: 'SET_ROUTE_DETAIL',
       payload: response.data
-      // payload: route_id, route_name, route_desc, route_url, 
+      // route_id, route_name, route_desc, route_url, 
       // route_color, completed_on, poi_id, poi_name
     })
   } catch (error) {

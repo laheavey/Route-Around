@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import mapboxgl from '!mapbox-gl';
 
+import LogOutButton from '../LogOutButton/LogOutButton.jsx';
 import PopularInfo from './PopularInfo.jsx';
 import './Dashboard.css';
 
@@ -29,6 +30,7 @@ function Dashboard() {
     <>
       <div id='map' style={{width: '100%', height: '300px'}}></div>
       <PopularInfo />
+      <LogOutButton />
     </>
   )
 }
