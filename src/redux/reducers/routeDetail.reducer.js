@@ -1,5 +1,4 @@
 const routeDetailReducer = (state = {}, action) => {
-  console.log('Action.type: ', action.type)
   switch (action.type) {
     case 'SET_ROUTE_DETAIL':
       return action.payload;

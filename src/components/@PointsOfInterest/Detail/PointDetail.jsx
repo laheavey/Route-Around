@@ -9,10 +9,14 @@ import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
+import { IconButton } from '@mui/material';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 
 export default function PointDetail() {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const [dense, setDense] = useState(false);
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [lng, setLng] = useState(-93.0918);
@@ -23,7 +27,9 @@ export default function PointDetail() {
   const routeDetail = useSelector((store) => store.routeDetail);
   // ↓ OBJECT: Completed_on; poi_id; poi_name; route_desc; route_id; route_name; route_url
   const pointDetail = useSelector((store) => store.pointDetail);
-  
+  const user = useSelector((store) => store.user);
+
+
   useEffect(() => {
     dispatch({ type: 'FETCH_POINT_DETAIL/:id', payload: id});
     dispatch({ type: 'FETCH_POINT_DETAIL/ROUTES/:id', payload: id});
@@ -39,6 +45,16 @@ export default function PointDetail() {
     map.addControl(new mapboxgl.FullscreenControl());
   },[])
   
+  const savePoint = () => {
+    let newPointSave = {
+      user_id: user.id,
+      poi_id: id
+    }
+
+    dispatch({ type: 'ADD_POI_SAVE', payload: newPointSave })
+
+  }
+
   return (
     <>
       <div id='map' style={{width: '100%', height: '300px'}}></div>
@@ -50,30 +66,43 @@ export default function PointDetail() {
         overflow: 'auto',
         maxHeight: 360,
         '& ul': { padding: 0 }
-      }}
-      key={`${pointDetail.id}`}
-      subheader={<li />}>
+        }}
+        key={`${pointDetail.id}`}
+        dense={dense}
+        subheader={<li />}>
         <ul>
-          <ListSubheader>{`Point Detail →`}</ListSubheader>
-            <ListItem>
+          <ListSubheader>{`Point Detail → ${pointDetail.name}`}</ListSubheader>
+
+            <ListItem >
               <ListItemAvatar>
-                <Avatar alt={`${pointDetail.name}`} src={`${pointDetail.image_url}`} />
+                <Avatar 
+                  variant="square" 
+                  alt={`${pointDetail.name}`} 
+                  src={`${pointDetail.image_url}`}
+                  sx= {{ width: 120, height: 100 }}
+                />
               </ListItemAvatar>
+              <IconButton 
+                aria-label="save"
+                onClick={savePoint}
+              >
+              <FavoriteBorderOutlinedIcon />
+            </IconButton>
               <ListItemText primary={`${pointDetail.name}`} />
             </ListItem>
-            <ListItem>
+            {/* <ListItem>
             {routeDetail.map((route) => {
                 return (
                   <ListItemText secondary={`${route.route_name}`}/>
                 )
                 })}
-            </ListItem>
+            </ListItem> */}
         </ul>
         <ul>
           <ListItem>
             <ListItemText secondary={`${pointDetail.description}`} />
           </ListItem>
-          <ListItem key={`${pointDetail.id}`}>
+          <ListItem>
             <ListItemText primary={`${pointDetail.sources_cited}`} />
           </ListItem>
         </ul>

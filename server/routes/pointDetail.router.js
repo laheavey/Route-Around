@@ -47,4 +47,20 @@ const router = express.Router();
   }))
 });
 
+/** ---------- SAVE POINT ---------- **/
+router.post('/', (req,res) => {
+  const sqlQuery = `
+  INSERT INTO "poi_saves" ("user_id", "poi_id")
+  VALUES ($1, $2)`
+  const sqlValues = [req.body.user_id, req.body.poi_id]
+  pool.query(sqlQuery, sqlValues)
+  .then((results) => {
+    console.log('Success!')
+    res.sendStatus(201);
+  })
+  .catch((error) => {
+    console.log('Error in POST /pointDetail: ', error)
+  })
+})
+
 module.exports = router;

@@ -28,7 +28,22 @@ function* fetchPOIRoutes (action) {
   }
 }
 
+function* addPointSave (action) {
+  console.log('SAGA action.payload: ', action.payload);
+  try {
+    yield axios({
+      method: 'POST',
+      url: '/pointDetail',
+      data: action.payload
+    })
+    console.log('SAGA action.payload: ', action.payload);
+  } catch (error) {
+    console.log('Error in SAGA/addPointSave: ', error)
+  }
+}
+
 export default function* fetchPointDetailSaga() {
   yield takeLatest('FETCH_POINT_DETAIL/:id', fetchPointDetail);
   yield takeLatest('FETCH_POINT_DETAIL/ROUTES/:id', fetchPOIRoutes);
+  yield takeLatest('ADD_POI_SAVE', addPointSave)
 }
