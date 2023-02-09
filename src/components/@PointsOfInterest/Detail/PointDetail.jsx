@@ -26,7 +26,7 @@ export default function PointDetail() {
   // ↓ ARRAY: route_name, route_desc by poi id
   const routeDetail = useSelector((store) => store.routeDetail);
   // ↓ OBJECT: Completed_on; poi_id; poi_name; route_desc; route_id; route_name; route_url
-  const pointDetail = useSelector((store) => store.pointDetail);
+  const points = useSelector((store) => store.points);
   const user = useSelector((store) => store.user);
 
 
@@ -67,18 +67,18 @@ export default function PointDetail() {
         maxHeight: 360,
         '& ul': { padding: 0 }
         }}
-        key={`${pointDetail.id}`}
+        key={`${points.id}`}
         dense={dense}
         subheader={<li />}>
         <ul>
-          <ListSubheader>{`Point Detail → ${pointDetail.name}`}</ListSubheader>
+          <ListSubheader>{`Point Detail → ${points.name}`}</ListSubheader>
 
             <ListItem >
               <ListItemAvatar>
                 <Avatar 
                   variant="square" 
-                  alt={`${pointDetail.name}`} 
-                  src={`${pointDetail.image_url}`}
+                  alt={`${points.name}`} 
+                  src={`${points.image_url}`}
                   sx= {{ width: 120, height: 100 }}
                 />
               </ListItemAvatar>
@@ -88,7 +88,7 @@ export default function PointDetail() {
               >
               <FavoriteBorderOutlinedIcon />
             </IconButton>
-              <ListItemText primary={`${pointDetail.name}`} />
+              <ListItemText primary={`${points.name}`} />
             </ListItem>
             {/* <ListItem>
             {routeDetail.map((route) => {
@@ -100,10 +100,10 @@ export default function PointDetail() {
         </ul>
         <ul>
           <ListItem>
-            <ListItemText secondary={`${pointDetail.description}`} />
+            <ListItemText secondary={`${points.description}`} />
           </ListItem>
           <ListItem>
-            <ListItemText primary={`${pointDetail.sources_cited}`} />
+            <ListItemText primary={`${points.sources_cited}`} />
           </ListItem>
         </ul>
         

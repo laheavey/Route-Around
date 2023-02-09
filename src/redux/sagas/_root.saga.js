@@ -3,12 +3,8 @@ import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import lineSaga from './polyline.saga';
-import popPointsSaga from './popularPoints.saga';
-import popRoutesSaga from './popularRoutes.saga';
-import allRoutesSaga from './allRoutes.saga';
-import allPointsSaga from './allPoints.saga';
-import routeDetail from './routeDetail.saga';
-import pointDetail from './pointDetail.saga';
+import routesSaga from './routes.saga';
+import pointsSaga from './points.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -23,11 +19,7 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     lineSaga(),
-    popPointsSaga(),
-    popRoutesSaga(),
-    allRoutesSaga(),
-    allPointsSaga(),
-    routeDetail(),
-    pointDetail(),
+    pointsSaga(),
+    routesSaga(),
   ]);
 }

@@ -10,12 +10,8 @@ const passport = require('./strategies/user.strategy');
 // Route files
 const userRouter = require('./routes/user.router');
 const polylineRouter = require('./routes/polyline.router');
-const popularRoutesRouter = require('./routes/popularRoutes.router');
-const popularPointsRouter = require('./routes/popularPoints.router')
-const allRoutesRouter = require('./routes/allRoutes.router');
-const allPointsRouter = require('./routes/allPoints.router');
-const routeDetailRouter = require('./routes/routeDetail.router');
-const pointDetailRouter = require('./routes/pointDetail.router');
+const pointsRouter = require('./routes/points.router');
+const routesRouter = require('./routes/routes.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -31,12 +27,8 @@ app.use(passport.session());
 // Routes 
 app.use('/api/user', userRouter);
 app.use('/polyline',polylineRouter);
-app.use('/popular/routes', popularRoutesRouter);
-app.use('/popular/points', popularPointsRouter);
-app.use('/allRoutes', allRoutesRouter);
-app.use('/allPoints', allPointsRouter);
-app.use('/routeDetail', routeDetailRouter);
-app.use('/pointDetail', pointDetailRouter); 
+app.use('/points', pointsRouter)
+app.use('/routes', routesRouter);
 
 // Serve static files
 app.use(express.static('build'));
