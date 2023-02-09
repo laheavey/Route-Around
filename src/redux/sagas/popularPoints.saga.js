@@ -3,18 +3,16 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 function* fetchPopularPoints () {
   try {
-    const response = yield axios.get('/polyline')
-      yield put({
-        type: 'SET_POPULAR_POINTS',
-        payload: response.data
+    const response = yield axios.get('/popular/points')
+    yield put({
+      type: 'SET_POPULAR_POINTS',
+      payload: response.data
     })
   } catch (error) {
     console.error('Error in fetchPopularPoints:', error)
   }
 }
 
-function* popPointsSaga() {
+export default function* popPointsSaga() {
   yield takeLatest('FETCH_POPULAR_POINTS', fetchPopularPoints);
 }
-
-export default popPointsSaga;

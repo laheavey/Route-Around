@@ -29,7 +29,7 @@ export default function PopularInfo() {
       subheader={<li />}
       >
         <ul>
-          <ListSubheader>{`Popular Routes ->`}</ListSubheader>
+          <ListSubheader>{`Popular Routes →`}</ListSubheader>
           {popRoutes.map((route) => (
             <ListItem key={`${route.id}`}>
               <ListItemText primary={`${route.route_name}`} />
@@ -37,7 +37,7 @@ export default function PopularInfo() {
           ))}
         </ul>
         <ul>
-          <ListSubheader>{`Popular Points of Interest ->`}</ListSubheader>
+          <ListSubheader>{`Popular Points of Interest →`}</ListSubheader>
           {[1,2,3,4,5].map((point) => (
             <ListItem key={`id-${point}`}>
               <ListItemText primary={`Point ${point}`} />

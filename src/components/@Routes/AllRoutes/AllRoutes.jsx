@@ -42,7 +42,7 @@ export default function AllRoutes() {
       subheader={<li />}
       >
         <ul>
-          <ListSubheader>{`All Routes ->`}</ListSubheader>
+          <ListSubheader>{`All Routes →`}</ListSubheader>
           {allRoutes.map((route) => (
             <ListItem key={`${route.id}`}>
               <ListItemText primary={`${route.route_name} // ${route.route_desc}`} />

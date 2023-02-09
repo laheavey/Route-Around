@@ -3,8 +3,8 @@ import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import lineSaga from './polyline.saga';
-import popPointsSaga from './popularPoints.saga'
-import popRoutesSaga from './popularRoutes.saga'
+import popPointsSaga from './popularPoints.saga';
+import popRoutesSaga from './popularRoutes.saga';
 import allRoutesSaga from './allRoutes.saga';
 import allPointsSaga from './allPoints.saga';
 import routeDetail from './routeDetail.saga';

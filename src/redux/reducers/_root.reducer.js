@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './user.reducer';
-import line from './polylines.reducer';
+import line from './polyline.reducer';
 import popRoutes from './popularRoutes.reducer';
 import popPoints from './popularPoints.reducer';
 import allRoutes from './allRoutes.reducer';

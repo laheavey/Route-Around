@@ -22,7 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import Dashboard from '../@Dashboard/Dashboard';
 import AllRoutes from '../@Routes/AllRoutes/AllRoutes';
 import AllPoints from '../@PointsOfInterest/AllPoints/AllPoints';
-import RouteDetail from '../@Routes/Detail/routeDetail';
+import RouteDetail from '../@Routes/Detail/RouteDetail';
 
 import './App.css';
 

@@ -2,33 +2,22 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
- /** ---------- GET ---------- **/
- router.get('/', (req, res) => {
-  // console.log('req.body:', req.body);
+ /** ---------- GET POLYLINE ---------- **/
+ router.get('/:id', (req, res) => {
   const sqlQuery =`
-  SELECT 
-    "shape_pt_lon",
-    "shape_pt_lat"
-  FROM "polyline_route_coords"
-  ORDER BY "shape_pt_sequence" ASC;
-  `
-  pool.query(sqlQuery)
-
+    SELECT "shape_pt_lon", "shape_pt_lat"
+    FROM "gtfs_shapes"
+    WHERE "route_id" = $1`
+  const sqlValues = [req.params.id];
+  pool.query(sqlQuery, sqlValues)
   .then((results) => {
-    // console.log('Success!', results.rows)
+    console.log('Success in GET /polyline/:id!')
     res.send(results.rows)
   })
   .catch((error => {
-    console.log('Error making GET for map:', error);
+    console.log('Error in GET /polyline/:id: ', error);
     res.sendStatus(500);
   }))
-});
-
-/**
- * POST route template
- */
-router.post('/', (req, res) => {
-  // POST route code here
 });
 
 module.exports = router;

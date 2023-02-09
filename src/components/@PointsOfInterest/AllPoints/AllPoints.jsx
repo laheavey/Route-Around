@@ -42,7 +42,7 @@ export default function AllPoints() {
       subheader={<li />}
       >
         <ul>
-          <ListSubheader>{`All Points of Interest ->`}</ListSubheader>
+          <ListSubheader>{`All Points of Interest →`}</ListSubheader>
           {allPoints.map((point) => (
             <ListItem key={`${point.id}`}>
               <ListItemText primary={`${point.name}`} />

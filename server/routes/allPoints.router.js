@@ -6,15 +6,11 @@ const router = express.Router();
  router.get('/', (req, res) => {
   console.log('req.body:', req.body);
   const sqlQuery =`
-  SELECT
-  "id",
-  "name"
-  FROM "points_of_interest"
-  ORDER BY "id" ASC;
-  `
+    SELECT "id", "name"
+    FROM "poi_details"`
   pool.query(sqlQuery)
   .then((results) => {
-    console.log('Success!', results.rows)
+    console.log('Success in GET /allPoints!')
     res.send(results.rows)
   })
   .catch((error => {

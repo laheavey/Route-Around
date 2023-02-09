@@ -6,16 +6,11 @@ const router = express.Router();
  router.get('/', (req, res) => {
   console.log('req.body:', req.body);
   const sqlQuery =`
-  SELECT
-    "id",
-    "route_name",
-    "route_desc"
-  FROM "routes"
-  ORDER BY "id" ASC;
-  `
+    SELECT "id", "route_name", "route_desc"
+    FROM "gtfs_routes"`
   pool.query(sqlQuery)
   .then((results) => {
-    console.log('Success!', results.rows)
+    console.log('Success in GET /allRoutes!')
     res.send(results.rows)
   })
   .catch((error => {
