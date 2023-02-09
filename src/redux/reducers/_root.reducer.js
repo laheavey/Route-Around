@@ -12,11 +12,11 @@ const rootReducer = combineReducers({
   errors, // registrationMessage and loginMessage
   user, // id and username, if someone is logged in
   line, // coordinates for polyline creation
-  popRoutes, // popular routes
-  popPoints, // popular points of interest
+  popRoutes, 
+  popPoints, 
   allRoutes, 
   allPoints,
-  routeDetail, // id, name, description, url, ride history, and POIs for route
+  routeDetail, 
 });
 
 export default rootReducer;

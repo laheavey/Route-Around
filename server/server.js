@@ -10,7 +10,8 @@ const passport = require('./strategies/user.strategy');
 // Route files
 const userRouter = require('./routes/user.router');
 const polylineRouter = require('./routes/polyline.router');
-const popularRouter = require('./routes/popularRoutes.router');
+const popularRoutesRouter = require('./routes/popularRoutes.router');
+const popularPointsRouter = require('./routes/popularPoints.router')
 const allRoutesRouter = require('./routes/allRoutes.router');
 const allPointsRouter = require('./routes/allPoints.router');
 const routeDetailRouter = require('./routes/routeDetail.router');
@@ -29,7 +30,8 @@ app.use(passport.session());
 // Routes 
 app.use('/api/user', userRouter);
 app.use('/polyline',polylineRouter);
-app.use('/popular', popularRouter);
+app.use('/popular/routes', popularRoutesRouter);
+app.use('/popular/points', popularPointsRouter);
 app.use('/allRoutes', allRoutesRouter);
 app.use('/allPoints', allPointsRouter);
 app.use('/routeDetail', routeDetailRouter);

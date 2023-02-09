@@ -8,11 +8,12 @@ import ListSubheader from '@mui/material/ListSubheader';
 
 export default function PopularInfo() {
   const dispatch = useDispatch();
-  const popRoutes = useSelector((store) => store.popRoutes)
+  const popRoutes = useSelector((store) => store.popRoutes);
+  const popPoints = useSelector((store) => store.popPoints);
 
   useEffect(() => {
       dispatch({ type: 'FETCH_POPULAR_ROUTES' });
-      // dispatch({ type: 'FETCH_POPULAR_POINTS' });
+      dispatch({ type: 'FETCH_POPULAR_POINTS' });
   },[])
 
   // List of popular routes and points of interest
@@ -32,15 +33,15 @@ export default function PopularInfo() {
           <ListSubheader>{`Popular Routes →`}</ListSubheader>
           {popRoutes.map((route) => (
             <ListItem key={`${route.id}`}>
-              <ListItemText primary={`${route.route_name}`} />
+              <ListItemText inset secondary={`${route.route_name}`} />
             </ListItem>
           ))}
         </ul>
         <ul>
           <ListSubheader>{`Popular Points of Interest →`}</ListSubheader>
-          {[1,2,3,4,5].map((point) => (
-            <ListItem key={`id-${point}`}>
-              <ListItemText primary={`Point ${point}`} />
+          {popPoints.map((point) => (
+            <ListItem key={`${point.id}`}>
+              <ListItemText inset secondary={`${point.name}`} />
             </ListItem>
           ))}
         </ul>

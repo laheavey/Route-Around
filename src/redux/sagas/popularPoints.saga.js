@@ -6,7 +6,7 @@ function* fetchPopularPoints () {
     const response = yield axios.get('/popular/points')
     yield put({
       type: 'SET_POPULAR_POINTS',
-      payload: response.data
+      payload: response.data // name, id, count_saved
     })
   } catch (error) {
     console.error('Error in fetchPopularPoints:', error)

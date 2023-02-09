@@ -3,7 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
  /** ---------- GET POPULAR ROUTES ---------- **/
- router.get('/routes', (req, res) => {
+ router.get('/', (req, res) => {
   console.log('req.body:', req.body);
   const sqlQuery =`
       SELECT 

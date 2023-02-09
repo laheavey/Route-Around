@@ -79,7 +79,11 @@ CREATE TABLE poi_routes (
     "poi_id" integer NOT NULL REFERENCES "poi_details",
     "route_id" integer NOT NULL REFERENCES "gtfs_routes",
 );
-
+    -- Dummy data
+    INSERT INTO "poi_route_join"
+    VALUES (1,21), (1,54), 
+    (1,63), (1,70), (1,94), 
+    (1,294), (1,353), (1,363);
 
 /** ---------- GTFS DATA FROM METRO TRANSIT ---------- **/
 
