@@ -13,6 +13,7 @@ function* fetchAllPoints () {
   }
 }
 
+
 export default function* allPointsSaga() {
   yield takeLatest('FETCH_ALL_POINTS', fetchAllPoints);
 }

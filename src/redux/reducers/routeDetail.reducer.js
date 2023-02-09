@@ -4,7 +4,9 @@ const routeDetailReducer = (state = [], action) => {
       return action.payload;
       // returns: route_id, route_name, route_desc, route_url, 
       // route_color, completed_on, poi_id, poi_name
-    default:
+      case 'SET_POI_ROUTE_DETAIL':
+        return action.payload;
+      default:
       return state;
   }
 }

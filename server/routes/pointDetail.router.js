@@ -18,8 +18,8 @@ const router = express.Router();
   const sqlValues = [req.params.id];
   pool.query(sqlQueryPoint, sqlValues)
   .then((results) => {
-    // console.log('Success in GET routeDetail.router!')
-    res.send(results.rows)
+    // console.log('Success in GET /pointDetail/:id!')
+    res.send(results.rows[0])
   })
   .catch((error => {
     console.log('Error in GET /pointDetail/:id: ', error);
@@ -28,7 +28,7 @@ const router = express.Router();
 });
 
  /** ---------- GET ROUTE INFO FOR POINT DETAIL ---------- **/
- router.get('/:id/routeInfo', (req, res) => {
+ router.get('/route/:id', (req, res) => {
   const sqlQueryPoint =`
     SELECT
       "gtfs_routes"."route_name",
@@ -40,11 +40,11 @@ const router = express.Router();
   const sqlValues = [req.params.id];
   pool.query(sqlQueryPoint, sqlValues)
   .then((results) => {
-    // console.log('Success in GET routeDetail.router!')
+    // console.log('Success in GET /pointDetail/:id/routeDetail!')
     res.send(results.rows)
   })
   .catch((error => {
-    console.log('Error in GET /pointDetail/:id: ', error);
+    console.log('Error in GET /pointDetail/:id/routeDetail: ', error);
     res.sendStatus(500);
   }))
 });

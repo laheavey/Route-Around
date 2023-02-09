@@ -27,6 +27,7 @@ export default function PointDetail() {
   useEffect(() => {
     // dispatch({ type: 'FETCH_ROUTE_DETAIL/:id', payload: id});
     dispatch({ type: 'FETCH_POINT_DETAIL/:id', payload: id});
+    dispatch({ type: 'FETCH_POINT_DETAIL/ROUTES/:id', payload: id});
 
     var map = new mapboxgl.Map({
       container: 'map',
@@ -37,12 +38,13 @@ export default function PointDetail() {
     });
   
     map.addControl(new mapboxgl.FullscreenControl());
+
   },[])
+  
 
   return (
     <>
       <div id='map' style={{width: '100%', height: '300px'}}></div>
-      {pointDetail.map((point) => (
       <List
         sx={{
         width: '100%',
@@ -52,29 +54,34 @@ export default function PointDetail() {
         maxHeight: 360,
         '& ul': { padding: 0 }
       }}
-      key={`${point.id}`}
+      key={`${pointDetail.id}`}
       subheader={<li />}>
         <ul>
           <ListSubheader>{`Point Detail →`}</ListSubheader>
             <ListItem>
               <ListItemAvatar>
-                <Avatar alt={`${point.name}`} src={`${point.image_url}`} />
+                <Avatar alt={`${pointDetail.name}`} src={`${pointDetail.image_url}`} />
               </ListItemAvatar>
-              <ListItemText primary={`${point.name}`} />
-              {/* <ListItemText secondary={`${routeDetail.map((route) => )}`} */}
+              <ListItemText primary={`${pointDetail.name}`} />
+            </ListItem>
+            <ListItem>
+            {routeDetail.map((route) => {
+                return (
+                  <ListItemText secondary={`${route.route_name}`}/>
+                )
+                })}
             </ListItem>
         </ul>
         <ul>
           <ListItem>
-            <ListItemText secondary={`${point.description}`} />
+            <ListItemText secondary={`${pointDetail.description}`} />
           </ListItem>
-          <ListItem key={`${point.id}`}>
-            <ListItemText primary={`${point.sources_cited}`} />
+          <ListItem key={`${pointDetail.id}`}>
+            <ListItemText primary={`${pointDetail.sources_cited}`} />
           </ListItem>
         </ul>
         
-    </List>
-    ))}
+    </List>  
     </>
   );
 }
