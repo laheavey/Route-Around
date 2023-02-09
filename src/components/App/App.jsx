@@ -23,6 +23,7 @@ import Dashboard from '../@Dashboard/Dashboard';
 import AllRoutes from '../@Routes/AllRoutes/AllRoutes';
 import AllPoints from '../@PointsOfInterest/AllPoints/AllPoints';
 import RouteDetail from '../@Routes/Detail/RouteDetail';
+import PointDetail from '../@PointsOfInterest/Detail/PointDetail';
 
 import './App.css';
 
@@ -94,6 +95,14 @@ function App() {
             path="/routeDetail/:id"
           >
             <RouteDetail />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows AllPoints else shows LoginPage
+            exact
+            path="/pointDetail/:id"
+          >
+          <PointDetail />
           </ProtectedRoute>
 
           <Route

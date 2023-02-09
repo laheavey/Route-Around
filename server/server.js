@@ -15,6 +15,7 @@ const popularPointsRouter = require('./routes/popularPoints.router')
 const allRoutesRouter = require('./routes/allRoutes.router');
 const allPointsRouter = require('./routes/allPoints.router');
 const routeDetailRouter = require('./routes/routeDetail.router');
+const pointDetailRouter = require('./routes/pointDetail.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -35,6 +36,7 @@ app.use('/popular/points', popularPointsRouter);
 app.use('/allRoutes', allRoutesRouter);
 app.use('/allPoints', allPointsRouter);
 app.use('/routeDetail', routeDetailRouter);
+app.use('/pointDetail', pointDetailRouter)
 
 // Serve static files
 app.use(express.static('build'));

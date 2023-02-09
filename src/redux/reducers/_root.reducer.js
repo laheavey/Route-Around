@@ -7,6 +7,7 @@ import popPoints from './popularPoints.reducer';
 import allRoutes from './allRoutes.reducer';
 import allPoints from './allPoints.reducer';
 import routeDetail from './routeDetail.reducer';
+import pointDetail from './pointDetail.reducer';
 
 const rootReducer = combineReducers({
   errors, // registrationMessage and loginMessage
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   allRoutes, 
   allPoints,
   routeDetail, 
+  pointDetail,
 });
 
 export default rootReducer;

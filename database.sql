@@ -28,14 +28,16 @@ CREATE TABLE "poi_details" (
     "street_address" VARCHAR,
     "latitude" NUMERIC,
     "longitude" NUMERIC,
+    "short_desc" VARCHAR,
     "description" VARCHAR,
     "sources_cited" VARCHAR
 );
     -- Dummy data:
     INSERT INTO "poi_details"
-    ("name","image_url","street_address","longitude","latitude","description")
+    ("name","image_url","street_address","longitude","latitude","short_desc","description")
     VALUES
     ('St. Paul Union Depot','https://www.uniondepot.org/wp-content/uploads/2020/01/OutsideFrontHero1lowres-scaled.jpg','214 4TH STREET EAST, ST PAUL MN 55101', -93.08614014373347, 44.94743766037045,
+    'The first Union Depot was built near the river in 1881. After a second fire destroyed the station, the design for the grand neo-classical building standing today was commissioned in 1913. The railroads, the post office and Saint Paul Union Depot Co. offered opportunities for jobs and travel from this historic neighborhood.', 
     'The first Union Depot was built near the river in 1881. After a second fire destroyed the station, the design for the grand neo-classical building standing today was commissioned in 1913. The railroads, the post office and Saint Paul Union Depot Co. offered opportunities for jobs and travel from this historic neighborhood.
     The last passenger train (Burlington’s Afternoon Zephyr) serving Union Depot in the 20th century departed on April 30, 1971. The building never stood empty and its use as a passenger station was never far from peoples’ hearts and minds.
     Ramsey County Regional Railroad Authority bought Union Depot and began a massive two-year restoration of the 33-acre property in 2011.');
