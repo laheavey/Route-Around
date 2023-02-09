@@ -61,7 +61,7 @@ const router = express.Router();
     res.send(results.rows[0])
   })
   .catch((error => {
-    console.log('Error in GET /pointDetail/:id: ', error);
+    console.log('Error in GET /points/:id: ', error);
     res.sendStatus(500);
   }))
 });
@@ -87,19 +87,38 @@ const router = express.Router();
   }))
 });
 
+/** ---------- GET SAVED POINTS BY USER ---------- **/
+router.get('/save', (req,res) => {
+
+  console.log('Req.body.user_id: ', req.body.user_id)
+  const sqlQuery = `
+  SELECT "user_id", "poi_id"
+  FROM "poi_saves"
+  WHERE "user_id"=$1;`
+  const sqlValues = [req.body.user_id]
+  pool.query(sqlQuery, sqlValues)
+  .then((results) => {
+    console.log('Success!')
+    res.send(results.rows);
+  })
+  .catch((error) => {
+    console.log('Error in GET /points/save: ', error)
+  })
+})
+
+
 /** ---------- POST SAVE POINT ---------- **/
-router.post('/', (req,res) => {
+router.post('/save', (req,res) => {
   const sqlQuery = `
   INSERT INTO "poi_saves" ("user_id", "poi_id")
   VALUES ($1, $2)`
   const sqlValues = [req.body.user_id, req.body.poi_id]
   pool.query(sqlQuery, sqlValues)
   .then((results) => {
-    console.log('Success!')
     res.sendStatus(201);
   })
   .catch((error) => {
-    console.log('Error in POST /pointDetail: ', error)
+    console.log('Error in POST /points/save: ', error)
   })
 })
 

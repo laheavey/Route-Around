@@ -7,7 +7,7 @@ import popPoints from './points/popularPoints.reducer'
 import allRoutes from './routes/allRoutes.reducer';
 import allPoints from './points/allPoints.reducer'
 import routeDetail from './routes/routeDetail.reducer';
-
+import savedPoints from './points/savedPoints.reducer';
 import points from './points/points.reducer';
 
 const rootReducer = combineReducers({
@@ -20,6 +20,7 @@ const rootReducer = combineReducers({
   allPoints,
   routeDetail, 
   points,
+  savedPoints,
 });
 
 export default rootReducer;

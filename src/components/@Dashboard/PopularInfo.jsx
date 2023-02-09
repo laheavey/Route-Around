@@ -10,7 +10,7 @@ import ListSubheader from '@mui/material/ListSubheader';
 import { ListItemButton } from '@mui/material';
 
 export default function PopularInfo() {
-  const history = useHistory();
+
   const dispatch = useDispatch();
   const popRoutes = useSelector((store) => store.popRoutes);
   const popPoints = useSelector((store) => store.popPoints);
@@ -20,12 +20,6 @@ export default function PopularInfo() {
       dispatch({ type: 'FETCH_POPULAR_POINTS' });
   },[])
 
-  const sendToDetail = () => {
-    history.push(`/routeDetail/${this.route_id}`)
-  }
-
-  console.log('Points: ', popPoints);
-  // List of popular routes and points of interest
   return (
     <List
       sx={{
@@ -52,7 +46,9 @@ export default function PopularInfo() {
           <ListSubheader>{`Popular Points of Interest →`}</ListSubheader>
           {popPoints.map((point) => (
             <ListItem key={`${point.id}`}>
+              <Link to={`/pointDetail/${point.id}`}>
               <ListItemText inset secondary={`${point.name}`} />
+              </Link>
             </ListItem> 
            ))}
         </ul>

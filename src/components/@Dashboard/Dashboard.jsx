@@ -11,8 +11,13 @@ import './Dashboard.css';
 mapboxgl.accessToken = 'pk.eyJ1IjoibGFoZWF2ZXkiLCJhIjoiY2xkczZ5MzlsMDJhNTNwbWx6Nnk1bm1hNyJ9.7_Y-O03vhnebg8xOsSN0GQ';
 
 function Dashboard() {
+  const dispatch = useDispatch();
+  const savedPoints = useSelector((store) => store.savedPoints);
+  const user = useSelector((store) => store.user);
   // Map rendering specifications
   useEffect(() => {
+    dispatch({ type: 'FETCH_POI_SAVE', data: user.id})
+
     var map = new mapboxgl.Map({
       container: 'map',
       center: [-93.19426931505215, 44.9480407119586],
@@ -23,7 +28,7 @@ function Dashboard() {
 
     map.addControl(new mapboxgl.FullscreenControl());
   })
-  
+  console.log(savedPoints)
   // Div where map renders, PopularInfo component lists routes & 
   // points of interest
   return (

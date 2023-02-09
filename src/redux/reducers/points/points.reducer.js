@@ -9,11 +9,6 @@ const pointsReducer = (state = {}, action) => {
       return action.payload;
       // id, name, image_url, longitude, latitude, description, 
       // sources_cited
-    // case 'SET_POPULAR_POINTS':
-    //   let newerArray = [];
-    //   newerArray.push(action.payload);
-    //   return newerArray; // name, id, count_saved
-    //   return action.payload
     default:
       return state;
   }

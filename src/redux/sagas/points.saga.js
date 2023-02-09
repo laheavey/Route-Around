@@ -21,7 +21,7 @@ function* fetchPopularPoints () {
       payload: response.data // name, id, count_saved
     })
   } catch (error) {
-    console.error('Error in SAGA/fetchPopularPoints:', error)
+    console.error('Error in fetchPopularPoints:', error)
   }
 }
 
@@ -35,7 +35,7 @@ function* fetchPointDetail (action) {
       // sources_cited
     })
   } catch (error) {
-    console.error('Error in SAGA/fetchPointDetail:', error);
+    console.error('Error in fetchPointDetail:', error);
   }
 }
 
@@ -48,21 +48,31 @@ function* fetchPOIRoutes (action) {
       payload: response.data
     })
   } catch (error) {
-    console.error('Error in SAGA/pointDetail/route/:id: ', error)
+    console.error('Error in fetchPOIRoutes: ', error)
+  }
+}
+
+function* fetchPointSave () {
+  try {
+    const response = yield axios.get('/points/save')
+    yield put({
+      type: 'SET_SAVED_POIS',
+      payload: response.data
+    })
+  } catch (error) {
+    console.error('Error in fetchPointSave ', error)
   }
 }
 
 function* addPointSave (action) {
-  console.log('SAGA action.payload: ', action.payload);
   try {
     yield axios({
       method: 'POST',
-      url: '/points',
+      url: '/points/save',
       data: action.payload
     })
-    console.log('SAGA action.payload: ', action.payload);
   } catch (error) {
-    console.log('Error in SAGA/addPointSave: ', error)
+    console.log('Error in addPointSave: ', error)
   }
 }
 
@@ -72,4 +82,5 @@ export default function* allPointsSaga() {
   yield takeLatest('FETCH_POINT_DETAIL/:id', fetchPointDetail);
   yield takeLatest('FETCH_POINT_DETAIL/ROUTES/:id', fetchPOIRoutes);
   yield takeLatest('ADD_POI_SAVE', addPointSave);
+  yield takeLatest('FETCH_POI_SAVE', fetchPointSave);
 }
