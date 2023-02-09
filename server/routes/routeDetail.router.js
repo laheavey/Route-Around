@@ -25,7 +25,6 @@ const router = express.Router();
   const sqlValues = [req.params.id];
   pool.query(sqlQuery, sqlValues)
   .then((results) => {
-    console.log('Success in GET routeDetail.router!')
     res.send(results.rows)
   })
   .catch((error => {

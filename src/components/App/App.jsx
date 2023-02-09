@@ -90,7 +90,7 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows AllPoints else shows LoginPage
+            // logged in shows RouteDetail else shows LoginPage
             exact
             path="/routeDetail/:id"
           >
@@ -98,7 +98,7 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows AllPoints else shows LoginPage
+            // logged in shows PointDetail else shows LoginPage
             exact
             path="/pointDetail/:id"
           >

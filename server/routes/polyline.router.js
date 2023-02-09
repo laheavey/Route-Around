@@ -17,7 +17,6 @@ const router = express.Router();
   const sqlValues = [req.params.id];
   pool.query(sqlQuery, sqlValues)
   .then((results) => {
-    console.log('Success in GET /polyline/:id!')
     res.send(results.rows)
   })
   .catch((error => {

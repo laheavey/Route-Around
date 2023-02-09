@@ -7,7 +7,6 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
-import ImageListItem from '@mui/material/ImageListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 
@@ -20,12 +19,12 @@ export default function PointDetail() {
   const [lat, setLat] = useState(44.9481);
   const [zoom, setZoom] = useState(14);
 
-  // ↓ Completed_on; poi_id; poi_name; route_desc; route_id; route_name; route_url
+  // ↓ ARRAY: route_name, route_desc by poi id
   const routeDetail = useSelector((store) => store.routeDetail);
+  // ↓ OBJECT: Completed_on; poi_id; poi_name; route_desc; route_id; route_name; route_url
   const pointDetail = useSelector((store) => store.pointDetail);
   
   useEffect(() => {
-    // dispatch({ type: 'FETCH_ROUTE_DETAIL/:id', payload: id});
     dispatch({ type: 'FETCH_POINT_DETAIL/:id', payload: id});
     dispatch({ type: 'FETCH_POINT_DETAIL/ROUTES/:id', payload: id});
 
@@ -38,10 +37,8 @@ export default function PointDetail() {
     });
   
     map.addControl(new mapboxgl.FullscreenControl());
-
   },[])
   
-
   return (
     <>
       <div id='map' style={{width: '100%', height: '300px'}}></div>
@@ -85,12 +82,3 @@ export default function PointDetail() {
     </>
   );
 }
-
-            {/* <ImageListItem>
-              <img
-                src={`${point.image_url}?w=10&h=100&fit=crop&auto=format`}
-                srcSet={`${point.image_url}?w=10&h=100&fit=crop&auto=format&dpr=2 2x`}
-                alt={point.name}
-                loading="lazy"
-              />
-            </ImageListItem> */}

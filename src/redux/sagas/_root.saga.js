@@ -9,7 +9,6 @@ import allRoutesSaga from './allRoutes.saga';
 import allPointsSaga from './allPoints.saga';
 import routeDetail from './routeDetail.saga';
 import pointDetail from './pointDetail.saga';
-// import pointDetailRoutes from './pointDetailRoutes.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -30,6 +29,5 @@ export default function* rootSaga() {
     allPointsSaga(),
     routeDetail(),
     pointDetail(),
-    // pointDetailRoutes(),
   ]);
 }

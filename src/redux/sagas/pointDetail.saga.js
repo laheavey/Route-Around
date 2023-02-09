@@ -15,6 +15,7 @@ function* fetchPointDetail (action) {
   }
 }
 
+// Confusing, reducer is tied to routeDetail; flag for adjustment?
 function* fetchPOIRoutes (action) {
   try {
     const response = yield axios.get(`/pointDetail/route/${action.payload}`)

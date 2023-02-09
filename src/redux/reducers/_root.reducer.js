@@ -8,7 +8,6 @@ import allRoutes from './allRoutes.reducer';
 import allPoints from './allPoints.reducer';
 import routeDetail from './routeDetail.reducer';
 import pointDetail from './pointDetail.reducer';
-// import pointDetailRoutes from './pointDetailRoutes.reducer'
 
 const rootReducer = combineReducers({
   errors, // registrationMessage and loginMessage
@@ -20,7 +19,6 @@ const rootReducer = combineReducers({
   allPoints,
   routeDetail, 
   pointDetail,
-  // pointDetailRoutes,
 });
 
 export default rootReducer;

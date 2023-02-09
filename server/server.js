@@ -36,7 +36,7 @@ app.use('/popular/points', popularPointsRouter);
 app.use('/allRoutes', allRoutesRouter);
 app.use('/allPoints', allPointsRouter);
 app.use('/routeDetail', routeDetailRouter);
-app.use('/pointDetail', pointDetailRouter)
+app.use('/pointDetail', pointDetailRouter); 
 
 // Serve static files
 app.use(express.static('build'));

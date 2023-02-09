@@ -10,7 +10,6 @@ const router = express.Router();
     FROM "poi_details"`
   pool.query(sqlQuery)
   .then((results) => {
-    console.log('Success in GET /allPoints!')
     res.send(results.rows)
   })
   .catch((error => {

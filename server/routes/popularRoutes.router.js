@@ -18,7 +18,6 @@ const router = express.Router();
       LIMIT 4;`
   pool.query(sqlQuery)
   .then((results) => {
-    console.log('Success in GET /popular/routes!')
     res.send(results.rows)
   })
   .catch((error => {
