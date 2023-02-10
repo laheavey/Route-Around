@@ -27,7 +27,7 @@ function* fetchPopularPoints () {
 
 function* fetchPointDetail (action) {
   try {
-    const response = yield axios.get(`/points/${action.payload}`)
+    const response = yield axios.get(`/points/detail/${action.payload}`)
     yield put({
       type: 'SET_POINT_DETAIL',
       payload: response.data
@@ -54,7 +54,7 @@ function* fetchPOIRoutes (action) {
 
 function* fetchPointSave () {
   try {
-    const response = yield axios.get('/points/save')
+    const response = yield axios.get('/points/saved/:id')
     yield put({
       type: 'SET_SAVED_POIS',
       payload: response.data
@@ -82,5 +82,5 @@ export default function* allPointsSaga() {
   yield takeLatest('FETCH_POINT_DETAIL/:id', fetchPointDetail);
   yield takeLatest('FETCH_POINT_DETAIL/ROUTES/:id', fetchPOIRoutes);
   yield takeLatest('ADD_POI_SAVE', addPointSave);
-  yield takeLatest('FETCH_POI_SAVE', fetchPointSave);
+  yield takeLatest('FETCH_SAVED_POIS', fetchPointSave);
 }

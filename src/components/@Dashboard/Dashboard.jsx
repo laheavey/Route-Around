@@ -16,7 +16,7 @@ function Dashboard() {
   const user = useSelector((store) => store.user);
   // Map rendering specifications
   useEffect(() => {
-    dispatch({ type: 'FETCH_POI_SAVE', data: user.id})
+    dispatch({ type: 'FETCH_SAVED_POIS', data: user.id})
 
     var map = new mapboxgl.Map({
       container: 'map',
@@ -27,7 +27,7 @@ function Dashboard() {
     });
 
     map.addControl(new mapboxgl.FullscreenControl());
-  })
+  },[])
   console.log(savedPoints)
   // Div where map renders, PopularInfo component lists routes & 
   // points of interest

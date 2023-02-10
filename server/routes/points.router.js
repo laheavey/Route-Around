@@ -43,7 +43,7 @@ const router = express.Router();
 });
 
  /** ---------- GET POINT DETAIL ---------- **/
- router.get('/:id', (req, res) => {
+ router.get('/detail/:id', (req, res) => {
   const sqlQueryPoint =`
     SELECT
       "id",
@@ -88,24 +88,24 @@ const router = express.Router();
 });
 
 /** ---------- GET SAVED POINTS BY USER ---------- **/
-router.get('/save', (req,res) => {
-
-  console.log('Req.body.user_id: ', req.body.user_id)
+router.get('/saved/:id', (req,res) => {
+  console.log('Req.user: ', req.user.id)
+  console.log('Req.body: ', req.body)
+  // console.log('Req.body.user_id: ', req.body.user_id)
   const sqlQuery = `
   SELECT "user_id", "poi_id"
   FROM "poi_saves"
   WHERE "user_id"=$1;`
-  const sqlValues = [req.body.user_id]
+  const sqlValues = [req.user.id]
   pool.query(sqlQuery, sqlValues)
   .then((results) => {
-    console.log('Success!')
+    // console.log('Success!')
     res.send(results.rows);
   })
   .catch((error) => {
     console.log('Error in GET /points/save: ', error)
   })
 })
-
 
 /** ---------- POST SAVE POINT ---------- **/
 router.post('/save', (req,res) => {
