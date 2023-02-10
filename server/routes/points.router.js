@@ -88,10 +88,8 @@ const router = express.Router();
 });
 
 /** ---------- GET SAVED POINTS BY USER ---------- **/
-router.get('/saved/:id', (req,res) => {
-  console.log('Req.user: ', req.user.id)
-  console.log('Req.body: ', req.body)
-  // console.log('Req.body.user_id: ', req.body.user_id)
+router.get('/saved', (req,res) => {
+  // console.log('Req.user.id: ', req.user.id)
   const sqlQuery = `
   SELECT "user_id", "poi_id"
   FROM "poi_saves"
@@ -99,11 +97,11 @@ router.get('/saved/:id', (req,res) => {
   const sqlValues = [req.user.id]
   pool.query(sqlQuery, sqlValues)
   .then((results) => {
-    // console.log('Success!')
+    // console.log('Success!', results.rows)
     res.send(results.rows);
   })
   .catch((error) => {
-    console.log('Error in GET /points/save: ', error)
+    console.log('Error in GET /points/saved: ', error)
   })
 })
 
@@ -119,6 +117,25 @@ router.post('/save', (req,res) => {
   })
   .catch((error) => {
     console.log('Error in POST /points/save: ', error)
+  })
+})
+
+/** ---------- DELETE SAVED POINT BY USER ---------- **/
+router.delete('/saved/delete', (req,res) => {
+  console.log('Req.user.id: ', req.user.id)
+  console.log('req.body.poi_id: ', req.body.poi_id)
+
+  const sqlQuery = `
+    DELETE FROM "poi_saves"
+    WHERE "user_id" = $1 AND "poi_id"=$2;`;
+  const sqlValues = [req.user.id, req.body.poi_id]
+  pool.query(sqlQuery, sqlValues)
+  .then((results) => {
+    console.log('Success!')
+    res.sendStatus(200);
+  })
+  .catch((error) => {
+    console.log('Error in DELETE /points/saved: ', error)
   })
 })
 

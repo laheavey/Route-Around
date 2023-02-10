@@ -54,7 +54,7 @@ function* fetchPOIRoutes (action) {
 
 function* fetchPointSave () {
   try {
-    const response = yield axios.get('/points/saved/:id')
+    const response = yield axios.get('/points/saved')
     yield put({
       type: 'SET_SAVED_POIS',
       payload: response.data
@@ -76,6 +76,18 @@ function* addPointSave (action) {
   }
 }
 
+function* deletePointSave (action) {
+  try {
+    yield axios({
+      method: 'DELETE',
+      url: '/points/saved/delete',
+      data: action.payload
+    })
+  } catch (error) {
+    console.log('Error in deletePointSave: ', error)
+  }
+}
+
 export default function* allPointsSaga() {
   yield takeLatest('FETCH_ALL_POINTS', fetchAllPoints);
   yield takeLatest('FETCH_POPULAR_POINTS', fetchPopularPoints);
@@ -83,4 +95,5 @@ export default function* allPointsSaga() {
   yield takeLatest('FETCH_POINT_DETAIL/ROUTES/:id', fetchPOIRoutes);
   yield takeLatest('ADD_POI_SAVE', addPointSave);
   yield takeLatest('FETCH_SAVED_POIS', fetchPointSave);
+  yield takeLatest('DELETE_SAVED_POI', deletePointSave);
 }
