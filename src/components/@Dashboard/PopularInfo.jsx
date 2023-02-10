@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react';
+import React, { useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -7,19 +7,36 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
-import { ListItemButton } from '@mui/material';
+import { IconButton } from '@mui/material';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
+
+import PopularPoints from './PopularPoints.jsx';
 
 export default function PopularInfo() {
 
   const dispatch = useDispatch();
   const popRoutes = useSelector((store) => store.popRoutes);
   const popPoints = useSelector((store) => store.popPoints);
+  const savedPoints = useSelector((store) => store.savedPoints);
+  const user = useSelector((store) => store.user);
 
-  useEffect(() => {
-      dispatch({ type: 'FETCH_POPULAR_ROUTES' });
-      dispatch({ type: 'FETCH_POPULAR_POINTS' });
-  },[])
+  const [savedStatus, setSavedStatus] = useState(false);
 
+  // useEffect(() => {
+
+  // },)
+
+  const saveStatusCheck = (popPoint) => {
+
+
+      console.log('saveStatusCheck', savedStatus)
+      console.log('popPoint', popPoint)
+
+    
+  return savedStatus;
+}
+  
   return (
     <List
       sx={{
@@ -42,15 +59,17 @@ export default function PopularInfo() {
             </ListItem>
           ))}
         </ul>
+
         <ul>
           <ListSubheader>{`Popular Points of Interest →`}</ListSubheader>
-          {popPoints.map((point) => (
-            <ListItem key={`${point.id}`}>
-              <Link to={`/pointDetail/${point.id}`}>
-              <ListItemText inset secondary={`${point.name}`} />
-              </Link>
-            </ListItem> 
-           ))}
+          {popPoints.map((popPoint) => {
+            return (
+              <PopularPoints popPoint={popPoint} key={popPoint.id} savedStatus={savedStatus}/>
+            )
+          }
+            
+              
+           )}
         </ul>
     </List>
   );

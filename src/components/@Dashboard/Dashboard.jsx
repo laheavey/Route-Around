@@ -1,39 +1,28 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import mapboxgl from '!mapbox-gl';
 
 import LogOutButton from '../LogOutButton/LogOutButton.jsx';
 import PopularInfo from './PopularInfo.jsx';
+import NoLineMap from './NoLineMap.jsx';
 import './Dashboard.css';
 
-// Access token for MapBox, public scope
-mapboxgl.accessToken = 'pk.eyJ1IjoibGFoZWF2ZXkiLCJhIjoiY2xkczZ5MzlsMDJhNTNwbWx6Nnk1bm1hNyJ9.7_Y-O03vhnebg8xOsSN0GQ';
 
 function Dashboard() {
   const dispatch = useDispatch();
-  const savedPoints = useSelector((store) => store.savedPoints);
-  const user = useSelector((store) => store.user);
-  // Map rendering specifications
+  const user = useSelector((store) => store.user)
+
   useEffect(() => {
+    dispatch({ type: 'FETCH_POPULAR_ROUTES' });
+    dispatch({ type: 'FETCH_POPULAR_POINTS' });
     dispatch({ type: 'FETCH_SAVED_POIS', data: user.id})
-
-    var map = new mapboxgl.Map({
-      container: 'map',
-      center: [-93.19426931505215, 44.9480407119586],
-      zoom: 10,
-      interactive: false,
-      style: 'mapbox://styles/mapbox/streets-v11'
-    });
-
-    map.addControl(new mapboxgl.FullscreenControl());
   },[])
-  console.log(savedPoints)
+
   // Div where map renders, PopularInfo component lists routes & 
   // points of interest
   return (
     <>
-      <div id='map' style={{width: '100%', height: '300px'}}></div>
+      <NoLineMap />
       <PopularInfo />
       <LogOutButton />
     </>

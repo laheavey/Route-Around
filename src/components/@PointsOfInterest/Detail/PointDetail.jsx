@@ -52,7 +52,6 @@ export default function PointDetail() {
     }
 
     dispatch({ type: 'ADD_POI_SAVE', payload: newPointSave })
-
   }
 
   return (
