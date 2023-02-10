@@ -83,4 +83,36 @@ const router = express.Router();
   }))
 });
 
+/** ---------- GET COMPLETED TRIPS BY USER ID ---------- **/
+router.get('/user/:id', (req, res) => {
+  // console.log('req.params: ',req.params)
+  const sqlQuery =`
+  SELECT 
+    "gtfs_routes"."id" AS "route_id",
+    "gtfs_routes"."route_name",
+    "gtfs_routes"."route_desc",
+    "gtfs_routes"."route_url",
+    JSON_AGG("trips_completed"."completed_on") AS "completed_trips"
+  FROM "gtfs_routes"
+  JOIN "trips_completed"
+    ON "gtfs_routes"."id" = "trips_completed"."route_id"
+  WHERE "trips_completed"."user_id"=$1
+  GROUP BY 
+    "gtfs_routes"."id",
+    "gtfs_routes"."route_name",
+    "gtfs_routes"."route_desc",
+    "gtfs_routes"."route_url";`;
+  const sqlValues = [req.params.id];
+  pool.query(sqlQuery, sqlValues)
+  .then((results) => {
+    // console.log(results)
+    res.send(results.rows)
+  })
+  .catch((error => {
+    console.log('Error in GET /routeDetail/:id: ', error);
+    res.sendStatus(500);
+  }))
+});
+
+
 module.exports = router;

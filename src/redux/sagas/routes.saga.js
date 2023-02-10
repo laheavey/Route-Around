@@ -39,8 +39,23 @@ function* fetchRouteDetail (action) {
   }
 }
 
+function* fetchUserRouteHistory (action) {
+  console.log('fetchUserRouteHistory: ', action.payload)
+  try {
+    const response = yield axios.get(`/routes/user/${action.payload}`)
+    yield put({
+      type: 'SET_USER_ROUTE_HISTORY',
+      payload: response.data
+      // 
+    })
+  } catch (error) {
+    console.error('Error in fetchUserRouteHistory:', error);
+  }
+}
+
 export default function* fetchRouteDetailSaga() {
   yield takeLatest('FETCH_ROUTE_DETAIL/:id', fetchRouteDetail);
   yield takeLatest('FETCH_POPULAR_ROUTES', fetchPopularRoutes);
   yield takeLatest('FETCH_ALL_ROUTES', fetchAllRoutes);
+  yield takeLatest('FETCH_USER_ROUTE_HISTORY', fetchUserRouteHistory)
 }
