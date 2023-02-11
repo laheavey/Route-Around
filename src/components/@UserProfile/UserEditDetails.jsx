@@ -63,15 +63,20 @@ export default function UserEditDetails () {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    if (userEdit.email === secondEmailValue){
+    if (userEdit && userEdit.email === secondEmailValue){
       let newUserEdit = {
         id: user.id,
         email: userEdit.email,
         profile_img: imgValue
       }
-
-      // dispatch({ type: 'ADD_POI_SAVE', payload: newUserEdit })
+      dispatch({ type: 'UPDATE_USER', payload: newUserEdit })
+    } else {
+      let newUserEdit = {
+        id: user.id,
+        email: user.email,
+        profile_img: imgValue
+      }
+      dispatch({ type: 'UPDATE_USER', payload: newUserEdit })
     }
   }
 
@@ -129,7 +134,7 @@ export default function UserEditDetails () {
             value={imgValue}
             name="row-radio-buttons-group"
             sx={{alignItems:"center", justifyContent: "space-around"}}
-            onChange={handleImgChange}
+            onChange={() => setImgValue(event.target.value)}
           >
             <FormControlLabel 
               value="1" 

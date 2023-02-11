@@ -52,7 +52,8 @@ function* updateUser(action) {
 
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
-  yield takeLatest('FETCH_USER_TO_EDIT', fetchUserToEdit)
+  yield takeLatest('FETCH_USER_TO_EDIT', fetchUserToEdit);
+  yield takeLatest('UPDATE_USER', updateUser)
 }
 
 export default userSaga;
