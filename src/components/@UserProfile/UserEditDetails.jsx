@@ -24,6 +24,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { pink } from '@mui/material/colors';
+import Alert from '@mui/material/Alert';
 
 import FaceIcon from '@mui/icons-material/Face';
 import Face2Icon from '@mui/icons-material/Face2';
@@ -43,9 +44,12 @@ export default function UserEditDetails () {
   const [imgValue, setImgValue] = useState('')
   const [emailValue, setEmailValue] = useState('');
   const [secondEmailValue, setSecondEmailValue] = useState('')
+  const [error, setError] = useState(false);
   
   console.log('User: ', user)
   console.log('userEdit: ', userEdit)
+  console.log('secondEmailValue: ', secondEmailValue)
+  console.log('imgValue: ', imgValue)
 
   useEffect(() => {
     dispatch({
@@ -55,34 +59,40 @@ export default function UserEditDetails () {
   },[])
 
   const handleEmailChange = (event) => {
+    console.log('userEdit: ', userEdit)
       dispatch({
         type: 'SET_NEW_EMAIL',
         payload: event.target.value
       })
   }
 
+  const handleImgChange = (event) => {
+    console.log('userEdit: ', userEdit)
+    dispatch({
+      type: 'SET_NEW_IMG',
+      payload: event.target.value
+    })
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (userEdit && userEdit.email === secondEmailValue){
+    if (secondEmailValue && userEdit.email === secondEmailValue){
       let newUserEdit = {
         id: user.id,
         email: userEdit.email,
-        profile_img: imgValue
+        profile_img: userEdit.profile_img
       }
       dispatch({ type: 'UPDATE_USER', payload: newUserEdit })
+    } else if (secondEmailValue && userEdit.email !== secondEmailValue){
+      setError(true);
     } else {
       let newUserEdit = {
         id: user.id,
         email: user.email,
-        profile_img: imgValue
+        profile_img: userEdit.profile_img
       }
       dispatch({ type: 'UPDATE_USER', payload: newUserEdit })
     }
-  }
-
-  const handleImgChange = (event) => {
-    event.preventDefault();
-    setImgValue(event.target.value);
   }
 
   return (
@@ -90,16 +100,8 @@ export default function UserEditDetails () {
       <FormControl>
       <FormGroup>
         <Typography sx={{ marginLeft: 2, marginTop: 2, marginBottom: 1}} variant="body2">{`Update Email Address →`}</Typography>
-        <CardContent >  
-          <TextField
-            disabled
-            label="Current Email Address"
-            id="outlined-size-small"
-            defaultValue={user.email}
-            size="small"
-            fullWidth
-            sx={{ marginBottom: 1.5}}
-          />
+        <CardContent >
+          { error && <Alert severity="error">New email address inputs must match.</Alert>}  
           <TextField
             label="New Email Address"
             id="outlined-size-small"
@@ -131,11 +133,11 @@ export default function UserEditDetails () {
         <CardContent>
           <RadioGroup
             row
-            value={imgValue}
+            value={userEdit.profile_img || ''}
             name="row-radio-buttons-group"
             sx={{alignItems:"center", justifyContent: "space-around"}}
-            onChange={() => setImgValue(event.target.value)}
-          >
+            onChange={handleImgChange}
+          ><Box>
             <FormControlLabel 
               value="1" 
               control={<Radio size="small"/>} 
@@ -153,13 +155,7 @@ export default function UserEditDetails () {
               control={<Radio size="small"/>} 
               label={<Face3Icon fontSize="large" color="secondary"/>}
               labelPlacement="top"
-            />
-          </RadioGroup>
-          <RadioGroup
-            row
-            name="row-radio-buttons-group"
-            sx={{alignItems:"center", justifyContent: "space-around"}}
-          >
+            /></Box><Box>
             <FormControlLabel 
               value="4" 
               control={<Radio size="small"/>} 
@@ -177,7 +173,7 @@ export default function UserEditDetails () {
               control={<Radio size="small"/>} 
               label={<Face6Icon fontSize="large" sx={{ color: pink[500] }} />}
               labelPlacement="top"
-            />
+            /></Box>
           </RadioGroup>
         </CardContent>
         <Divider />

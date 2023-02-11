@@ -27,7 +27,7 @@ function* fetchUserToEdit(action) {
   try {
     const response = yield axios.get(`/edit/profile/${action.payload}`)
     yield put({
-      type: 'SET_STUDENT_TO_EDIT',
+      type: 'SET_USER_TO_EDIT',
       payload: response.data
     })
   } catch (error) {
