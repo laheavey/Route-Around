@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from 'react-redux';
+import { Link } from "react-router-dom";
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -17,20 +18,22 @@ export default function UserDetails () {
 
   return (
     <>
-      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems:"center", margin: 1 }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems:"center", margin: 1.5 }}>
         <CardMedia
         component="img"
-        sx={{ width: 151 }}
-        src={"https://cdn-icons-png.flaticon.com/512/18/18601.png" || `${user.profile_img}`}
+        sx={{ width: 50 }}
+        src={`${user.profile_img}`}
         />
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="caption" color="text.secondary" >
+          <Link to={`/edit/profile/${user.id}`}>
         Edit Details
+        </Link>
         </Typography>
       </Box>
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-        <CardContent sx={{ flex: '1 0 auto' }}>
+        <CardContent sx={{ flex: 'auto' }}>
           <List>
-          <Typography variant="body1" component="div" >
+          <Typography variant="body2" component="div" >
             {"Username: "}{user.username} <br/>
             {"Email: "}{user.email}<br/>
             {"Account Created: "}{user.account_created}<br/>

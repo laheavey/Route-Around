@@ -25,6 +25,7 @@ import AllPoints from '../@PointsOfInterest/AllPoints/AllPoints';
 import RouteDetail from '../@Routes/Detail/RouteDetail';
 import PointDetail from '../@PointsOfInterest/Detail/PointDetail';
 import UserProfile from '../@UserProfile/UserProfile'
+import UserEdit from '../@UserProfile/UserEdit';
 
 import './App.css';
 
@@ -112,6 +113,14 @@ function App() {
             path="/profile/:id"
           >
           <UserProfile />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows PointDetail else shows LoginPage
+            exact
+            path="/edit/profile/:id"
+          >
+          <UserEdit />
           </ProtectedRoute>
 
           <Route
