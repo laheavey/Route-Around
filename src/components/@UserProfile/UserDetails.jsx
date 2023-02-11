@@ -21,7 +21,7 @@ export default function UserDetails () {
         <CardMedia
         component="img"
         sx={{ width: 151 }}
-        src={"https://cdn-icons-png.flaticon.com/512/18/18601.png" || `${user.profile_img}`}
+        src={`${user.profile_img}`}
         />
         <Typography variant="body2" color="text.secondary">
         Edit Details
