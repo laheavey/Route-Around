@@ -3,15 +3,23 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import Card from '@mui/material/Card';
-
 import UserActivity from './UserActivity';
 import UserDetails from './UserDetails'
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Divider from '@mui/material/Divider';
+import List from '@mui/material/List';
+import ListSubheader from '@mui/material/ListSubheader';
+
+import UserRouteHistory from "./UserRouteHistory";
+import UserSavedPoints from './UserSavedPoints';
 
 export default function UserProfile() {
   const dispatch = useDispatch();
+  
   const user = useSelector((store) => store.user)
-  // const userRouteHistory = useSelector((store) => store.userRouteHistory)
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER_ROUTE_HISTORY', payload: user.id});
@@ -20,10 +28,22 @@ export default function UserProfile() {
 
   return (
     <>
-    <Card sx={{ display: 'flex', width: 350, marginTop: 10}}>
+    <Card sx={{ 
+      display: 'flex', 
+      width: 350, 
+      marginTop: 10, 
+      alignItems:"center",
+      marginLeft: 1.5
+    }}>
       <UserDetails />
     </Card>
-    <Card sx={{ display: 'flex', width: 350, marginTop: 1}}>
+
+    <Card sx={{ 
+      display: 'flex', 
+      width: 350, 
+      marginTop: 1,
+      marginLeft: 1.5
+    }}>
       <UserActivity />
     </Card>
     </>

@@ -5,19 +5,21 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
+import ListSubheader from '@mui/material/ListSubheader';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import ListSubheader from '@mui/material/ListSubheader';
 
 import UserRouteHistory from "./UserRouteHistory";
+import UserSavedPoints from './UserSavedPoints';
 
 export default function UserActivity () {
   const userRouteHistory = useSelector((store) => store.userRouteHistory);
-
-  console.log('UserRouteHistory: ', userRouteHistory)
+  const savedPoints = useSelector((store) => store.savedPoints)
+  
+  // console.log('UserRouteHistory: ', userRouteHistory)
+  // console.log('savedPoints: ', savedPoints)
   // console.log('userRouteHistory[0]: ', userRouteHistory[0].route_name);
   // console.log('userRouteHistory, mapped: ', userRouteHistory.map((ride) => ride.route_name));
   return (
@@ -39,12 +41,17 @@ export default function UserActivity () {
         <Divider />
 
         <ListSubheader>{`Saved Points of Interest →`}</ListSubheader>
+        {savedPoints.map((save) => {
+          return (
+            <UserSavedPoints save={save} key={save.poi_id}/>
+          )
+        })}
         <Divider />
-        
+
         <ListSubheader>{`Ride History →`}</ListSubheader>
         {userRouteHistory.map((ride) => {
           return (
-            <UserRouteHistory ride={ride}/>
+            <UserRouteHistory ride={ride} key={ride.route_id}/>
           )
         })}
         </ul>
