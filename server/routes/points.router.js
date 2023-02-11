@@ -91,8 +91,13 @@ const router = express.Router();
 router.get('/saved', (req,res) => {
   // console.log('Req.user.id: ', req.user.id)
   const sqlQuery = `
-  SELECT "user_id", "poi_id"
+  SELECT 
+    "poi_saves"."user_id",
+    "poi_saves"."poi_id",
+    "poi_details"."name"
   FROM "poi_saves"
+  JOIN "poi_details"
+    ON "poi_saves"."poi_id" = "poi_details"."id"
   WHERE "user_id"=$1;`
   const sqlValues = [req.user.id]
   pool.query(sqlQuery, sqlValues)
