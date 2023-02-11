@@ -1,20 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 
 import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Divider from '@mui/material/Divider';
-import List from '@mui/material/List';
-import ListSubheader from '@mui/material/ListSubheader';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
 import TextField from '@mui/material/TextField';
-import Input from '@mui/material/Input';
-import FormHelperText from '@mui/material/FormHelperText';
-import InputLabel from '@mui/material/InputLabel';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -33,24 +24,15 @@ import Face4Icon from '@mui/icons-material/Face4';
 import Face5Icon from '@mui/icons-material/Face5';
 import Face6Icon from '@mui/icons-material/Face6';
 
-import UserRouteHistory from "./UserRouteHistory";
-import UserSavedPoints from './UserSavedPoints';
-
 export default function UserEditDetails () {
   const dispatch = useDispatch();
+  const history = useHistory();
   const params = useParams();
   const user = useSelector((store) => store.user)
   const userEdit = useSelector((store) => store.userEdit)
-  const [imgValue, setImgValue] = useState('')
-  const [emailValue, setEmailValue] = useState('');
   const [secondEmailValue, setSecondEmailValue] = useState('')
   const [error, setError] = useState(false);
   
-  console.log('User: ', user)
-  console.log('userEdit: ', userEdit)
-  console.log('secondEmailValue: ', secondEmailValue)
-  console.log('imgValue: ', imgValue)
-
   useEffect(() => {
     dispatch({
       type: 'FETCH_USER_TO_EDIT',
@@ -59,7 +41,6 @@ export default function UserEditDetails () {
   },[])
 
   const handleEmailChange = (event) => {
-    console.log('userEdit: ', userEdit)
       dispatch({
         type: 'SET_NEW_EMAIL',
         payload: event.target.value
@@ -67,7 +48,6 @@ export default function UserEditDetails () {
   }
 
   const handleImgChange = (event) => {
-    console.log('userEdit: ', userEdit)
     dispatch({
       type: 'SET_NEW_IMG',
       payload: event.target.value
@@ -83,6 +63,7 @@ export default function UserEditDetails () {
         profile_img: userEdit.profile_img
       }
       dispatch({ type: 'UPDATE_USER', payload: newUserEdit })
+      history.push(`/profile/${user.id}`)
     } else if (secondEmailValue && userEdit.email !== secondEmailValue){
       setError(true);
     } else {
@@ -92,7 +73,10 @@ export default function UserEditDetails () {
         profile_img: userEdit.profile_img
       }
       dispatch({ type: 'UPDATE_USER', payload: newUserEdit })
+      history.push(`/profile/${user.id}`)
     }
+
+ 
   }
 
   return (
@@ -121,10 +105,6 @@ export default function UserEditDetails () {
             sx={{ marginBottom: 0}}
             onChange={() => setSecondEmailValue(event.target.value)}
           />
-          {/* <Stack spacing={2} direction="row" justifyContent="flex-end" >
-            <Button variant="text" size="small">Cancel</Button>
-            <Button variant="contained" size="small">Submit</Button>
-          </Stack> */}
         </CardContent>
       </FormGroup>
       <Divider />
@@ -179,7 +159,9 @@ export default function UserEditDetails () {
         <Divider />
         <Box sx={{m:1.5}}>
           <Stack spacing={2} direction="row" justifyContent="flex-end" >
+            <Link to={`/profile/${user.id}`}>
             <Button variant="text" size="small" >Cancel</Button>
+            </Link>
             <Button variant="contained" size="small" onClick={handleSubmit}>Submit</Button>
           </Stack>
           </Box>
