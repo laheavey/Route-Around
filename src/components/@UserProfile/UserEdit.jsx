@@ -18,20 +18,13 @@ import Typography from '@mui/material/Typography';
 import UserEditDetails from './UserEditDetails'
 
 export default function UserEdit() {
-  const dispatch = useDispatch();
   
-  const user = useSelector((store) => store.user)
-
-  useEffect(() => {
-    dispatch({ type: 'FETCH_USER_ROUTE_HISTORY', payload: user.id});
-  },[])
-
   return (
     <>
     <Card sx={{ 
       display: 'flex', 
       width: 350, 
-      marginTop: 10, 
+      marginTop: 1, 
       alignItems:"center",
       marginLeft: 1.5
     }}>

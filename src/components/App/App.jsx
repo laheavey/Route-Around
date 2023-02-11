@@ -118,7 +118,7 @@ function App() {
           <ProtectedRoute
             // logged in shows PointDetail else shows LoginPage
             exact
-            path="/profile/edit/:id"
+            path="/edit/profile/:id"
           >
           <UserEdit />
           </ProtectedRoute>

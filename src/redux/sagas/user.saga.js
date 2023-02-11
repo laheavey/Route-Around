@@ -8,7 +8,6 @@ function* fetchUser() {
       headers: { 'Content-Type': 'application/json' },
       withCredentials: true,
     };
-
     // the config includes credentials which
     // allow the server session to recognize the user
     // If a user is logged in, this will return their information
@@ -24,8 +23,36 @@ function* fetchUser() {
   }
 }
 
+function* fetchUserToEdit(action) {
+  try {
+    const response = yield axios.get(`/edit/profile/${action.payload}`)
+    yield put({
+      type: 'SET_STUDENT_TO_EDIT',
+      payload: response.data
+    })
+  } catch (error) {
+    console.log('Error in fetchUserToEdit: ', error);
+  }
+}
+
+function* updateUser(action) {
+  try {
+    yield axios({
+      method: 'PUT',
+      url: `/edit/profile/${action.payload}`,
+      data: action.payload
+    })
+    yield put({
+      type: 'FETCH_USER'
+    })
+  } catch (error) {
+    console.log('Error in updateUser: ', error)
+  }
+}
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
+  yield takeLatest('FETCH_USER_TO_EDIT', fetchUserToEdit)
 }
 
 export default userSaga;

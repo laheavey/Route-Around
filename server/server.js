@@ -12,6 +12,7 @@ const userRouter = require('./routes/user.router');
 const polylineRouter = require('./routes/polyline.router');
 const pointsRouter = require('./routes/points.router');
 const routesRouter = require('./routes/routes.router');
+const editRouter = require('./routes/edit.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -29,6 +30,7 @@ app.use('/api/user', userRouter);
 app.use('/polyline',polylineRouter);
 app.use('/points', pointsRouter)
 app.use('/routes', routesRouter);
+app.use('/edit', editRouter)
 
 // Serve static files
 app.use(express.static('build'));
