@@ -11,6 +11,7 @@ import savedPoints from './points/savedPoints.reducer';
 import points from './points/points.reducer';
 import userRouteHistory from './routes/userRouteHistory.reducer';
 import userEdit from './userEdit.reducer'
+import mapCenter from './routes/mapCenter.reducer'
 
 const rootReducer = combineReducers({
   errors, // registrationMessage and loginMessage
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   savedPoints,
   userRouteHistory,
   userEdit,
+  mapCenter,
 });
 
 export default rootReducer;

@@ -3,16 +3,10 @@ import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 
 import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import { pink, white } from '@mui/material/colors';
-import Avatar from '@mui/material/Avatar';
+import { pink } from '@mui/material/colors';
 
 import FaceIcon from '@mui/icons-material/Face';
 import Face2Icon from '@mui/icons-material/Face2';
