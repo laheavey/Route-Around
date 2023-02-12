@@ -2,31 +2,23 @@ import React from "react";
 import { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import mapboxgl from '!mapbox-gl';
-import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoibGFoZWF2ZXkiLCJhIjoiY2xkczZ5MzlsMDJhNTNwbWx6Nnk1bm1hNyJ9.7_Y-O03vhnebg8xOsSN0GQ';
 
+2988994866, -93.08678631384537
 export default function MapDetail () {
-  const [dataLoaded, setDataLoaded] = useState(false);
   const lineCoordinates = useSelector((store) => store.line);
-  // const [lng, setLng] = useState(-93.1917);
-  // const [lat, setLat] = useState(44.9568);
-  // const [zoom, setZoom] = useState(9.5);
+  const [lng, setLng] = useState(-93.1917);
+  const [lat, setLat] = useState(44.94827);
+  const [zoom, setZoom] = useState(9.5);
   const mapContainer = useRef(null);
-  // const map = useRef(null);
-  const { id } = useParams();
-  const dispatch = useDispatch();
-
-// console.log('LineCoordinates: ', lineCoordinates)
+  const map = useRef(null);
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_LINE/:id', payload: id});
-    // mapLoad();
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [-93.1917, 44.9568],
+      center: [-93.19426931505215, 44.9480407119586],
       zoom: 10,
     });
 
@@ -43,7 +35,7 @@ export default function MapDetail () {
             },
             'geometry': {
               'type': 'LineString',
-              'coordinates': lineCoordinates
+              'coordinates': (lineCoordinates)
             }
           }]
         }
@@ -57,18 +49,12 @@ export default function MapDetail () {
           'line-color': ['get', 'color']
         }
       });
-      setDataLoaded(true)
-    //     // map.jumpTo({ 'center': coordinates[0], 'zoom': 14 });
+        // map.jumpTo({ 'center': coordinates[0], 'zoom': 14 });
 
       })
-  },[dataLoaded])
+  },[])
 
   return (
-    <>
-    <div className="district-map-wrapper" style={dataLoaded ? undefined : {display: 'none'}}>
     <div ref={mapContainer} className="map-container" style={{width: '100%', height: '300px'}}></div>
-    </div>
-    </>
-    
   )
 }

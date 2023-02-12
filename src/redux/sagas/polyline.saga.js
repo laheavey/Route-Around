@@ -27,5 +27,5 @@ function* fetchLineCenter (action) {
 
 export default function* lineSaga() {
   yield takeLatest('FETCH_LINE/:id', fetchLine);
-  yield takeLatest('FETCH_LINE/:id', fetchLineCenter);
+  // yield takeLatest('FETCH_LINE/:id', fetchLineCenter);
 }

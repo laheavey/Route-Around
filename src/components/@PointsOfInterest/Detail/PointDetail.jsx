@@ -19,9 +19,9 @@ export default function PointDetail() {
   const [dense, setDense] = useState(false);
   const mapContainer = useRef(null);
   const map = useRef(null);
-  const [lng, setLng] = useState(-93.0918);
-  const [lat, setLat] = useState(44.9481);
-  const [zoom, setZoom] = useState(14);
+  const [lng, setLng] = useState(-93.19426931505215);
+  const [lat, setLat] = useState(44.9480407119586);
+  const [zoom, setZoom] = useState(5);
 
   // ↓ ARRAY: route_name, route_desc by poi id
   const routeDetail = useSelector((store) => store.routeDetail);
@@ -29,15 +29,15 @@ export default function PointDetail() {
   const points = useSelector((store) => store.points);
   const user = useSelector((store) => store.user);
 
-
+  44.94830546284459, -93.08674043028068
   useEffect(() => {
     dispatch({ type: 'FETCH_POINT_DETAIL/:id', payload: id});
     dispatch({ type: 'FETCH_POINT_DETAIL/ROUTES/:id', payload: id});
 
     var map = new mapboxgl.Map({
       container: 'map',
-      center: [-93.19426931505215, 44.9480407119586],
-      zoom: 10,
+      center: [-93.08674043028068, 44.94830546284459],
+      zoom: 15,
       interactive: false,
       style: 'mapbox://styles/mapbox/streets-v11'
     });
