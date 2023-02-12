@@ -66,26 +66,11 @@ const router = express.Router();
   }))
 });
 
+/** ---------- GET POINTS BY ROUTE ---------- **/
+
+
  /** ---------- GET ROUTE INFO FOR POINT DETAIL PAGE ---------- **/
- router.get('/route/:id', (req, res) => {
-  const sqlQueryPoint =`
-    SELECT
-      "gtfs_routes"."route_name",
-      "gtfs_routes"."route_desc"
-    FROM "poi_routes"
-    JOIN "gtfs_routes"
-      ON "poi_routes"."route_id" = "gtfs_routes"."id"
-    WHERE "poi_routes"."poi_id" = $1;`;
-  const sqlValues = [req.params.id];
-  pool.query(sqlQueryPoint, sqlValues)
-  .then((results) => {
-    res.send(results.rows)
-  })
-  .catch((error => {
-    console.log('Error in GET /pointDetail/route/:id: ', error);
-    res.sendStatus(500);
-  }))
-});
+
 
 /** ---------- GET SAVED POINTS BY USER ---------- **/
 router.get('/saved', (req,res) => {

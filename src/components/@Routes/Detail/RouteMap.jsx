@@ -10,19 +10,12 @@ mapboxgl.accessToken = 'pk.eyJ1IjoibGFoZWF2ZXkiLCJhIjoiY2xkczZ5MzlsMDJhNTNwbWx6N
 export default function MapDetail () {
   const [dataLoaded, setDataLoaded] = useState(false);
   const lineCoordinates = useSelector((store) => store.line);
-  // const [lng, setLng] = useState(-93.1917);
-  // const [lat, setLat] = useState(44.9568);
-  // const [zoom, setZoom] = useState(9.5);
   const mapContainer = useRef(null);
-  // const map = useRef(null);
   const { id } = useParams();
   const dispatch = useDispatch();
 
-// console.log('LineCoordinates: ', lineCoordinates)
-
   useEffect(() => {
     dispatch({ type: 'FETCH_LINE/:id', payload: id});
-    // mapLoad();
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v11',
