@@ -39,16 +39,17 @@ function* fetchPointDetail (action) {
   }
 }
 
-// Confusing, reducer is tied to routeDetail; flag for adjustment?
-function* fetchPOIRoutes (action) {
+function* fetchPointDetailRoute (action){
   try {
     const response = yield axios.get(`/points/route/${action.payload}`)
     yield put({
-      type: 'SET_POI_ROUTE_DETAIL',
+      type: 'SET_POINT_DETAIL/ROUTE/:id',
       payload: response.data
+      // id, name, image_url, longitude, latitude, description, 
+      // sources_cited
     })
   } catch (error) {
-    console.error('Error in fetchPOIRoutes: ', error)
+    console.error('Error in fetchPointDetail:', error);
   }
 }
 
@@ -92,7 +93,7 @@ export default function* allPointsSaga() {
   yield takeLatest('FETCH_ALL_POINTS', fetchAllPoints);
   yield takeLatest('FETCH_POPULAR_POINTS', fetchPopularPoints);
   yield takeLatest('FETCH_POINT_DETAIL/:id', fetchPointDetail);
-  yield takeLatest('FETCH_POINT_DETAIL/ROUTES/:id', fetchPOIRoutes);
+  yield takeLatest('FETCH_POINT_DETAIL/ROUTE/:id', fetchPointDetailRoute)
   yield takeLatest('ADD_POI_SAVE', addPointSave);
   yield takeLatest('FETCH_SAVED_POIS', fetchPointSave);
   yield takeLatest('DELETE_SAVED_POI', deletePointSave);

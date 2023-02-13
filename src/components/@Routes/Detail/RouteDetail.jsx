@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import List from '@mui/material/List';
 import RouteMap from './RouteMap';
 import RouteInfo from './RouteInfo';
+import { useSelector } from "react-redux";
 
 export default function RouteDetail() {
   const dispatch = useDispatch();
@@ -11,12 +12,11 @@ export default function RouteDetail() {
 
   useEffect(() => {
       dispatch({ type: 'FETCH_ROUTE_DETAIL/:id', payload: id});
-      dispatch({ type: 'FETCH_LINE/:id', payload: id});// Only rendering sometimes? REVIEW 
   },[])
 
   return (
     <>
-    <RouteMap />
+    <RouteMap  />
     <List
       sx={{
         width: '100%',

@@ -1,4 +1,4 @@
-const routeDetailReducer = (state = {}, action) => {
+const pointDetailReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_ROUTE_DETAIL':
       return action.payload;

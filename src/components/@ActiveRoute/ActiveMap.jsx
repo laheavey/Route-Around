@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoibGFoZWF2ZXkiLCJhIjoiY2xkczZ5MzlsMDJhNTNwbWx6Nnk1bm1hNyJ9.7_Y-O03vhnebg8xOsSN0GQ';
 
-export default function MapDetail () {
+export default function ActiveMap () {
   const [dataLoaded, setDataLoaded] = useState(false);
   const lineCoordinates = useSelector((store) => store.line);
   const mapContainer = useRef(null);
@@ -19,8 +19,9 @@ export default function MapDetail () {
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [-93.1917, 44.9568],
-      zoom: 10,
+      center: [-93.08674043028068, 44.94830546284459],
+      zoom: 15,
+      interactive: false,
     });
 
     map.on('load', () => {
