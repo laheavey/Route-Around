@@ -49,6 +49,7 @@ const router = express.Router();
       "id",
       "name",
       "image_url",
+      "street_address",
       "longitude",
       "latitude",
       "description",

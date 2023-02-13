@@ -14,36 +14,42 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 
 export default function PointDetail() {
+  const [dataLoaded, setDataLoaded] = useState(false);
   const dispatch = useDispatch();
   const { id } = useParams();
-  const [dense, setDense] = useState(false);
   const mapContainer = useRef(null);
-  const map = useRef(null);
-  const [lng, setLng] = useState(-93.19426931505215);
-  const [lat, setLat] = useState(44.9480407119586);
-  const [zoom, setZoom] = useState(5);
+  const [lng, setLng] = useState(0);
+  const [lat, setLat] = useState(0);
 
-  // ↓ ARRAY: route_name, route_desc by poi id
-  const routeDetail = useSelector((store) => store.routeDetail);
   // ↓ OBJECT: Completed_on; poi_id; poi_name; route_desc; route_id; route_name; route_url
   const points = useSelector((store) => store.points);
-  const user = useSelector((store) => store.user);
+  // const user = useSelector((store) => store.user);
 
-  44.94830546284459, -93.08674043028068
+  console.log("Points.latitude + longitude: ", points.latitude, points.longitude)
+
   useEffect(() => {
     dispatch({ type: 'FETCH_POINT_DETAIL/:id', payload: id});
     dispatch({ type: 'FETCH_POINT_DETAIL/ROUTES/:id', payload: id});
-
-    var map = new mapboxgl.Map({
-      container: 'map',
-      center: [-93.08674043028068, 44.94830546284459],
+    
+    const map = new mapboxgl.Map({
+      container: mapContainer.current,
+      center: {
+        lng: lng, 
+        lat: lat
+      },
       zoom: 15,
       interactive: false,
       style: 'mapbox://styles/mapbox/streets-v11'
     });
+
+    const marker1 = new mapboxgl.Marker()
+      .setLngLat({
+        lng: lng, 
+        lat: lat
+      })
+      .addTo(map)
   
-    map.addControl(new mapboxgl.FullscreenControl());
-  },[])
+  },[dataLoaded])
   
   const savePoint = () => {
     let newPointSave = {
@@ -54,9 +60,19 @@ export default function PointDetail() {
     dispatch({ type: 'ADD_POI_SAVE', payload: newPointSave })
   }
 
+  useEffect(() => {
+    if (mapContainer) {
+      setLng(points.longitude);
+      setLat(points.latitude);
+      setDataLoaded(true)
+    }
+  }, [dataLoaded])
+
   return (
     <>
-      <div id='map' style={{width: '100%', height: '300px'}}></div>
+      <div className="map-wrapper" style={dataLoaded ? undefined : {display: 'none'}}>
+        <div ref={mapContainer} className="map-container" style={{width: '100%', height: '300px'}}></div>
+      </div>
       <List
         sx={{
         width: '100%',
@@ -67,11 +83,9 @@ export default function PointDetail() {
         '& ul': { padding: 0 }
         }}
         key={`${points.id}`}
-        dense={dense}
         subheader={<li />}>
         <ul>
           <ListSubheader>{`Point Detail → ${points.name}`}</ListSubheader>
-
             <ListItem >
               <ListItemAvatar>
                 <Avatar 
@@ -87,15 +101,8 @@ export default function PointDetail() {
               >
               <FavoriteBorderOutlinedIcon />
             </IconButton>
-              <ListItemText primary={`${points.name}`} />
+              <ListItemText primary={`${points.name}`} secondary={`${points.street_address}`} />
             </ListItem>
-            {/* <ListItem>
-            {routeDetail.map((route) => {
-                return (
-                  <ListItemText secondary={`${route.route_name}`}/>
-                )
-                })}
-            </ListItem> */}
         </ul>
         <ul>
           <ListItem>
