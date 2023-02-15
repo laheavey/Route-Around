@@ -14,37 +14,54 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 
 export default function PointDetail() {
+  const [dataLoaded, setDataLoaded] = useState(false);
   const dispatch = useDispatch();
   const { id } = useParams();
-  const [dense, setDense] = useState(false);
   const mapContainer = useRef(null);
-  const map = useRef(null);
-  const [lng, setLng] = useState(-93.19426931505215);
-  const [lat, setLat] = useState(44.9480407119586);
-  const [zoom, setZoom] = useState(5);
-
-  // ↓ ARRAY: route_name, route_desc by poi id
-  const routeDetail = useSelector((store) => store.routeDetail);
-  // ↓ OBJECT: Completed_on; poi_id; poi_name; route_desc; route_id; route_name; route_url
   const points = useSelector((store) => store.points);
-  const user = useSelector((store) => store.user);
 
-  44.94830546284459, -93.08674043028068
   useEffect(() => {
-    dispatch({ type: 'FETCH_POINT_DETAIL/:id', payload: id});
-    dispatch({ type: 'FETCH_POINT_DETAIL/ROUTES/:id', payload: id});
+    // dispatch({ type: 'FETCH_POINT_DETAIL/:id', payload: id});
+    // dispatch({ type: 'FETCH_POINT_DETAIL/ROUTES/:id', payload: id});
 
-    var map = new mapboxgl.Map({
-      container: 'map',
-      center: [-93.08674043028068, 44.94830546284459],
+    const map = new mapboxgl.Map({
+      container: mapContainer.current,
+      center: [points.longitude, points.latitude],
       zoom: 15,
       interactive: false,
       style: 'mapbox://styles/mapbox/streets-v11'
     });
-  
-    map.addControl(new mapboxgl.FullscreenControl());
-  },[])
-  
+
+    map.on('load', () => {
+      map.addSource('point', {
+        "type": "geojson",
+        "data": {
+          "type": "symbol",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [points.longitude, points.latitude]
+          },
+        }
+      });
+      map.addLayer({
+        'id': 'point',
+        'type': 'symbol',
+        'source': 'point',
+        'paint': {
+          'icon-color': '#000000'
+        }
+      });
+      const marker1 = new mapboxgl.Marker()
+      .setLngLat([points.longitude, points.latitude])
+      .addTo(map)
+
+      setDataLoaded(true)
+      map.setCenter([points.longitude, points.latitude] )
+    });
+
+  },[dataLoaded])
+
+    
   const savePoint = () => {
     let newPointSave = {
       user_id: user.id,
@@ -56,7 +73,12 @@ export default function PointDetail() {
 
   return (
     <>
-      <div id='map' style={{width: '100%', height: '300px'}}></div>
+      <div 
+        ref={mapContainer} 
+        className="map-container" 
+        style={dataLoaded ? {width: '100%', height: '300px'} : {display: 'none'}} 
+      >
+      </div>
       <List
         sx={{
         width: '100%',
@@ -67,11 +89,9 @@ export default function PointDetail() {
         '& ul': { padding: 0 }
         }}
         key={`${points.id}`}
-        dense={dense}
         subheader={<li />}>
         <ul>
           <ListSubheader>{`Point Detail → ${points.name}`}</ListSubheader>
-
             <ListItem >
               <ListItemAvatar>
                 <Avatar 
@@ -83,19 +103,12 @@ export default function PointDetail() {
               </ListItemAvatar>
               <IconButton 
                 aria-label="save"
-                onClick={savePoint}
+                // onClick={savePoint}
               >
               <FavoriteBorderOutlinedIcon />
             </IconButton>
-              <ListItemText primary={`${points.name}`} />
+              <ListItemText primary={`${points.name}`} secondary={`${points.street_address}`} />
             </ListItem>
-            {/* <ListItem>
-            {routeDetail.map((route) => {
-                return (
-                  <ListItemText secondary={`${route.route_name}`}/>
-                )
-                })}
-            </ListItem> */}
         </ul>
         <ul>
           <ListItem>

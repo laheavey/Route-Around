@@ -1,5 +1,6 @@
 import React, { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import mapboxgl from '!mapbox-gl';
 
 import List from '@mui/material/List';
@@ -45,7 +46,9 @@ export default function AllPoints() {
           <ListSubheader>{`All Points of Interest →`}</ListSubheader>
           {allPoints.map((point) => (
             <ListItem key={`${point.id}`}>
+              <Link to={`/pointDetail/${point.id}`}>
               <ListItemText primary={`${point.name}`} />
+              </Link>
             </ListItem>
           ))}
         </ul>

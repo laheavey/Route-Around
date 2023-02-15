@@ -7,6 +7,7 @@ import popPoints from './points/popularPoints.reducer'
 import allRoutes from './routes/allRoutes.reducer';
 import allPoints from './points/allPoints.reducer'
 import routeDetail from './routes/routeDetail.reducer';
+import pointDetail from './points/pointDetail.reducer';
 import savedPoints from './points/savedPoints.reducer';
 import points from './points/points.reducer';
 import userRouteHistory from './routes/userRouteHistory.reducer';
@@ -18,12 +19,13 @@ const rootReducer = combineReducers({
   user, // id and username, if someone is logged in
   line, // coordinates for polyline creation
   popRoutes, 
-  popPoints,
+  // popPoints,
   allRoutes, 
-  allPoints,
+  // allPoints,
   routeDetail, 
+  // pointDetail,
   points,
-  savedPoints,
+  // savedPoints,
   userRouteHistory,
   userEdit,
   mapCenter,
