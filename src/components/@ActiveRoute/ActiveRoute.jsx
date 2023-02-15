@@ -21,6 +21,7 @@ import ActiveInfo from './ActiveInfo';
 
 export default function RouteDetail() {
   const mapContainer = useRef(null);
+  const [mapTest, setMapTest] = useState([0,0]);
   const map = useRef(null);
   const ref = useRef();
   const [centerCoords, setCenterCoords] = useState([])
@@ -29,7 +30,7 @@ export default function RouteDetail() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const points = useSelector((store) => store.points) 
-  let activeChapterName = 'Great Northern Building'
+  let activeChapterName = 'Minnesota Building'
 
   mapboxgl.accessToken = 'pk.eyJ1IjoibGFoZWF2ZXkiLCJhIjoiY2xkczZ5MzlsMDJhNTNwbWx6Nnk1bm1hNyJ9.7_Y-O03vhnebg8xOsSN0GQ';
   useEffect(() => {
@@ -40,7 +41,7 @@ export default function RouteDetail() {
   useEffect(() => {
     const map = new mapboxgl.Map({
       container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/streets-v11',
+      style: 'mapbox://styles/mapbox/streets-v12',
       // center: [-93.08674043028068, 44.94830546284459],
       center: [-93.08674043028068, 44.94830546284459],
       zoom: 15,
@@ -84,6 +85,7 @@ export default function RouteDetail() {
         }
       });
       setDataLoaded(true)
+      setMapTest(map)
     //     // map.jumpTo({ 'center': coordinates[0], 'zoom': 14 });
     return () => map.remove();
       })
@@ -148,10 +150,16 @@ export default function RouteDetail() {
     document.getElementById(chapterName).classList.add('active');
     document.getElementById(activeChapterName).classList.remove('active');
     
-    // let lng = document.getElementById(chapterName).getAttribute('longitude');
-    // let lat = document.getElementById(chapterName).getAttribute('latitude')
+    let lng = document.getElementById(chapterName).getAttribute('longitude');
+    let lat = document.getElementById(chapterName).getAttribute('latitude')
 
     // setCenterCoords([lng,lat])
+    mapTest.flyTo({
+      // center: [lng,lat]
+      center: [lng,lat],
+      essential: true // this animation is considered essential with respect to prefers-reduced-motion
+    });
+
     activeChapterName = chapterName;
     console.log('ActiveChapterName: ', activeChapterName)
     console.log('This: ', this)
