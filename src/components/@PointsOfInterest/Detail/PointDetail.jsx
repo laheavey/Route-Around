@@ -18,39 +18,50 @@ export default function PointDetail() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const mapContainer = useRef(null);
-  const [lng, setLng] = useState(0);
-  const [lat, setLat] = useState(0);
-
-  // ↓ OBJECT: Completed_on; poi_id; poi_name; route_desc; route_id; route_name; route_url
   const points = useSelector((store) => store.points);
-  // const user = useSelector((store) => store.user);
-
-  console.log("Points.latitude + longitude: ", points.latitude, points.longitude)
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_POINT_DETAIL/:id', payload: id});
-    dispatch({ type: 'FETCH_POINT_DETAIL/ROUTES/:id', payload: id});
-    
+    // dispatch({ type: 'FETCH_POINT_DETAIL/:id', payload: id});
+    // dispatch({ type: 'FETCH_POINT_DETAIL/ROUTES/:id', payload: id});
+
     const map = new mapboxgl.Map({
       container: mapContainer.current,
-      center: {
-        lng: lng, 
-        lat: lat
-      },
+      center: [points.longitude, points.latitude],
       zoom: 15,
       interactive: false,
       style: 'mapbox://styles/mapbox/streets-v11'
     });
 
-    const marker1 = new mapboxgl.Marker()
-      .setLngLat({
-        lng: lng, 
-        lat: lat
-      })
+    map.on('load', () => {
+      map.addSource('point', {
+        "type": "geojson",
+        "data": {
+          "type": "symbol",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [points.longitude, points.latitude]
+          },
+        }
+      });
+      map.addLayer({
+        'id': 'point',
+        'type': 'symbol',
+        'source': 'point',
+        'paint': {
+          'icon-color': '#000000'
+        }
+      });
+      const marker1 = new mapboxgl.Marker()
+      .setLngLat([points.longitude, points.latitude])
       .addTo(map)
-  
+
+      setDataLoaded(true)
+      map.setCenter([points.longitude, points.latitude] )
+    });
+
   },[dataLoaded])
-  
+
+    
   const savePoint = () => {
     let newPointSave = {
       user_id: user.id,
@@ -60,18 +71,13 @@ export default function PointDetail() {
     dispatch({ type: 'ADD_POI_SAVE', payload: newPointSave })
   }
 
-  useEffect(() => {
-    if (mapContainer) {
-      setLng(points.longitude);
-      setLat(points.latitude);
-      setDataLoaded(true)
-    }
-  }, [dataLoaded])
-
   return (
     <>
-      <div className="map-wrapper" style={dataLoaded ? undefined : {display: 'none'}}>
-        <div ref={mapContainer} className="map-container" style={{width: '100%', height: '300px'}}></div>
+      <div 
+        ref={mapContainer} 
+        className="map-container" 
+        style={dataLoaded ? {width: '100%', height: '300px'} : {display: 'none'}} 
+      >
       </div>
       <List
         sx={{
@@ -97,7 +103,7 @@ export default function PointDetail() {
               </ListItemAvatar>
               <IconButton 
                 aria-label="save"
-                onClick={savePoint}
+                // onClick={savePoint}
               >
               <FavoriteBorderOutlinedIcon />
             </IconButton>

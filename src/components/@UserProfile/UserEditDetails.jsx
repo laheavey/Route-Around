@@ -67,11 +67,13 @@ export default function UserEditDetails () {
     } else if (secondEmailValue && userEdit.email !== secondEmailValue){
       setError(true);
     } else {
+      
       let newUserEdit = {
         id: user.id,
         email: user.email,
         profile_img: userEdit.profile_img
       }
+      
       dispatch({ type: 'UPDATE_USER', payload: newUserEdit })
       history.push(`/profile/${user.id}`)
     }

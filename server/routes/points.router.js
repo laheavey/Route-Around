@@ -73,7 +73,11 @@ router.get('/route/:id', (req, res) => {
   SELECT 
     "poi_details"."id",
     "poi_details"."name",
-    "poi_details"."short_desc"
+    "poi_details"."short_desc",
+    "poi_details"."image_url",
+    "poi_details"."street_address",
+    "poi_details"."longitude",
+    "poi_details"."latitude"
   FROM "poi_details"
   JOIN "poi_routes"
     ON "poi_details"."id" = "poi_routes"."poi_id"
