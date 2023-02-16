@@ -20,11 +20,25 @@ export default function PointDetail() {
   const { id } = useParams();
   const mapContainer = useRef(null);
   const points = useSelector((store) => store.points);
+  const user = useSelector((store) => store.user);
+
+  const savedPoints = useSelector((store) => store.savedPoints)
+  const [saveLoaded, setSaveLoaded] = useState(false)
+  const [savedStatus, setSavedStatus] = useState(false);
 
 
   useEffect(() => {
     dispatch({ type: 'FETCH_POINT_DETAIL/:id', payload: id});
-    // dispatch({ type: 'FETCH_POINT_DETAIL/ROUTES/:id', payload: id});
+    dispatch({ type: 'FETCH_SAVED_POIS', data: user.id})
+
+    savedPoints?.map((save) => {
+      if (points.id === save.poi_id) {
+        setSavedStatus(true)
+        console.log('Save check!')
+        setSaveLoaded(true)
+      } 
+      setSaveLoaded(true)
+    })
 
     const map = new mapboxgl.Map({
       container: mapContainer.current,
@@ -36,7 +50,6 @@ export default function PointDetail() {
 
     map.on('load', () => {
       setMapContent(map);
-      console.log('Points: ', points.longitude);
       setDataLoaded(true)
 
       const marker1 = new mapboxgl.Marker()
@@ -49,7 +62,7 @@ export default function PointDetail() {
       // return () => map.remove();
     });
 
-  },[dataLoaded])
+  },[dataLoaded, saveLoaded])
 
     
   const savePoint = () => {
@@ -91,12 +104,12 @@ export default function PointDetail() {
                   sx= {{ width: 120, height: 100 }}
                 />
               </ListItemAvatar>
-              <IconButton 
-                aria-label="save"
-                // onClick={savePoint}
-              >
-              <FavoriteBorderOutlinedIcon />
-            </IconButton>
+              <IconButton aria-label="save" style={saveLoaded ? {} : {display: 'none'}}>
+                {savedStatus 
+                ? <FavoriteOutlinedIcon />
+                : <FavoriteBorderOutlinedIcon />
+                }
+                </IconButton>
               <ListItemText primary={`${points.name}`} secondary={`${points.street_address}`} />
             </ListItem>
         </ul>

@@ -14,17 +14,6 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 
 import SaveIcon from './SaveIcon.jsx';
 
-function HeartIcon({popPoint, savedStatus}) {
-  return (
-    <>
-    {savedStatus 
-      ? <FavoriteOutlinedIcon />
-      : <FavoriteBorderOutlinedIcon />
-      }
-      </>
-  )
-
-}
 
 export default function PopularPoints({popPoint}) {
   const [dataLoaded, setDataLoaded] = useState(false);
