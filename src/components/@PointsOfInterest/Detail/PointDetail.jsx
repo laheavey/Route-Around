@@ -26,11 +26,12 @@ export default function PointDetail() {
   const [saveLoaded, setSaveLoaded] = useState(false)
   const [savedStatus, setSavedStatus] = useState(false);
 
-
   useEffect(() => {
     dispatch({ type: 'FETCH_POINT_DETAIL/:id', payload: id});
     dispatch({ type: 'FETCH_SAVED_POIS', data: user.id})
+  }, [])
 
+  useEffect(() => {
     savedPoints?.map((save) => {
       if (points.id === save.poi_id) {
         setSavedStatus(true)
@@ -43,7 +44,7 @@ export default function PointDetail() {
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       center: [-93.09, 44.946944],
-      zoom: 10,
+      zoom: 12,
       // interactive: false,
       style: 'mapbox://styles/mapbox/streets-v11'
     });
@@ -59,19 +60,39 @@ export default function PointDetail() {
       if (points) {
         map.setCenter([points.longitude, points.latitude])
       }
-      // return () => map.remove();
+      return () => map.remove();
     });
 
   },[dataLoaded, saveLoaded])
 
-    
   const savePoint = () => {
     let newPointSave = {
       user_id: user.id,
       poi_id: id
     }
-
+    console.log('ADD Point Clicked: ', newPointSave);
     dispatch({ type: 'ADD_POI_SAVE', payload: newPointSave })
+    setSavedStatus(true);
+  }
+
+  const unsavePoint = () => {
+    let pointClicked = {
+      user_id: user.id,
+      poi_id: popPoint.id
+    }
+    console.log('DELETE Point Clicked: ', pointClicked);
+    dispatch({ type: 'DELETE_SAVED_POI', payload: pointClicked })
+    setSavedStatus(false);
+  }
+
+  const handleSaveClick = () => {
+    if (savedStatus){
+      unsavePoint();
+      console.log('Unsaved!')
+    } else {
+      savePoint();
+      console.log('Saved!')
+    }
   }
 
   return (
@@ -104,7 +125,11 @@ export default function PointDetail() {
                   sx= {{ width: 120, height: 100 }}
                 />
               </ListItemAvatar>
-              <IconButton aria-label="save" style={saveLoaded ? {} : {display: 'none'}}>
+              <IconButton 
+                aria-label="save" 
+                onClick={handleSaveClick}
+                style={saveLoaded ? {} : {display: 'none'}}
+              >
                 {savedStatus 
                 ? <FavoriteOutlinedIcon />
                 : <FavoriteBorderOutlinedIcon />

@@ -62,19 +62,6 @@ export default function PopularPoints({popPoint}) {
     // history.push('/');
   }
 
-  const saveStatusCheck = () => {
-    savedPoints?.map((save) => {
-      if (popPoint.id === save.poi_id) {
-        setSavedStatus(true)
-        console.log('Save check!')
-      } 
-      setDataLoaded(true)
-  })
-  console.log('saveStatusCheck', savedStatus)
-  console.log('popPoint', popPoint)
-}
-
-
   const handleSaveClick = () => {
     if (savedStatus){
       unsavePoint();
