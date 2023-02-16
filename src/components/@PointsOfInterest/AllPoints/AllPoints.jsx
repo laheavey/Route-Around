@@ -27,7 +27,6 @@ export default function AllPoints() {
         container: mapContainer.current,
         center: [-93.19426931505215, 44.9480407119586],
         zoom: 10,
-        interactive: false,
         style: 'mapbox://styles/mapbox/streets-v11'
       });
   

@@ -29,32 +29,27 @@ export default function PointDetail() {
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       center: [-93.09, 44.946944],
-      zoom: 15,
-      interactive: false,
+      zoom: 10,
+      // interactive: false,
       style: 'mapbox://styles/mapbox/streets-v11'
     });
 
     map.on('load', () => {
+      setMapContent(map);
+      console.log('Points: ', points.longitude);
+      setDataLoaded(true)
+
       const marker1 = new mapboxgl.Marker()
-      .setLngLat([-93.09, 44.946944])
+      .setLngLat([points.longitude, points.latitude])
       .addTo(map);
 
-      setMapContent(map);
-      console.log('Points: ', points);
-      setDataLoaded(true)
-      return () => map.remove();
+      if (points) {
+        map.setCenter([points.longitude, points.latitude])
+      }
+      // return () => map.remove();
     });
 
   },[dataLoaded])
-
-  const mapLoaded = () => {
-    // if (mapContent) {
-
-    
-      // mapContent.setCenter({center: [points.longitude, points.latitude]})
-    // }
-    
-  }
 
     
   const savePoint = () => {
