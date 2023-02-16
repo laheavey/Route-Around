@@ -6,8 +6,9 @@ const router = express.Router();
  router.get('/all', (req, res) => {
   console.log('req.body:', req.body);
   const sqlQuery =`
-    SELECT "id", "name"
-    FROM "poi_details"`
+    SELECT "id", "name", "longitude", "latitude"
+    FROM "poi_details"
+    ORDER BY "name" ASC;`;
   pool.query(sqlQuery)
   .then((results) => {
     res.send(results.rows)
@@ -108,7 +109,8 @@ router.get('/saved', (req,res) => {
   FROM "poi_saves"
   JOIN "poi_details"
     ON "poi_saves"."poi_id" = "poi_details"."id"
-  WHERE "user_id"=$1;`
+  WHERE "user_id"=$1
+  ORDER BY "poi_details"."name" ASC;`
   const sqlValues = [req.user.id]
   pool.query(sqlQuery, sqlValues)
   .then((results) => {

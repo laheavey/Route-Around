@@ -27,6 +27,7 @@ function HeartIcon({popPoint, savedStatus}) {
 }
 
 export default function PopularPoints({popPoint}) {
+  const [dataLoaded, setDataLoaded] = useState(false);
   const history = useHistory();
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -35,8 +36,20 @@ export default function PopularPoints({popPoint}) {
   const [savedStatus, setSavedStatus] = useState(false);
 
   useEffect(() => {
-    saveStatusCheck();
-  },[])
+    // saveStatusCheck()
+
+    savedPoints?.map((save) => {
+      if (popPoint.id === save.poi_id) {
+        setSavedStatus(true)
+        console.log('Save check!')
+        setDataLoaded(true)
+      } 
+      setDataLoaded(true)
+  })
+  console.log('saveStatusCheck', savedStatus)
+  console.log('popPoint', popPoint)
+
+  },[dataLoaded])
 
   const savePoint = () => {
     let pointClicked = {
@@ -45,8 +58,8 @@ export default function PopularPoints({popPoint}) {
     }
     console.log('ADD Point Clicked: ', pointClicked);
     dispatch({ type: 'ADD_POI_SAVE', payload: pointClicked })
-    // setSavedStatus(true);
-    history.push('/');
+    setSavedStatus(true);
+    // history.push('/');
   }
 
   const unsavePoint = () => {
@@ -56,16 +69,17 @@ export default function PopularPoints({popPoint}) {
     }
     console.log('DELETE Point Clicked: ', pointClicked);
     dispatch({ type: 'DELETE_SAVED_POI', payload: pointClicked })
-    // setSavedStatus(false);
-    history.push('/');
+    setSavedStatus(false);
+    // history.push('/');
   }
 
   const saveStatusCheck = () => {
-    savedPoints.map((save) => {
+    savedPoints?.map((save) => {
       if (popPoint.id === save.poi_id) {
         setSavedStatus(true)
+        console.log('Save check!')
       } 
-      
+      setDataLoaded(true)
   })
   console.log('saveStatusCheck', savedStatus)
   console.log('popPoint', popPoint)
@@ -74,33 +88,28 @@ export default function PopularPoints({popPoint}) {
 
   const handleSaveClick = () => {
     if (savedStatus){
-      // unsavePoint();
-      console.log('Saved!')
-    } else {
-      // savePoint();
+      unsavePoint();
       console.log('Unsaved!')
+    } else {
+      savePoint();
+      console.log('Saved!')
     }
   }
-
-  // console.log('PopPoint: ', popPoint)
-  // console.log('PopPoint.id: ', popPoint.id)
-  // console.log('Savedpoints: ', savedPoints)
-  // console.log('savedStatus: ', savedStatus)
-  // console.log('PP Key: ', key)
-  console.log('?? : ', popPoint, savedStatus)
   return (
         
             <section 
             key={`${popPoint.id}`} 
             id={`${popPoint.name}`}
             longitude={`${popPoint.longitude}`}
-            latitude={`${popPoint.latitude}`}>
+            latitude={`${popPoint.latitude}`}
+            style={dataLoaded ? {} : {display: 'none'}}
+            >
             <IconButton aria-label="save" onClick={handleSaveClick}>
 
             {savedStatus 
-      ? <FavoriteOutlinedIcon />
-      : <FavoriteBorderOutlinedIcon />
-      }
+            ? <FavoriteOutlinedIcon />
+            : <FavoriteBorderOutlinedIcon />
+            }
             </IconButton>
           <Link to={`/pointDetail/${popPoint.id}`}>
               {popPoint.name}

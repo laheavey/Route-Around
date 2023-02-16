@@ -33,7 +33,7 @@ export default function RouteDetail() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const pointDetail = useSelector((store) => store.pointDetail) 
-  let activePointName = 'Minnesota Building'
+  let activePointName = 'METRO Green Line'
 
   mapboxgl.accessToken = 'pk.eyJ1IjoibGFoZWF2ZXkiLCJhIjoiY2xkczZ5MzlsMDJhNTNwbWx6Nnk1bm1hNyJ9.7_Y-O03vhnebg8xOsSN0GQ';
   useEffect(() => {

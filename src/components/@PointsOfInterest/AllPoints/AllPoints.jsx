@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import mapboxgl from '!mapbox-gl';
@@ -8,41 +8,53 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 
+// import AllPointsMap from './AllPointsMap';
+import './AllPoints.css';
+
+mapboxgl.accessToken = 'pk.eyJ1IjoibGFoZWF2ZXkiLCJhIjoiY2xkczZ5MzlsMDJhNTNwbWx6Nnk1bm1hNyJ9.7_Y-O03vhnebg8xOsSN0GQ';
+
 export default function AllPoints() {
   const dispatch = useDispatch();
+  const mapContainer = useRef(null);
   const allPoints = useSelector((store) => store.allPoints)
+  const [dataLoaded, setDataLoaded] = useState(false);
+
 
   useEffect(() => {
       dispatch({ type: 'FETCH_ALL_POINTS' });
 
-      var map = new mapboxgl.Map({
-        container: 'map',
+      const map = new mapboxgl.Map({
+        container: mapContainer.current,
         center: [-93.19426931505215, 44.9480407119586],
         zoom: 10,
         interactive: false,
         style: 'mapbox://styles/mapbox/streets-v11'
       });
   
-      map.addControl(new mapboxgl.FullscreenControl());
+      allPoints.map((point) => {
+        let popup = new mapboxgl.Popup({ offset: 25 })
+          .setText(`${point.name}`);
 
-  },[])
+        let marker = new mapboxgl.Marker()
+        .setLngLat([point.longitude, point.latitude])
+        .addTo(map)
+        .setPopup(popup)
+        
+        
+      })
 
-  // List of all routes
+
+      map.on('load', () => {
+        setDataLoaded(true)
+      })
+  },[dataLoaded])
+
+  // List of all points
   return (
     <>
-    <div id='map' style={{width: '100%', height: '300px'}}></div>
-    <List
-      sx={{
-        width: '100%',
-        bgcolor: 'background.paper',
-        position: 'relative',
-        overflow: 'auto',
-        maxHeight: 360,
-        '& ul': { padding: 0 }
-      }}
-      subheader={<li />}
-      >
-        <ul>
+    <div id='map' ref={mapContainer} style={dataLoaded ? {width: '100%', height: '300px'} : {display: 'none'}}></div>
+    {/* <AllPointsMap /> */}
+    <div id='features' >
           <ListSubheader>{`All Points of Interest →`}</ListSubheader>
           {allPoints.map((point) => (
             <ListItem key={`${point.id}`}>
@@ -51,8 +63,7 @@ export default function AllPoints() {
               </Link>
             </ListItem>
           ))}
-        </ul>
-    </List>
+    </div>
     </>
   );
 }

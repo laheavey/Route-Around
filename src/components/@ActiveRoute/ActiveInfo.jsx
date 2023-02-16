@@ -43,7 +43,7 @@ export default function ActiveInfo () {
 
   return (
     <>
-  
+
       {pointDetail?.map((point) => {
         return (
           <section 
@@ -52,9 +52,9 @@ export default function ActiveInfo () {
             longitude={`${point.longitude}`}
             latitude={`${point.latitude}`}>
             <h3>{`${point.name}`}</h3>
-            <sup>{`${point.street_address}`}</sup>
+            {point.address && <sup>{`${point.street_address}`}</sup>}
             <p>{`${point.short_desc}`}</p>
-            <Link to={`/pointDetail/${point.id}`}>Read More</Link>
+            {point.id !=8 && <Link to={`/pointDetail/${point.id}`}>Read More</Link>}
           </section>
         )
 
