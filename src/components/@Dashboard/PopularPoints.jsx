@@ -26,17 +26,17 @@ function HeartIcon({popPoint, savedStatus}) {
 
 }
 
-export default function PopularPoints({popPoint, savedStatus}) {
+export default function PopularPoints({popPoint}) {
   const history = useHistory();
   const { id } = useParams();
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   const savedPoints = useSelector((store) => store.savedPoints)
-  // const [savedStatus, setSavedStatus] = useState(false);
+  const [savedStatus, setSavedStatus] = useState(false);
 
-  // useEffect(() => {
-  //   saveStatusCheck()
-  // },[])
+  useEffect(() => {
+    saveStatusCheck();
+  },[])
 
   const savePoint = () => {
     let pointClicked = {
@@ -45,7 +45,7 @@ export default function PopularPoints({popPoint, savedStatus}) {
     }
     console.log('ADD Point Clicked: ', pointClicked);
     dispatch({ type: 'ADD_POI_SAVE', payload: pointClicked })
-    setSavedStatus(true);
+    // setSavedStatus(true);
     history.push('/');
   }
 
@@ -56,45 +56,60 @@ export default function PopularPoints({popPoint, savedStatus}) {
     }
     console.log('DELETE Point Clicked: ', pointClicked);
     dispatch({ type: 'DELETE_SAVED_POI', payload: pointClicked })
-    setSavedStatus(false);
+    // setSavedStatus(false);
     history.push('/');
   }
 
   const saveStatusCheck = () => {
-      savedPoints.map((save) => {
-        if (popPoint.id === save.poi_id) {
-          setSavedStatus(true)
-        } 
-    })
-  }
+    savedPoints.map((save) => {
+      if (popPoint.id === save.poi_id) {
+        setSavedStatus(true)
+      } 
+      
+  })
+  console.log('saveStatusCheck', savedStatus)
+  console.log('popPoint', popPoint)
+}
+
 
   const handleSaveClick = () => {
     if (savedStatus){
-      unsavePoint();
+      // unsavePoint();
+      console.log('Saved!')
     } else {
-      savePoint();
+      // savePoint();
+      console.log('Unsaved!')
     }
   }
 
   // console.log('PopPoint: ', popPoint)
   // console.log('PopPoint.id: ', popPoint.id)
   // console.log('Savedpoints: ', savedPoints)
-  console.log('savedStatus: ', savedStatus)
+  // console.log('savedStatus: ', savedStatus)
   // console.log('PP Key: ', key)
+  console.log('?? : ', popPoint, savedStatus)
   return (
-        <ul>
-            <ListItem >
+        
+            <section 
+            key={`${popPoint.id}`} 
+            id={`${popPoint.name}`}
+            longitude={`${popPoint.longitude}`}
+            latitude={`${popPoint.latitude}`}>
             <IconButton aria-label="save" onClick={handleSaveClick}>
-            <HeartIcon />
+
+            {savedStatus 
+      ? <FavoriteOutlinedIcon />
+      : <FavoriteBorderOutlinedIcon />
+      }
             </IconButton>
-            <Link to={`/pointDetail/${popPoint.id}`}>
-              <ListItemText inset secondary={`${popPoint.name}`} />
+          <Link to={`/pointDetail/${popPoint.id}`}>
+              {popPoint.name}
             </Link>
             
 
                   
                 
-            </ListItem> 
-        </ul>
+            </section> 
+        
   );
 }

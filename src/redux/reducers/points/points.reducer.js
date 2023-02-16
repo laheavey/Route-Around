@@ -1,5 +1,5 @@
 const pointsReducer = (state = {}, action) => {
-    console.log('In pointsReducer; action.payload: ', action.payload)
+    // console.log('In pointsReducer; action.payload: ', action.payload)
   switch (action.type) {
     // case 'SET_ALL_POINTS':
     //   // console.log(action.payload)
@@ -8,7 +8,7 @@ const pointsReducer = (state = {}, action) => {
     //   // return allPointArray; // id, name
     //   return action.payload;
     case 'SET_POINT_DETAIL':
-        console.log('pointsReducer response: ', action.payload)
+        // console.log('pointsReducer response: ', action.payload)
       return action.payload;
       // id, name, image_url, longitude, latitude, description, 
       // sources_cited

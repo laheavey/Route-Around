@@ -16,6 +16,7 @@ function Dashboard() {
     dispatch({ type: 'FETCH_POPULAR_ROUTES' });
     dispatch({ type: 'FETCH_POPULAR_POINTS' });
     dispatch({ type: 'FETCH_SAVED_POIS', data: user.id})
+    // clear lines?
   },[])
 
   // Div where map renders, PopularInfo component lists routes & 

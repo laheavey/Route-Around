@@ -12,6 +12,7 @@ export default function RouteDetail() {
 
   useEffect(() => {
       dispatch({ type: 'FETCH_ROUTE_DETAIL/:id', payload: id});
+
   },[])
 
   return (

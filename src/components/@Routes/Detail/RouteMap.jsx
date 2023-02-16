@@ -51,9 +51,11 @@ export default function MapDetail () {
         }
       });
       setDataLoaded(true)
+      return () => map.remove();
     //     // map.jumpTo({ 'center': coordinates[0], 'zoom': 14 });
 
       })
+      
   },[dataLoaded])
 
   return (
