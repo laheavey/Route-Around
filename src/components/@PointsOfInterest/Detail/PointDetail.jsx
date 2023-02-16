@@ -20,50 +20,79 @@ export default function PointDetail() {
   const { id } = useParams();
   const mapContainer = useRef(null);
   const points = useSelector((store) => store.points);
+  const user = useSelector((store) => store.user);
 
+  const savedPoints = useSelector((store) => store.savedPoints)
+  const [saveLoaded, setSaveLoaded] = useState(false)
+  const [savedStatus, setSavedStatus] = useState(false);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_POINT_DETAIL/:id', payload: id});
-    // dispatch({ type: 'FETCH_POINT_DETAIL/ROUTES/:id', payload: id});
+    dispatch({ type: 'FETCH_SAVED_POIS', data: user.id})
+  }, [])
+
+  useEffect(() => {
+    savedPoints?.map((save) => {
+      if (points.id === save.poi_id) {
+        setSavedStatus(true)
+        console.log('Save check!')
+        setSaveLoaded(true)
+      } 
+      setSaveLoaded(true)
+    })
 
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       center: [-93.09, 44.946944],
-      zoom: 15,
-      interactive: false,
+      zoom: 12,
+      // interactive: false,
       style: 'mapbox://styles/mapbox/streets-v11'
     });
 
     map.on('load', () => {
+      setMapContent(map);
+      setDataLoaded(true)
+
       const marker1 = new mapboxgl.Marker()
-      .setLngLat([-93.09, 44.946944])
+      .setLngLat([points.longitude, points.latitude])
       .addTo(map);
 
-      setMapContent(map);
-      console.log('Points: ', points);
-      setDataLoaded(true)
+      if (points) {
+        map.setCenter([points.longitude, points.latitude])
+      }
       return () => map.remove();
     });
 
-  },[dataLoaded])
+  },[dataLoaded, saveLoaded])
 
-  const mapLoaded = () => {
-    // if (mapContent) {
-
-    
-      // mapContent.setCenter({center: [points.longitude, points.latitude]})
-    // }
-    
-  }
-
-    
   const savePoint = () => {
     let newPointSave = {
       user_id: user.id,
       poi_id: id
     }
-
+    console.log('ADD Point Clicked: ', newPointSave);
     dispatch({ type: 'ADD_POI_SAVE', payload: newPointSave })
+    setSavedStatus(true);
+  }
+
+  const unsavePoint = () => {
+    let pointClicked = {
+      user_id: user.id,
+      poi_id: popPoint.id
+    }
+    console.log('DELETE Point Clicked: ', pointClicked);
+    dispatch({ type: 'DELETE_SAVED_POI', payload: pointClicked })
+    setSavedStatus(false);
+  }
+
+  const handleSaveClick = () => {
+    if (savedStatus){
+      unsavePoint();
+      console.log('Unsaved!')
+    } else {
+      savePoint();
+      console.log('Saved!')
+    }
   }
 
   return (
@@ -97,11 +126,15 @@ export default function PointDetail() {
                 />
               </ListItemAvatar>
               <IconButton 
-                aria-label="save"
-                // onClick={savePoint}
+                aria-label="save" 
+                onClick={handleSaveClick}
+                style={saveLoaded ? {} : {display: 'none'}}
               >
-              <FavoriteBorderOutlinedIcon />
-            </IconButton>
+                {savedStatus 
+                ? <FavoriteOutlinedIcon />
+                : <FavoriteBorderOutlinedIcon />
+                }
+                </IconButton>
               <ListItemText primary={`${points.name}`} secondary={`${points.street_address}`} />
             </ListItem>
         </ul>

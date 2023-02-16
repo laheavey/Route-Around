@@ -14,17 +14,6 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 
 import SaveIcon from './SaveIcon.jsx';
 
-function HeartIcon({popPoint, savedStatus}) {
-  return (
-    <>
-    {savedStatus 
-      ? <FavoriteOutlinedIcon />
-      : <FavoriteBorderOutlinedIcon />
-      }
-      </>
-  )
-
-}
 
 export default function PopularPoints({popPoint}) {
   const [dataLoaded, setDataLoaded] = useState(false);
@@ -72,19 +61,6 @@ export default function PopularPoints({popPoint}) {
     setSavedStatus(false);
     // history.push('/');
   }
-
-  const saveStatusCheck = () => {
-    savedPoints?.map((save) => {
-      if (popPoint.id === save.poi_id) {
-        setSavedStatus(true)
-        console.log('Save check!')
-      } 
-      setDataLoaded(true)
-  })
-  console.log('saveStatusCheck', savedStatus)
-  console.log('popPoint', popPoint)
-}
-
 
   const handleSaveClick = () => {
     if (savedStatus){
