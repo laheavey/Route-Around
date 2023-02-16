@@ -19,13 +19,13 @@ const rootReducer = combineReducers({
   user, // id and username, if someone is logged in
   line, // coordinates for polyline creation
   popRoutes, 
-  // popPoints,
+  popPoints,
   allRoutes, 
-  // allPoints,
+  allPoints,
   routeDetail, 
-  // pointDetail,
+  pointDetail,
   points,
-  // savedPoints,
+  savedPoints,
   userRouteHistory,
   userEdit,
   mapCenter,

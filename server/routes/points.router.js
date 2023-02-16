@@ -44,6 +44,7 @@ const router = express.Router();
 
  /** ---------- GET POINT DETAIL ---------- **/
  router.get('/detail/:id', (req, res) => {
+  console.log('In router.get /detail/id: ', req.params)
   const sqlQueryPoint =`
     SELECT
       "id",
@@ -59,6 +60,7 @@ const router = express.Router();
   const sqlValues = [req.params.id];
   pool.query(sqlQueryPoint, sqlValues)
   .then((results) => {
+    console.log('Results: ', results.rows[0])
     res.send(results.rows[0])
   })
   .catch((error => {
@@ -135,8 +137,8 @@ router.post('/save', (req,res) => {
 
 /** ---------- DELETE SAVED POINT BY USER ---------- **/
 router.delete('/saved/delete', (req,res) => {
-  console.log('Req.user.id: ', req.user.id)
-  console.log('req.body.poi_id: ', req.body.poi_id)
+  // console.log('Req.user.id: ', req.user.id)
+  // console.log('req.body.poi_id: ', req.body.poi_id)
 
   const sqlQuery = `
     DELETE FROM "poi_saves"
@@ -144,7 +146,7 @@ router.delete('/saved/delete', (req,res) => {
   const sqlValues = [req.user.id, req.body.poi_id]
   pool.query(sqlQuery, sqlValues)
   .then((results) => {
-    console.log('Success!')
+    // console.log('Success!')
     res.sendStatus(200);
   })
   .catch((error) => {

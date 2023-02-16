@@ -17,7 +17,7 @@ const router = express.Router();
   const sqlValues = [req.params.id];
   pool.query(sqlQuery, sqlValues)
   .then((results) => {
-    console.log('results: ', results)
+    // console.log('results: ', results)
     res.send(results.rows)
   })
   .catch((error => {

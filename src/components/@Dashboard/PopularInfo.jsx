@@ -23,9 +23,8 @@ export default function PopularInfo() {
 
   const [savedStatus, setSavedStatus] = useState(false);
 
-  // useEffect(() => {
-
-  // },)
+  useEffect(() => {
+console.log('popPoints: ', popPoints)  },[])
 
   const saveStatusCheck = (popPoint) => {
 
@@ -62,13 +61,12 @@ export default function PopularInfo() {
 
         <ul>
           <ListSubheader>{`Popular Points of Interest →`}</ListSubheader>
-          {popPoints.map((popPoint) => {
+          {popPoints?.map((popPoint) => {
             return (
               <PopularPoints popPoint={popPoint} key={popPoint.id} savedStatus={savedStatus}/>
             )
           }
-            
-              
+          
            )}
         </ul>
     </List>

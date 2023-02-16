@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton.jsx';
 import PopularInfo from './PopularInfo.jsx';
 import NoLineMap from './NoLineMap.jsx';
-import './Dashboard.css';
+// import './Dashboard.css';
 
 
 function Dashboard() {

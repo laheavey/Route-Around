@@ -16,50 +16,45 @@ import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 export default function PointDetail() {
   const [dataLoaded, setDataLoaded] = useState(false);
   const dispatch = useDispatch();
+  const [mapContent, setMapContent] = useState();
   const { id } = useParams();
   const mapContainer = useRef(null);
   const points = useSelector((store) => store.points);
 
+
   useEffect(() => {
-    // dispatch({ type: 'FETCH_POINT_DETAIL/:id', payload: id});
+    dispatch({ type: 'FETCH_POINT_DETAIL/:id', payload: id});
     // dispatch({ type: 'FETCH_POINT_DETAIL/ROUTES/:id', payload: id});
 
     const map = new mapboxgl.Map({
       container: mapContainer.current,
-      center: [points.longitude, points.latitude],
+      center: [-93.09, 44.946944],
       zoom: 15,
       interactive: false,
       style: 'mapbox://styles/mapbox/streets-v11'
     });
 
     map.on('load', () => {
-      map.addSource('point', {
-        "type": "geojson",
-        "data": {
-          "type": "symbol",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [points.longitude, points.latitude]
-          },
-        }
-      });
-      map.addLayer({
-        'id': 'point',
-        'type': 'symbol',
-        'source': 'point',
-        'paint': {
-          'icon-color': '#000000'
-        }
-      });
       const marker1 = new mapboxgl.Marker()
-      .setLngLat([points.longitude, points.latitude])
-      .addTo(map)
+      .setLngLat([-93.09, 44.946944])
+      .addTo(map);
 
+      setMapContent(map);
+      console.log('Points: ', points);
       setDataLoaded(true)
-      map.setCenter([points.longitude, points.latitude] )
+      return () => map.remove();
     });
 
   },[dataLoaded])
+
+  const mapLoaded = () => {
+    // if (mapContent) {
+
+    
+      // mapContent.setCenter({center: [points.longitude, points.latitude]})
+    // }
+    
+  }
 
     
   const savePoint = () => {
@@ -96,7 +91,7 @@ export default function PointDetail() {
               <ListItemAvatar>
                 <Avatar 
                   variant="square" 
-                  alt={`${points.name}`} 
+                  // alt={`${points.name}`} 
                   src={`${points.image_url}`}
                   sx= {{ width: 120, height: 100 }}
                 />
