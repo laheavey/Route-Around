@@ -50,7 +50,8 @@ export default function ActiveInfo () {
             key={`${point.id}`} 
             id={`${point.name}`}
             longitude={`${point.longitude}`}
-            latitude={`${point.latitude}`}>
+            latitude={`${point.latitude}`}
+            className="test">
             <h3>{`${point.name}`}</h3>
             {point.address && <sup>{`${point.street_address}`}</sup>}
             <p>{`${point.short_desc}`}</p>

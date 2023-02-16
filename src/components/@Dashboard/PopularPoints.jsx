@@ -58,9 +58,10 @@ export default function PopularPoints({popPoint}) {
   // }
 
   return (
-    <div 
+    <section 
       key={`${popPoint.id}`} 
       id={`${popPoint.name}`}
+      className='activeRoute'
       longitude={`${popPoint.longitude}`}
       latitude={`${popPoint.latitude}`}
       // style={dataLoaded ? {} : {display: 'none'}}
@@ -74,6 +75,6 @@ export default function PopularPoints({popPoint}) {
       <Link to={`/pointDetail/${popPoint.id}`}>
         {popPoint.name}
       </Link>                
-    </div> 
+    </section> 
   );
 }
