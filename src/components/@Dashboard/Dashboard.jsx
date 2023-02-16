@@ -24,8 +24,10 @@ function Dashboard() {
   return (
     <>
       <NoLineMap />
+
       <PopularInfo />
-      <LogOutButton />
+
+     
     </>
   )
 }

@@ -18,10 +18,6 @@ export default function UserActivity () {
   const userRouteHistory = useSelector((store) => store.userRouteHistory);
   const savedPoints = useSelector((store) => store.savedPoints)
   
-  // console.log('UserRouteHistory: ', userRouteHistory)
-  // console.log('savedPoints: ', savedPoints)
-  // console.log('userRouteHistory[0]: ', userRouteHistory[0].route_name);
-  // console.log('userRouteHistory, mapped: ', userRouteHistory.map((ride) => ride.route_name));
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
       <CardContent sx={{ flex: '1 0 auto' }}>
@@ -37,8 +33,8 @@ export default function UserActivity () {
         subheader={<li />}>
         <ul>
 
-        <ListSubheader>{`Badges Earned →`}</ListSubheader>
-        <Divider />
+        {/* <ListSubheader>{`Badges Earned →`}</ListSubheader>
+        <Divider /> */}
 
         <ListSubheader>{`Saved Points of Interest →`}</ListSubheader>
         {savedPoints.map((save) => {

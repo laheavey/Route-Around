@@ -78,7 +78,7 @@ export default function PointDetail() {
   const unsavePoint = () => {
     let pointClicked = {
       user_id: user.id,
-      poi_id: popPoint.id
+      poi_id: id
     }
     console.log('DELETE Point Clicked: ', pointClicked);
     dispatch({ type: 'DELETE_SAVED_POI', payload: pointClicked })

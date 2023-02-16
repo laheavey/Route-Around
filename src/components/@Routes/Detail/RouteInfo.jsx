@@ -39,14 +39,15 @@ export default function RouteInfo () {
           </Link>
         </ListItem>
       </ul>
-      <ul>
+      {/* Removing POI list for now, too long. */}
+      {/* <ul>
       <ListSubheader disableSticky>{`Points of Interest →`}</ListSubheader>
         <ListItem >
         <Link to={`/pointDetail/${routeDetail.poi_id}`}>
           <ListItemText inset secondary={`${routeDetail.poi_name}`} />
           </Link>
         </ListItem>
-      </ul>
+      </ul> */}
       {completedTrips && 
       <ul>
       <ListSubheader disableSticky>{`Ride History →`}</ListSubheader>
