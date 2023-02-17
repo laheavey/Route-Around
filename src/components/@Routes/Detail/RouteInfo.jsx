@@ -1,9 +1,5 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListSubheader from '@mui/material/ListSubheader';
-import { Link } from 'react-router-dom';
 
 export default function RouteInfo () {
   const routeDetail = useSelector((store) => store.routeDetail) 
@@ -12,16 +8,15 @@ export default function RouteInfo () {
   console.log('Route detail: ', routeDetail)
   
   return (
-    <>
-      <ul>
-        <ListSubheader>{`Route Detail →`}</ListSubheader>
-          <ListItem >
-            <ListItemText secondary={`${routeDetail.route_name}`} />
-            <ListItemText secondary={`${routeDetail.route_desc}`} />
-          </ListItem>
-      </ul>
-      <ul>
-        <ListItem >
+    <section id='features' >
+      
+        <h3>{`Route Detail →`}</h3>
+          <section >
+            <h6>{routeDetail.route_name}</h6>
+            {routeDetail.route_desc}
+          </section>
+      
+        {/* <ListItem >
           <Link to={`${routeDetail.route_url}`}>
           <ListItemText secondary={'Learn more at MetroTransit.org'} />
           </Link>
@@ -37,8 +32,8 @@ export default function RouteInfo () {
           <Link to={`/activeRoute/${routeDetail.route_id}`}>
           <ListItemText secondary={`/ Westbound`} />
           </Link>
-        </ListItem>
-      </ul>
+        </ListItem> */}
+      
       {/* Removing POI list for now, too long. */}
       {/* <ul>
       <ListSubheader disableSticky>{`Points of Interest →`}</ListSubheader>
@@ -48,7 +43,7 @@ export default function RouteInfo () {
           </Link>
         </ListItem>
       </ul> */}
-      {completedTrips && 
+      {/* {completedTrips && 
       <ul>
       <ListSubheader disableSticky>{`Ride History →`}</ListSubheader>
         {completedTrips.map((trip) => {
@@ -59,7 +54,7 @@ export default function RouteInfo () {
           )
         })}
       </ul>
-      }
-    </>
+      } */}
+    </section>
   )
 }

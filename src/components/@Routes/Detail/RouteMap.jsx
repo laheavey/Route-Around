@@ -57,8 +57,10 @@ export default function MapDetail () {
 
   return (
     <>
-    <div className="map-wrapper" style={dataLoaded ? undefined : {display: 'none'}}>
-    <div ref={mapContainer} className="map-container" style={{width: '100%', height: '300px'}}></div>
+    <div id="top">
+    <div ref={mapContainer} style={dataLoaded ? {width: '100%', height: '300px'} : {display: 'none'}}>
+
+    </div>
     </div>
     </>
     

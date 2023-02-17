@@ -105,6 +105,12 @@ CREATE TABLE "gtfs_routes" (
     "route_text_color" VARCHAR,
     "route_sort_order" NUMERIC
 );
+
+    -- Dummy data; green line:
+    INSERT INTO "gtfs_routes" 
+    VALUES
+    (902, 'METRO Green Line', 'METRO Green Line', 'Green Line - Mpls - St Paul', 'https://www.metrotransit.org/route/green', '008144', 'ffffff', 3)
+    
     -- Reduce name columns
     UPDATE "gtfs_routes"
         SET "route_name"="route_short_name"

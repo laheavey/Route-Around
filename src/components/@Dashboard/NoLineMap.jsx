@@ -13,7 +13,7 @@ export default function NoLineMap () {
       interactive: false,
       style: 'mapbox://styles/mapbox/streets-v11'
     });
-    map.addControl(new mapboxgl.FullscreenControl());
+
   },[])
 
   return (
