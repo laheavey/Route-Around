@@ -8,11 +8,12 @@ const {
 const encryptLib = require('../modules/encryption');
 const userStrategy = require('../strategies/user.strategy');
 
-
+/** ---------- GET USER ID/AUTHENTICATE ---------- **/
 router.get('/profile/:id', rejectUnauthenticated, (req, res) => {
   res.send(req.user);
 });
 
+/** ---------- UPDATE USER EMAIL & PROFILE PIC ---------- **/
 router.put('/profile/:id', rejectUnauthenticated, (req, res) => {
   console.log('Req.body: ', req.body);
   const sqlQuery = `

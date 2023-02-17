@@ -3,12 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import mapboxgl from '!mapbox-gl';
 
-import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
-
-// import AllPointsMap from './AllPointsMap';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoibGFoZWF2ZXkiLCJhIjoiY2xkczZ5MzlsMDJhNTNwbWx6Nnk1bm1hNyJ9.7_Y-O03vhnebg8xOsSN0GQ';
 
@@ -17,7 +14,6 @@ export default function AllPoints() {
   const mapContainer = useRef(null);
   const allPoints = useSelector((store) => store.allPoints)
   const [dataLoaded, setDataLoaded] = useState(false);
-
 
   useEffect(() => {
       dispatch({ type: 'FETCH_ALL_POINTS' });
@@ -38,9 +34,7 @@ export default function AllPoints() {
         .addTo(map)
         .setPopup(popup)
         
-        
       })
-
 
       map.on('load', () => {
         setDataLoaded(true)

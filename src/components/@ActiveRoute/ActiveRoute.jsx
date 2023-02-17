@@ -3,31 +3,17 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import mapboxgl from '!mapbox-gl';
-import { useCallback } from 'react';
 
-
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListSubheader from '@mui/material/ListSubheader';
-import { Container } from '@mui/system';
-import Box from '@mui/material/Box';
-import './ActiveStyles.css'
-import Link from '@mui/material/Link';
-
-import ActiveMap from './ActiveMap';
 import ActiveInfo from './ActiveInfo';
-
 
 export default function RouteDetail() {
   let lng;
   let lat;
-  // let popup;
+
   const mapContainer = useRef(null);
   const [mapTest, setMapTest] = useState([0,0]);
   const map = useRef(null);
   const ref = useRef();
-  const [centerCoords, setCenterCoords] = useState([])
   const [dataLoaded, setDataLoaded] = useState(false);
   const lineCoordinates = useSelector((store) => store.line);
   const dispatch = useDispatch();
@@ -45,10 +31,9 @@ export default function RouteDetail() {
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v12',
-      // center: [lineCoordinates[0]],
       center: [-93.08674043028068, 44.94830546284459],
       zoom: 15,
-      // interactive: false,
+      // interactive: false
     });
 
     pointDetail?.map((point) => {
@@ -103,10 +88,8 @@ export default function RouteDetail() {
 
   function setActivePoint(pointName) {
     if (pointName === activePointName) return;
-
     document.getElementById(pointName).classList.add('active');
     document.getElementById(activePointName).classList.remove('active');
-    
     lng = document.getElementById(pointName).getAttribute('longitude');
     lat = document.getElementById(pointName).getAttribute('latitude')
 
@@ -116,7 +99,7 @@ export default function RouteDetail() {
   function isPointOnScreen(id) {
     const element = document.getElementById(id);
     const bounds = element.getBoundingClientRect();
-    return bounds.bottom > 400;
+    return bounds.bottom > 450;
   }
 
   const handleScroll = (event) => {
@@ -141,23 +124,6 @@ export default function RouteDetail() {
     <div id='features' ref={ref}>
       <ActiveInfo />
     </div>
-    {/* <div id='features' ref={ref}>
-      {pointDetail?.map((point) => {
-        return (
-          <section 
-            key={`${point.id}`} 
-            id={`${point.name}`}
-            longitude={`${point.longitude}`}
-            latitude={`${point.latitude}`}>
-            <h3>{`${point.name}`}</h3>
-            <sup>{`${point.street_address}`}</sup>
-            <p>{`${point.short_desc}`}</p>
-            <Link to={`/pointDetail/${point.id}`}>Read More</Link>
-          </section>
-        )
-
-      })}
-    </div> */}
     </div>
   );
 }

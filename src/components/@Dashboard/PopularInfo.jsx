@@ -1,10 +1,9 @@
 import React, { useEffect, useState, useRef} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { IconButton } from '@mui/material';
-import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-
+// import { IconButton } from '@mui/material';
+// import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
+// import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 
 import PopularPoints from './PopularPoints.jsx';
 import LogOutButton from '../LogOutButton/LogOutButton';
@@ -38,7 +37,6 @@ export default function PopularInfo() {
         )
       }
         )}
-        
     </section>
   );
 }
