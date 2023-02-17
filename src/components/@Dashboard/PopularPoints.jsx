@@ -72,7 +72,7 @@ export default function PopularPoints({popPoint}) {
         }
       </IconButton> */}
       <Link to={`/pointDetail/${popPoint.id}`}>
-        {popPoint.name}
+        <li>{popPoint.name}</li>
       </Link>                
     </section> 
   );

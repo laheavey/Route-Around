@@ -28,6 +28,7 @@ export default function RouteDetail() {
   },[])
 
   useEffect(() => {
+    // Builds map
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v12',
@@ -36,21 +37,7 @@ export default function RouteDetail() {
       // interactive: false
     });
 
-    pointDetail?.map((point) => {
-      let popup = new mapboxgl.Popup({ 
-        offset: 25,
-        // closeButton: false,
-        // closeOnClick: false 
-      })
-      .setText(`${point.name}`);
-      
-      let marker = new mapboxgl.Marker()
-      .setLngLat([point.longitude, point.latitude])
-      .setPopup(popup)
-      .addTo(map);
-      
-    })
-
+    // On load, instructions for map (data sources for line)
     map.on('load', () => {
       map.addSource('lines', {
         'type': 'geojson',
@@ -79,29 +66,47 @@ export default function RouteDetail() {
         }
       });
 
-      setDataLoaded(true)
-      setMapTest(map)
-      return () => map.remove();
+      setDataLoaded(true) // Toggles 'dataLoaded' state, ensures display when loaded
+      setMapTest(map) // Used for centering animation on scroll
+      return () => map.remove(); // removes map
     })
+
+    pointDetail?.map((point) => {
+      // Pop-ups that show when clicking individual markers
+      let popup = new mapboxgl.Popup({ 
+        offset: 25,
+        // closeButton: false,
+        // closeOnClick: false 
+      })
+      .setText(`${point.name}`);
+      // Marker indicates point location on map
+      let marker = new mapboxgl.Marker()
+      .setLngLat([point.longitude, point.latitude])
+      .setPopup(popup)
+      .addTo(map);
+    })
+    
   },[dataLoaded])
   
 
   function setActivePoint(pointName) {
-    if (pointName === activePointName) return;
-    document.getElementById(pointName).classList.add('active');
-    document.getElementById(activePointName).classList.remove('active');
-    lng = document.getElementById(pointName).getAttribute('longitude');
-    lat = document.getElementById(pointName).getAttribute('latitude')
+    if (pointName === activePointName) return; 
+    document.getElementById(pointName).classList.add('active'); // Adds 'active' class to new point
+    document.getElementById(activePointName).classList.remove('active'); // Removes class from old point
+    lng = document.getElementById(pointName).getAttribute('longitude'); // Grabs longitude
+    lat = document.getElementById(pointName).getAttribute('latitude') // Grabs latitude
 
-    mapTest.flyTo({center: [lng,lat], zoom: 17});
+    mapTest.flyTo({center: [lng,lat], zoom: 17}); // Centers map according to active point
   }
 
+  // Checks to see if a point is on screen
   function isPointOnScreen(id) {
     const element = document.getElementById(id);
     const bounds = element.getBoundingClientRect();
     return bounds.bottom > 450;
   }
 
+  // Sets point to active if on screen
   const handleScroll = (event) => {
     for (const child of ref.current.childNodes) {
       if (isPointOnScreen(child.id)){
@@ -110,7 +115,8 @@ export default function RouteDetail() {
       }
     }
   }
-      
+
+  // On load, adds event listener for scroll
   useEffect(() => {
     const elemCurrent = ref.current
     elemCurrent.addEventListener("scroll", handleScroll, {passive: true})

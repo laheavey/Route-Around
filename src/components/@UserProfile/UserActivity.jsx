@@ -19,24 +19,16 @@ export default function UserActivity () {
   const savedPoints = useSelector((store) => store.savedPoints)
   
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-      <CardContent sx={{ flex: '1 0 auto' }}>
-      <List
-        sx={{
-        width: '100%',
-        bgcolor: 'background.paper',
-        position: 'relative',
-        overflow: 'auto',
-        maxHeight: 360,
-        '& ul': { padding: 0 }
-        }}
-        subheader={<li />}>
-        <ul>
+    <div id='feature'>
+    <section >
+      
+      
+        
 
         {/* <ListSubheader>{`Badges Earned →`}</ListSubheader>
         <Divider /> */}
 
-        <ListSubheader>{`Saved Points of Interest →`}</ListSubheader>
+        {`Saved Points of Interest →`}
         {savedPoints.map((save) => {
           return (
             <UserSavedPoints save={save} key={save.poi_id}/>
@@ -44,15 +36,16 @@ export default function UserActivity () {
         })}
         <Divider />
 
-        <ListSubheader>{`Ride History →`}</ListSubheader>
+        {`Ride History →`}
         {userRouteHistory.map((ride) => {
           return (
-            <UserRouteHistory ride={ride} key={ride.route_id}/>
+            // <UserRouteHistory ride={ride} key={ride.route_id}/>
+            <p>{`${ride.route_name}`}</p>
           )
         })}
-        </ul>
-        </List> 
-      </CardContent>
-    </Box>
+        
+
+    </section>
+    </div>
   )
 }

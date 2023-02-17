@@ -15,9 +15,9 @@ export default function PopularInfo() {
   
   return (
     <section id='features' >
-            <LogOutButton />
-            <button><Link to={`profile/${user.id}}`}>Profile</Link></button>
-            <button><Link to={`allPoints`}>All Points</Link></button>
+            {/* <LogOutButton />
+            <button><Link to={`profile/${user.id}`}>Profile</Link></button>
+            <button><Link to={`allPoints`}>All Points</Link></button> */}
       <h3>{`Popular Routes →`}</h3>
       {popRoutes.map((route) => (
         <section>
@@ -25,7 +25,7 @@ export default function PopularInfo() {
           <FavoriteBorderOutlinedIcon />
           </IconButton> */}
           <Link to={`/routeDetail/${route.route_id}`} key={`${route.route_id}`}>
-          {route.route_name}
+          <li>{route.route_name}</li>
           </Link>
           </section>
       ))}

@@ -42,7 +42,7 @@ function App() {
   return (
     <Router>
       <div>
-        <Nav />
+        
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
@@ -65,6 +65,7 @@ function App() {
             exact
             path="/dashboard"
           >
+            <Nav />
             <Dashboard />
           </ProtectedRoute>
 
@@ -73,6 +74,7 @@ function App() {
             exact
             path="/info"
           >
+            <Nav />
             <InfoPage />
           </ProtectedRoute>
 
@@ -81,6 +83,7 @@ function App() {
             exact
             path="/allRoutes"
           >
+            <Nav />
             <AllRoutes />
           </ProtectedRoute>
 
@@ -89,6 +92,7 @@ function App() {
             exact
             path="/allPoints"
           >
+            <Nav />
             <AllPoints />
           </ProtectedRoute>
 
@@ -97,6 +101,7 @@ function App() {
             exact
             path="/routeDetail/:id"
           >
+            <Nav />
             <RouteDetail />
           </ProtectedRoute>
 
@@ -105,6 +110,7 @@ function App() {
             exact
             path="/pointDetail/:id"
           >
+            <Nav />
           <PointDetail />
           </ProtectedRoute>
 
@@ -113,6 +119,7 @@ function App() {
             exact
             path="/profile/:id"
           >
+            <Nav />
           <UserProfile />
           </ProtectedRoute>
 
@@ -121,6 +128,7 @@ function App() {
             exact
             path="/activeRoute/:id"
           >
+            <Nav />
           <ActiveRoute />
           </ProtectedRoute>
 
@@ -129,6 +137,7 @@ function App() {
             exact
             path="/edit/profile/:id"
           >
+            <Nav />
           <UserEdit />
           </ProtectedRoute>
 
@@ -136,6 +145,7 @@ function App() {
             exact
             path="/login"
           >
+            
             {user.id ?
               // If the user is already logged in, 
               // redirect to the /user page
