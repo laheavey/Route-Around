@@ -48,7 +48,7 @@ export default function UserDetails () {
 
   return (
     <>
-      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems:"center", margin: 1.5 }}>
+      <section >
         {profileImg}
         
         
@@ -57,18 +57,18 @@ export default function UserDetails () {
         Edit Details
         </Link>
         </Typography>
-      </Box>
-      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-        <CardContent sx={{ flex: 'auto' }}>
-          <List>
-          <Typography variant="body2" component="div" >
+      </section>
+      <section >
+        
+          
+          <Typography variant="body2" component="section" >
             {"Username: "}{user.username} <br/>
             {"Email: "}{user.email}<br/>
             {"Account Created: "}{user.account_created}<br/>
           </Typography>
-          </List>
-        </CardContent>
-      </Box>
+          
+        
+      </section>
     </>
   )
 }

@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { IconButton } from '@mui/material';
-import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-
+// import { IconButton } from '@mui/material';
+// import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
+// import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 
 export default function PopularPoints({popPoint}) {
   const dispatch = useDispatch();
@@ -58,9 +57,10 @@ export default function PopularPoints({popPoint}) {
   // }
 
   return (
-    <div 
+    <section 
       key={`${popPoint.id}`} 
       id={`${popPoint.name}`}
+      className='activeRoute'
       longitude={`${popPoint.longitude}`}
       latitude={`${popPoint.latitude}`}
       // style={dataLoaded ? {} : {display: 'none'}}
@@ -72,8 +72,8 @@ export default function PopularPoints({popPoint}) {
         }
       </IconButton> */}
       <Link to={`/pointDetail/${popPoint.id}`}>
-        {popPoint.name}
+        <li>{popPoint.name}</li>
       </Link>                
-    </div> 
+    </section> 
   );
 }

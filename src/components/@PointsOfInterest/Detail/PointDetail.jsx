@@ -32,7 +32,7 @@ export default function PointDetail() {
   }, [])
 
   useEffect(() => {
-    savedPoints?.map((save) => {
+    savedPoints.map((save) => {
       if (points.id === save.poi_id) {
         setSavedStatus(true)
         console.log('Save check!')

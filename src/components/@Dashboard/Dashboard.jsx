@@ -5,8 +5,6 @@ import { useDispatch } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton.jsx';
 import PopularInfo from './PopularInfo.jsx';
 import NoLineMap from './NoLineMap.jsx';
-// import './Dashboard.css';
-
 
 function Dashboard() {
   const dispatch = useDispatch();
@@ -19,15 +17,10 @@ function Dashboard() {
     // clear lines?
   },[])
 
-  // Div where map renders, PopularInfo component lists routes & 
-  // points of interest
   return (
     <>
       <NoLineMap />
-
       <PopularInfo />
-
-     
     </>
   )
 }

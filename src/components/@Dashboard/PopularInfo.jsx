@@ -1,31 +1,33 @@
 import React, { useEffect, useState, useRef} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { IconButton } from '@mui/material';
-import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+// import { IconButton } from '@mui/material';
+// import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
+// import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 
-import './Dashboard.css';
 import PopularPoints from './PopularPoints.jsx';
 import LogOutButton from '../LogOutButton/LogOutButton';
 
 export default function PopularInfo() {
+  const user = useSelector((store) => store.user);
   const popRoutes = useSelector((store) => store.popRoutes);
   const popPoints = useSelector((store) => store.popPoints);
   
   return (
-    <div id='features' >
-            <LogOutButton />
+    <section id='features' >
+            {/* <LogOutButton />
+            <button><Link to={`profile/${user.id}`}>Profile</Link></button>
+            <button><Link to={`allPoints`}>All Points</Link></button> */}
       <h3>{`Popular Routes →`}</h3>
       {popRoutes.map((route) => (
-        <div>
+        <section>
           {/* <IconButton>
           <FavoriteBorderOutlinedIcon />
           </IconButton> */}
           <Link to={`/routeDetail/${route.route_id}`} key={`${route.route_id}`}>
-          {route.route_name}
+          <li>{route.route_name}</li>
           </Link>
-          </div>
+          </section>
       ))}
 
       <h3>{`Popular Points of Interest →`}</h3>
@@ -35,7 +37,6 @@ export default function PopularInfo() {
         )
       }
         )}
-        
-    </div>
+    </section>
   );
 }

@@ -2,7 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
- /** ---------- GET POLYLINE ---------- **/
+ /** ---------- GET POLYLINE (COORDINATES FOR MAP LINE) ---------- **/
  router.get('/:id', (req, res) => {
   const sqlQuery =`
   SELECT "shape_pt_lon", "shape_pt_lat"

@@ -105,7 +105,7 @@ router.get('/point/:id', (req, res) => {
 
 /** ---------- GET COMPLETED TRIPS BY USER ID ---------- **/
 router.get('/user/:id', (req, res) => {
-  // console.log('req.params: ',req.params)
+  console.log('req.params: ',req.params)
   const sqlQuery =`
   SELECT 
     "gtfs_routes"."id" AS "route_id",

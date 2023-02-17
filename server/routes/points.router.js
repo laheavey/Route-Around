@@ -139,9 +139,6 @@ router.post('/save', (req,res) => {
 
 /** ---------- DELETE SAVED POINT BY USER ---------- **/
 router.delete('/saved/delete', (req,res) => {
-  // console.log('Req.user.id: ', req.user.id)
-  // console.log('req.body.poi_id: ', req.body.poi_id)
-
   const sqlQuery = `
     DELETE FROM "poi_saves"
     WHERE "user_id" = $1 AND "poi_id"=$2;`;
