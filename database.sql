@@ -14,8 +14,12 @@ CREATE TABLE "trips_completed" (
     "id" SERIAL PRIMARY KEY,
     "user_id" INTEGER REFERENCES "user",
     "route_id" INTEGER REFERENCES "gtfs_routes",
-    "completed_on" date
+    "completed_on" DATE
 );
+
+    -- Dummy data:
+    INSERT INTO "trips_completed" ("user_id", "route_id", "completed_on")
+    VALUES (5, 902, 2023-02-17)
 
 /** ---------- POINTS OF INTEREST ---------- **/
 
@@ -74,18 +78,22 @@ CREATE TABLE "poi_saves" (
     "poi_id" INTEGER REFERENCES "poi_details"
 );
 
+    -- Dummy data:
+    INSERT INTO "poi_saves" ("user_id", "poi_id")
+    VALUES (5, 1)
+
 -- Tie POIs and routes together
 -- Use w/ components: routeDetail
 CREATE TABLE poi_routes (
     PRIMARY KEY ("poi_id", "route_id")
-    "poi_id" integer NOT NULL REFERENCES "poi_details",
-    "route_id" integer NOT NULL REFERENCES "gtfs_routes",
+    "poi_id" INTEGER NOT NULL REFERENCES "poi_details",
+    "route_id" INTEGER NOT NULL REFERENCES "gtfs_routes",
+    "poi_order_num" INTEGER
 );
-    -- Dummy data
-    INSERT INTO "poi_route_join"
-    VALUES (1,21), (1,54), 
-    (1,63), (1,70), (1,94), 
-    (1,294), (1,353), (1,363);
+    -- Dummy data, only one Point of Interest
+    INSERT INTO "poi_routes" ("poi_id", "route_id", "poi_order_num")
+    VALUES (1, 902, 1);
+
 
 /** ---------- GTFS DATA FROM METRO TRANSIT ---------- **/
 
@@ -94,22 +102,23 @@ CREATE TABLE poi_routes (
 -- Currently using w/ popularRoutes component, will switch once dummy data
 CREATE TABLE "gtfs_routes" (
     "id" NUMERIC PRIMARY KEY,
-    "agency_id" NUMERIC,
-    "route_short_name" VARCHAR,
     "route_long_name" VARCHAR,
+    "route_short_name" VARCHAR,
     "route_name" VARCHAR,
     "route_desc" VARCHAR,
-    "route_type" NUMERIC,
     "route_url" VARCHAR,
     "route_color" VARCHAR,
     "route_text_color" VARCHAR,
+    "agency_id" NUMERIC,
+    "route_type" NUMERIC,
     "route_sort_order" NUMERIC
 );
 
     -- Dummy data; green line:
     INSERT INTO "gtfs_routes" 
+    ("id", "agency_id", "route_short_name", "route_name", "route_desc", "route_url", "route_color", "route_text_color", "route_sort_order")
     VALUES
-    (902, 'METRO Green Line', 'METRO Green Line', 'Green Line - Mpls - St Paul', 'https://www.metrotransit.org/route/green', '008144', 'ffffff', 3)
+    (902, 'METRO Green Line', null, 'METRO Green Line', 'Green Line - Mpls - St Paul', 'https://www.metrotransit.org/route/green', '008144', 'ffffff', 0, 0, 3)
     
     -- Reduce name columns
     UPDATE "gtfs_routes"
