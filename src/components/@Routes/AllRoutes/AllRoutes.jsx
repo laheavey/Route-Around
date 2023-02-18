@@ -24,7 +24,7 @@ export default function AllRoutes() {
   return (
     <>
     <div id='map' ref={mapContainer} style={{width: '100%', height: '300px'}}></div>
-    <section id='features'> 
+      <section id='features'> 
       <h1>{`All Routes →`}</h1>
       {allRoutes.map((route) => (
         <li>
@@ -34,6 +34,7 @@ export default function AllRoutes() {
         </li>
       ))}
     </section>
+    <div className='grad'></div>
     </>
   );
 }

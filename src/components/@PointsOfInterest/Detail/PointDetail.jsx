@@ -100,12 +100,11 @@ export default function PointDetail() {
       <div 
         id='map'
         ref={mapContainer} 
-        className="map-container" 
         style={dataLoaded ? {width: '100%', height: '300px'} : {display: 'none'}} 
       >
       </div>
       <section id="features">
-          <h3>{`Point Detail → ${points.name}`}</h3>
+          <h1>{`Point Detail → ${points.name}`}</h1>
             
                 {/* <Avatar 
                   variant="square" 

@@ -10,6 +10,7 @@ export default function ActiveInfo () {
     <>
       {pointDetail?.map((point) => {
         return (
+          <>
           <section 
             key={`${point.id}`} 
             id={`${point.name}`}
@@ -22,6 +23,8 @@ export default function ActiveInfo () {
             <p>{`${point.short_desc}`}</p>
             {point.id !=8 && <Link to={`/pointDetail/${point.id}`}>Read More</Link>}
           </section>
+          
+          </>
         )
       })}
     </>

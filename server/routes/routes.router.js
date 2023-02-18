@@ -10,7 +10,7 @@ const userStrategy = require('../strategies/user.strategy');
 
  /** ---------- GET ALL ROUTES---------- **/
  router.get('/all', rejectUnauthenticated, (req, res) => {
-  console.log('req.body:', req.body);
+  // console.log('req.body:', req.body);
   const sqlQuery =`
     SELECT "id", "route_name", "route_desc"
     FROM "gtfs_routes"`
@@ -50,7 +50,7 @@ const userStrategy = require('../strategies/user.strategy');
 
  /** ---------- GET ROUTE DETAIL ---------- **/
  router.get('/:id', rejectUnauthenticated, (req, res) => {
-  console.log('req.params: ',req.params)
+  // console.log('req.params: ',req.params)
   const sqlQuery =`
   SELECT 
     "gtfs_routes"."id" AS "route_id",
@@ -58,12 +58,9 @@ const userStrategy = require('../strategies/user.strategy');
     "gtfs_routes"."route_desc",
     "gtfs_routes"."route_url",
     "gtfs_routes"."route_color",
-    JSON_AGG("trips_completed"."completed_on") AS "completed_trips",
     "poi_routes"."poi_id",
     "poi_details"."name" AS "poi_name"
   FROM "gtfs_routes"
-  JOIN "trips_completed"
-    ON "gtfs_routes"."id" = "trips_completed"."route_id"
   JOIN "poi_routes"
     ON "poi_routes"."route_id" = "gtfs_routes"."id"
   JOIN "poi_details"
@@ -90,7 +87,8 @@ const userStrategy = require('../strategies/user.strategy');
 
 /** ---------- GET ROUTE DETAIL BY POI ID ---------- **/
 router.get('/point/:id', rejectUnauthenticated, (req, res) => {
-  const sqlQueryPoint =`
+  // console.log('req.params: ',req.params)
+    const sqlQueryPoint =`
     SELECT
       "gtfs_routes"."route_name",
       "gtfs_routes"."route_desc"
@@ -111,7 +109,7 @@ router.get('/point/:id', rejectUnauthenticated, (req, res) => {
 
 /** ---------- GET COMPLETED TRIPS BY USER ID ---------- **/
 router.get('/user/:id', rejectUnauthenticated, (req, res) => {
-  console.log('req.params: ',req.params)
+  // console.log('req.params: ',req.params)
   const sqlQuery =`
   SELECT 
     "gtfs_routes"."id" AS "route_id",
@@ -131,7 +129,6 @@ router.get('/user/:id', rejectUnauthenticated, (req, res) => {
   const sqlValues = [req.params.id];
   pool.query(sqlQuery, sqlValues)
   .then((results) => {
-    // console.log(results)
     res.send(results.rows)
   })
   .catch((error => {

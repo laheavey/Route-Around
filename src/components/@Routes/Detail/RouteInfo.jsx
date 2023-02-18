@@ -7,6 +7,7 @@ export default function RouteInfo () {
   const completedTrips = routeDetail.completed_trips;
 
   console.log('Route detail: ', routeDetail)
+  console.log('Route URL: ', routeDetail)
   
   return (
     <section id='features' >
@@ -14,9 +15,9 @@ export default function RouteInfo () {
         <h2>{routeDetail.route_name}</h2>
             {routeDetail.route_desc}
           <li>
-            <Link to={`${routeDetail.route_url}`}>
+            <a href={`${routeDetail.route_url}`}>
             {'Learn more at MetroTransit.org'}
-            </Link>
+            </a>
           </li>
         <h2>{`Begin Trip:`}</h2>
           <li>

@@ -10,6 +10,7 @@ const userStrategy = require('../strategies/user.strategy');
 
  /** ---------- GET POLYLINE (COORDINATES FOR MAP LINE) ---------- **/
  router.get('/:id', rejectUnauthenticated, (req, res) => {
+  // console.log('req.params:', req.params);
   const sqlQuery =`
   SELECT "shape_pt_lon", "shape_pt_lat"
   FROM "gtfs_shapes"
@@ -23,7 +24,6 @@ const userStrategy = require('../strategies/user.strategy');
   const sqlValues = [req.params.id];
   pool.query(sqlQuery, sqlValues)
   .then((results) => {
-    // console.log('results: ', results)
     res.send(results.rows)
   })
   .catch((error => {

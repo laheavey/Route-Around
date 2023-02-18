@@ -10,7 +10,7 @@ const userStrategy = require('../strategies/user.strategy');
 
  /** ---------- GET ALL POINTS---------- **/
  router.get('/all', rejectUnauthenticated, (req, res) => {
-  console.log('req.body:', req.body);
+  // console.log('req.body:', req.body);
   const sqlQuery =`
     SELECT "id", "name", "longitude", "latitude"
     FROM "poi_details"
@@ -51,7 +51,7 @@ const userStrategy = require('../strategies/user.strategy');
 
  /** ---------- GET POINT DETAIL ---------- **/
  router.get('/detail/:id', rejectUnauthenticated, (req, res) => {
-  console.log('In router.get /detail/id: ', req.params)
+  // console.log('req.params: ', req.params)
   const sqlQueryPoint =`
     SELECT
       "id",
@@ -67,7 +67,6 @@ const userStrategy = require('../strategies/user.strategy');
   const sqlValues = [req.params.id];
   pool.query(sqlQueryPoint, sqlValues)
   .then((results) => {
-    console.log('Results: ', results.rows[0])
     res.send(results.rows[0])
   })
   .catch((error => {
@@ -78,6 +77,7 @@ const userStrategy = require('../strategies/user.strategy');
 
 /** ---------- GET POINTS BY ROUTE ---------- **/
 router.get('/route/:id', rejectUnauthenticated, (req, res) => {
+  // console.log('req.params:', req.params);
   const sqlQueryPoint =`
   SELECT 
     "poi_details"."id",
@@ -120,7 +120,6 @@ router.get('/saved', rejectUnauthenticated, (req,res) => {
   const sqlValues = [req.user.id]
   pool.query(sqlQuery, sqlValues)
   .then((results) => {
-    // console.log('Success!', results.rows)
     res.send(results.rows);
   })
   .catch((error) => {
@@ -130,6 +129,7 @@ router.get('/saved', rejectUnauthenticated, (req,res) => {
 
 /** ---------- POST SAVE POINT ---------- **/
 router.post('/save', rejectUnauthenticated, (req,res) => {
+  // console.log('req.body:', req.body);
   const sqlQuery = `
   INSERT INTO "poi_saves" ("user_id", "poi_id")
   VALUES ($1, $2)`
@@ -145,13 +145,13 @@ router.post('/save', rejectUnauthenticated, (req,res) => {
 
 /** ---------- DELETE SAVED POINT BY USER ---------- **/
 router.delete('/saved/delete', rejectUnauthenticated, (req,res) => {
+  // console.log('req.body:', req.body);
   const sqlQuery = `
     DELETE FROM "poi_saves"
     WHERE "user_id" = $1 AND "poi_id"=$2;`;
   const sqlValues = [req.user.id, req.body.poi_id]
   pool.query(sqlQuery, sqlValues)
   .then((results) => {
-    // console.log('Success!')
     res.sendStatus(200);
   })
   .catch((error) => {
