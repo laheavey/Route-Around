@@ -1,9 +1,7 @@
-import React from "react";
-import { useEffect, useState, useRef } from "react";
-import { useSelector } from "react-redux";
-import mapboxgl from '!mapbox-gl';
+import React, { useEffect, useState, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import mapboxgl from '!mapbox-gl';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoibGFoZWF2ZXkiLCJhIjoiY2xkczZ5MzlsMDJhNTNwbWx6Nnk1bm1hNyJ9.7_Y-O03vhnebg8xOsSN0GQ';
 
@@ -52,17 +50,12 @@ export default function MapDetail () {
       });
       setDataLoaded(true)
       return () => map.remove();
-      })
+    })
   },[dataLoaded])
 
   return (
     <>
-    
-    <div id='map' ref={mapContainer} style={dataLoaded ? {width: '100%', height: '300px'} : {display: 'none'}}>
-
-    </div>
-    
+    <div id='map' ref={mapContainer} style={dataLoaded ? {width: '100%', height: '300px'} : {display: 'none'}}></div>
     </>
-    
   )
 }

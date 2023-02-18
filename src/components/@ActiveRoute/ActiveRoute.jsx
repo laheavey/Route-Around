@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { useSelector } from "react-redux";
 import mapboxgl from '!mapbox-gl';
 
 import ActiveInfo from './ActiveInfo';
@@ -24,8 +23,8 @@ export default function RouteDetail() {
 
   mapboxgl.accessToken = 'pk.eyJ1IjoibGFoZWF2ZXkiLCJhIjoiY2xkczZ5MzlsMDJhNTNwbWx6Nnk1bm1hNyJ9.7_Y-O03vhnebg8xOsSN0GQ';
   useEffect(() => {
-      dispatch({ type: 'FETCH_POINT_DETAIL/ROUTE/:id', payload: id})
-      dispatch({ type: 'FETCH_LINE/:id', payload: id})
+    dispatch({ type: 'FETCH_POINT_DETAIL/ROUTE/:id', payload: id})
+    dispatch({ type: 'FETCH_LINE/:id', payload: id})
   },[])
 
   useEffect(() => {
@@ -79,16 +78,15 @@ export default function RouteDetail() {
         // closeButton: false,
         // closeOnClick: false 
       })
-      .setText(`${point.name}`);
+        .setText(`${point.name}`);
       // Marker indicates point location on map
       let marker = new mapboxgl.Marker()
-      .setLngLat([point.longitude, point.latitude])
-      .setPopup(popup)
-      .addTo(map);
+        .setLngLat([point.longitude, point.latitude])
+        .setPopup(popup)
+        .addTo(map);
     })
     
   },[dataLoaded])
-  
 
   function setActivePoint(pointName) {
     if (pointName === activePointName) return; 
@@ -124,13 +122,12 @@ export default function RouteDetail() {
   }, [handleScroll])
 
   return (
-    <div id="top">
-    <div id="map" ref={mapContainer} style={dataLoaded ? {width: '100%', height: '300px'} : {display: 'none'}}>
-    </div>
-
+    <>
+    <div id="map" ref={mapContainer} style={dataLoaded ? {width: '100%', height: '300px'} : {display: 'none'}}></div>
     <section id='features' ref={ref}>
       <ActiveInfo />
     </section>
-    </div>
+    </>
+    
   );
 }

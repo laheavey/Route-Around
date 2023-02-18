@@ -2,8 +2,14 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
+const encryptLib = require('../modules/encryption');
+const userStrategy = require('../strategies/user.strategy');
+
  /** ---------- GET ALL POINTS---------- **/
- router.get('/all', (req, res) => {
+ router.get('/all', rejectUnauthenticated, (req, res) => {
   console.log('req.body:', req.body);
   const sqlQuery =`
     SELECT "id", "name", "longitude", "latitude"
@@ -20,7 +26,7 @@ const router = express.Router();
 });
 
  /** ---------- GET POPULAR POINTS ---------- **/
- router.get('/popular', (req, res) => {
+ router.get('/popular', rejectUnauthenticated, (req, res) => {
   // console.log('req.body:', req.body);
   const sqlQuery =`
     SELECT 
@@ -44,7 +50,7 @@ const router = express.Router();
 });
 
  /** ---------- GET POINT DETAIL ---------- **/
- router.get('/detail/:id', (req, res) => {
+ router.get('/detail/:id', rejectUnauthenticated, (req, res) => {
   console.log('In router.get /detail/id: ', req.params)
   const sqlQueryPoint =`
     SELECT
@@ -71,7 +77,7 @@ const router = express.Router();
 });
 
 /** ---------- GET POINTS BY ROUTE ---------- **/
-router.get('/route/:id', (req, res) => {
+router.get('/route/:id', rejectUnauthenticated, (req, res) => {
   const sqlQueryPoint =`
   SELECT 
     "poi_details"."id",
@@ -99,7 +105,7 @@ router.get('/route/:id', (req, res) => {
 
 
 /** ---------- GET SAVED POINTS BY USER ---------- **/
-router.get('/saved', (req,res) => {
+router.get('/saved', rejectUnauthenticated, (req,res) => {
   // console.log('Req.user.id: ', req.user.id)
   const sqlQuery = `
   SELECT 
@@ -123,7 +129,7 @@ router.get('/saved', (req,res) => {
 })
 
 /** ---------- POST SAVE POINT ---------- **/
-router.post('/save', (req,res) => {
+router.post('/save', rejectUnauthenticated, (req,res) => {
   const sqlQuery = `
   INSERT INTO "poi_saves" ("user_id", "poi_id")
   VALUES ($1, $2)`
@@ -138,7 +144,7 @@ router.post('/save', (req,res) => {
 })
 
 /** ---------- DELETE SAVED POINT BY USER ---------- **/
-router.delete('/saved/delete', (req,res) => {
+router.delete('/saved/delete', rejectUnauthenticated, (req,res) => {
   const sqlQuery = `
     DELETE FROM "poi_saves"
     WHERE "user_id" = $1 AND "poi_id"=$2;`;

@@ -27,37 +27,10 @@ export default function UserProfile() {
   },[])
 
   return (
-    <>
-    {/* <Card sx={{ 
-      display: 'flex', 
-      width: 350, 
-      marginTop: 10, 
-      alignItems:"center",
-      marginLeft: 1.5
-    }}> */}<div id='top'>
-    <div id='features'>
-      {/* <section> */}
-
-      
+    <div>
       <UserDetails />
-      {/* </section> */}
-      </div>
-      
-    {/* </Card> */}
-
-    {/* <Card sx={{ 
-      display: 'flex', 
-      width: 350, 
-      marginTop: 1,
-      marginLeft: 1.5
-    }}> */}
-    <div id='feature'>
       <UserActivity />
-      </div>
-      </div>
-    {/* </Card> */}
-    </>
-
+    </div>
   )
 
 }

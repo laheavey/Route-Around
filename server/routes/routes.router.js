@@ -2,8 +2,14 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
+const encryptLib = require('../modules/encryption');
+const userStrategy = require('../strategies/user.strategy');
+
  /** ---------- GET ALL ROUTES---------- **/
- router.get('/all', (req, res) => {
+ router.get('/all', rejectUnauthenticated, (req, res) => {
   console.log('req.body:', req.body);
   const sqlQuery =`
     SELECT "id", "route_name", "route_desc"
@@ -19,7 +25,7 @@ const router = express.Router();
 });
 
  /** ---------- GET POPULAR ROUTES ---------- **/
- router.get('/popular', (req, res) => {
+ router.get('/popular', rejectUnauthenticated, (req, res) => {
   // console.log('req.body:', req.body);
   const sqlQuery =`
       SELECT 
@@ -43,7 +49,7 @@ const router = express.Router();
 });
 
  /** ---------- GET ROUTE DETAIL ---------- **/
- router.get('/:id', (req, res) => {
+ router.get('/:id', rejectUnauthenticated, (req, res) => {
   console.log('req.params: ',req.params)
   const sqlQuery =`
   SELECT 
@@ -83,7 +89,7 @@ const router = express.Router();
 });
 
 /** ---------- GET ROUTE DETAIL BY POI ID ---------- **/
-router.get('/point/:id', (req, res) => {
+router.get('/point/:id', rejectUnauthenticated, (req, res) => {
   const sqlQueryPoint =`
     SELECT
       "gtfs_routes"."route_name",
@@ -104,7 +110,7 @@ router.get('/point/:id', (req, res) => {
 });
 
 /** ---------- GET COMPLETED TRIPS BY USER ID ---------- **/
-router.get('/user/:id', (req, res) => {
+router.get('/user/:id', rejectUnauthenticated, (req, res) => {
   console.log('req.params: ',req.params)
   const sqlQuery =`
   SELECT 

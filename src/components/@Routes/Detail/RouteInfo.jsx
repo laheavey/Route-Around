@@ -10,27 +10,25 @@ export default function RouteInfo () {
   
   return (
     <section id='features' >
-      
-        <h3>{`Route Detail →`}</h3>
-          
-            <h4>{routeDetail.route_name}</h4>
+      <h1>{`Route Detail →`}</h1>
+        <h2>{routeDetail.route_name}</h2>
             {routeDetail.route_desc}
-          
-      
-        
-          <Link to={`${routeDetail.route_url}`}>
-          {'Learn more at MetroTransit.org'}
-          </Link>
-
-        
-          {`Begin Trip:`}
-        
-          <Link to={`/activeRoute/${routeDetail.route_id}`}>
-          {`Eastbound /`}
-          </Link>
-          <Link to={`/activeRoute/${routeDetail.route_id}`}>
-          {`/ Westbound`}
-          </Link>
+          <li>
+            <Link to={`${routeDetail.route_url}`}>
+            {'Learn more at MetroTransit.org'}
+            </Link>
+          </li>
+        <h2>{`Begin Trip:`}</h2>
+          <li>
+            <Link to={`/activeRoute/${routeDetail.route_id}`}>
+            {`Eastbound /`}
+            </Link>
+          </li>
+          <li>
+            <Link to={`/activeRoute/${routeDetail.route_id}`}>
+            {`/ Westbound`}
+            </Link>
+          </li>
         
       
       {/* Removing POI list for now, too long. */}

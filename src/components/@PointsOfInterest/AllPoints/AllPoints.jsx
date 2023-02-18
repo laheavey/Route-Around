@@ -3,10 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import mapboxgl from '!mapbox-gl';
 
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListSubheader from '@mui/material/ListSubheader';
-
 mapboxgl.accessToken = 'pk.eyJ1IjoibGFoZWF2ZXkiLCJhIjoiY2xkczZ5MzlsMDJhNTNwbWx6Nnk1bm1hNyJ9.7_Y-O03vhnebg8xOsSN0GQ';
 
 export default function AllPoints() {
@@ -30,9 +26,9 @@ export default function AllPoints() {
           .setText(`${point.name}`);
 
         let marker = new mapboxgl.Marker()
-        .setLngLat([point.longitude, point.latitude])
-        .addTo(map)
-        .setPopup(popup)
+          .setLngLat([point.longitude, point.latitude])
+          .addTo(map)
+          .setPopup(popup)
         
       })
 
@@ -45,17 +41,15 @@ export default function AllPoints() {
   return (
     <>
     <div id='map' ref={mapContainer} style={dataLoaded ? {width: '100%', height: '300px'} : {display: 'none'}}></div>
-    {/* <AllPointsMap /> */}
     <section id='features' >
-          <section >{`All Points of Interest →`}
-          {allPoints.map((point) => (
-            <li>
-              <Link to={`/pointDetail/${point.id}`} key={`${point.id}`}>
-               {`${point.name}`}
-              </Link>
-              </li>
-          ))}
-          </section>
+      <h1>{`All Points of Interest →`}</h1>
+      {allPoints.map((point) => (
+        <li>
+          <Link to={`/pointDetail/${point.id}`} key={`${point.id}`}>
+            {`${point.name}`}
+          </Link>
+        </li>
+      ))}
     </section>
     </>
   );

@@ -2,10 +2,6 @@ import React, { useState, useEffect} from "react";
 import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 
-import Box from '@mui/material/Box';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import List from '@mui/material/List';
 import { pink } from '@mui/material/colors';
 
 import FaceIcon from '@mui/icons-material/Face';
@@ -48,26 +44,16 @@ export default function UserDetails () {
 
   return (
     <>
-      <section >
+      <section id='profile'>
         {profileImg}
-        
-        
-        <Typography variant="caption" color="text.secondary" >
-          <Link to={`/edit/profile/${user.id}`}>
-        Edit Details
+        <Link to={`/edit/profile/${user.id}`}>
+          Edit Details
         </Link>
-        </Typography>
       </section>
       <section >
-        
-          
-          <Typography variant="body2" component="section" >
-            {"Username: "}{user.username} <br/>
-            {"Email: "}{user.email}<br/>
-            {"Account Created: "}{user.account_created}<br/>
-          </Typography>
-          
-        
+        {"Username: "}{user.username} <br/>
+        {"Email: "}{user.email}<br/>
+        {"Account Created: "}{user.account_created}<br/>
       </section>
     </>
   )
