@@ -13,6 +13,7 @@ export default function PopularPoints({popPoint}) {
   const [savedStatus, setSavedStatus] = useState(false);
   const [dataLoaded, setDataLoaded] = useState(false);
 
+  // Most of this is commented out as the save toggle 
   useEffect(() => {
     // savedPoints?.map((save) => {
     //   if (popPoint.id === save.poi_id) {

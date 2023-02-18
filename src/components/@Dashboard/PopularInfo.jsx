@@ -20,11 +20,11 @@ export default function PopularInfo() {
             <button><Link to={`allPoints`}>All Points</Link></button> */}
       <h3>{`Popular Routes →`}</h3>
       {popRoutes.map((route) => (
-        <section>
+        <section key={`${route.route_id}`}>
           {/* <IconButton>
           <FavoriteBorderOutlinedIcon />
           </IconButton> */}
-          <Link to={`/routeDetail/${route.route_id}`} key={`${route.route_id}`}>
+          <Link to={`/routeDetail/${route.route_id}`} >
           <li>{route.route_name}</li>
           </Link>
           </section>

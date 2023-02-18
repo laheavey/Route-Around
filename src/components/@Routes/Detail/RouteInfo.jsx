@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 export default function RouteInfo () {
   const routeDetail = useSelector((store) => store.routeDetail) 
@@ -11,28 +12,26 @@ export default function RouteInfo () {
     <section id='features' >
       
         <h3>{`Route Detail →`}</h3>
-          <section >
-            <h6>{routeDetail.route_name}</h6>
+          
+            <h4>{routeDetail.route_name}</h4>
             {routeDetail.route_desc}
-          </section>
+          
       
-        {/* <ListItem >
+        
           <Link to={`${routeDetail.route_url}`}>
-          <ListItemText secondary={'Learn more at MetroTransit.org'} />
+          {'Learn more at MetroTransit.org'}
           </Link>
 
-        </ListItem>
-        <ListItem>
-          <ListItemText secondary={`Begin Trip:`}/>
-        </ListItem>
-        <ListItem>
+        
+          {`Begin Trip:`}
+        
           <Link to={`/activeRoute/${routeDetail.route_id}`}>
-          <ListItemText inset secondary={`Eastbound /`}/>
+          {`Eastbound /`}
           </Link>
           <Link to={`/activeRoute/${routeDetail.route_id}`}>
-          <ListItemText secondary={`/ Westbound`} />
+          {`/ Westbound`}
           </Link>
-        </ListItem> */}
+        
       
       {/* Removing POI list for now, too long. */}
       {/* <ul>

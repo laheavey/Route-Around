@@ -57,11 +57,11 @@ export default function MapDetail () {
 
   return (
     <>
-    <div id="top">
-    <div ref={mapContainer} style={dataLoaded ? {width: '100%', height: '300px'} : {display: 'none'}}>
+    
+    <div id='map' ref={mapContainer} style={dataLoaded ? {width: '100%', height: '300px'} : {display: 'none'}}>
 
     </div>
-    </div>
+    
     </>
     
   )

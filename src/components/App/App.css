@@ -143,7 +143,7 @@ Active Route Scrolling Sections
   }
 
     section {
-      padding: 5px 20px;
+      /* margin: 5px 20px; */
       line-height: 25px;
       /* border-bottom: 1px solid #ddd; */
       /* opacity: 0.25; */

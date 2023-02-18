@@ -1,3 +1,5 @@
+/** ---------- BASE TABLES + DATA, NO DEPENDENCIES ---------- **/
+
 -- Use w/ components: login, registration, user
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
@@ -7,21 +9,6 @@ CREATE TABLE "user" (
     "profile_img" NUMERIC,
     "account_created" timestamp without time zone
 );
-
--- Track trips a user has marked complete
--- Use w/ components: popularPoints, routeDetail
-CREATE TABLE "trips_completed" (
-    "id" SERIAL PRIMARY KEY,
-    "user_id" INTEGER REFERENCES "user",
-    "route_id" INTEGER REFERENCES "gtfs_routes",
-    "completed_on" DATE
-);
-
-    -- Dummy data:
-    INSERT INTO "trips_completed" ("user_id", "route_id", "completed_on")
-    VALUES (5, 902, 2023-02-17)
-
-/** ---------- POINTS OF INTEREST ---------- **/
 
 -- Details for all points of interest
 -- Use w/ components: allPoints, routeDetail
@@ -36,6 +23,7 @@ CREATE TABLE "poi_details" (
     "description" VARCHAR,
     "sources_cited" VARCHAR
 );
+
     -- Dummy data:
     INSERT INTO "poi_details"
     ("name","image_url","street_address","longitude","latitude","short_desc","description")
@@ -46,6 +34,39 @@ CREATE TABLE "poi_details" (
     The last passenger train (Burlington’s Afternoon Zephyr) serving Union Depot in the 20th century departed on April 30, 1971. The building never stood empty and its use as a passenger station was never far from peoples’ hearts and minds.
     Ramsey County Regional Railroad Authority bought Union Depot and began a massive two-year restoration of the 33-acre property in 2011.');
 
+-- Data for transit routes
+-- Use w/ components: allRoutes, routeDetail
+CREATE TABLE "gtfs_routes" (
+    "id" NUMERIC PRIMARY KEY,
+    "route_long_name" VARCHAR,
+    "route_short_name" VARCHAR,
+    "route_name" VARCHAR,
+    "route_desc" VARCHAR,
+    "route_url" VARCHAR,
+    "route_color" VARCHAR,
+    "route_text_color" VARCHAR,
+    "agency_id" NUMERIC,
+    "route_type" NUMERIC,
+    "route_sort_order" NUMERIC
+);
+
+    -- Dummy data; green line:
+    INSERT INTO "gtfs_routes" 
+    ("id", "route_short_name", "route_name", "route_desc", "route_url", "route_color", "route_text_color",  "agency_id", "route_type", "route_sort_order")
+    VALUES
+    (902, 'METRO Green Line', null, 'METRO Green Line', 'Green Line - Mpls - St Paul', 'https://www.metrotransit.org/route/green', '008144', 'ffffff', 0, 0, 3)
+    
+    -- Reduce name columns
+    UPDATE "gtfs_routes"
+        SET "route_name"="route_short_name"
+        WHERE "route_short_name" IS NOT NULL;
+        
+    UPDATE "gtfs_routes"
+        SET "route_name"="route_long_name"
+        WHERE "route_long_name" IS NOT NULL;
+
+
+/** ---------- TABLES W/ DEPENDENCIES ---------- **/
 -- Sources for details
 -- Use w/ components: allPoints
 CREATE TABLE "poi_sources" (
@@ -53,7 +74,7 @@ CREATE TABLE "poi_sources" (
     "url" VARCHAR,
     "poi_id" INTEGER REFERENCES "poi_details"
 );
-    
+
     -- Dummy data
     INSERT INTO "poi_sources" ("url", "poi_id")
         VALUES
@@ -78,14 +99,19 @@ CREATE TABLE "poi_saves" (
     "poi_id" INTEGER REFERENCES "poi_details"
 );
 
-    -- Dummy data:
-    INSERT INTO "poi_saves" ("user_id", "poi_id")
-    VALUES (5, 1)
+-- Track trips a user has marked complete
+-- Use w/ components: popularPoints, routeDetail
+CREATE TABLE "trips_completed" (
+    "id" SERIAL PRIMARY KEY,
+    "user_id" INTEGER REFERENCES "user",
+    "route_id" INTEGER REFERENCES "gtfs_routes",
+    "completed_on" DATE
+);
 
 -- Tie POIs and routes together
 -- Use w/ components: routeDetail
 CREATE TABLE poi_routes (
-    PRIMARY KEY ("poi_id", "route_id")
+    PRIMARY KEY ("poi_id", "route_id"),
     "poi_id" INTEGER NOT NULL REFERENCES "poi_details",
     "route_id" INTEGER NOT NULL REFERENCES "gtfs_routes",
     "poi_order_num" INTEGER
@@ -93,41 +119,6 @@ CREATE TABLE poi_routes (
     -- Dummy data, only one Point of Interest
     INSERT INTO "poi_routes" ("poi_id", "route_id", "poi_order_num")
     VALUES (1, 902, 1);
-
-
-/** ---------- GTFS DATA FROM METRO TRANSIT ---------- **/
-
--- Data for transit routes
--- Use w/ components: allRoutes, routeDetail
--- Currently using w/ popularRoutes component, will switch once dummy data
-CREATE TABLE "gtfs_routes" (
-    "id" NUMERIC PRIMARY KEY,
-    "route_long_name" VARCHAR,
-    "route_short_name" VARCHAR,
-    "route_name" VARCHAR,
-    "route_desc" VARCHAR,
-    "route_url" VARCHAR,
-    "route_color" VARCHAR,
-    "route_text_color" VARCHAR,
-    "agency_id" NUMERIC,
-    "route_type" NUMERIC,
-    "route_sort_order" NUMERIC
-);
-
-    -- Dummy data; green line:
-    INSERT INTO "gtfs_routes" 
-    ("id", "agency_id", "route_short_name", "route_name", "route_desc", "route_url", "route_color", "route_text_color", "route_sort_order")
-    VALUES
-    (902, 'METRO Green Line', null, 'METRO Green Line', 'Green Line - Mpls - St Paul', 'https://www.metrotransit.org/route/green', '008144', 'ffffff', 0, 0, 3)
-    
-    -- Reduce name columns
-    UPDATE "gtfs_routes"
-        SET "route_name"="route_short_name"
-        WHERE "route_short_name" IS NOT NULL;
-        
-    UPDATE "gtfs_routes"
-        SET "route_name"="route_long_name"
-        WHERE "route_long_name" IS NOT NULL;
 
 -- Trip data
 -- Use w/ components: 

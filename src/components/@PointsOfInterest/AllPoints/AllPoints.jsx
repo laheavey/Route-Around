@@ -46,16 +46,17 @@ export default function AllPoints() {
     <>
     <div id='map' ref={mapContainer} style={dataLoaded ? {width: '100%', height: '300px'} : {display: 'none'}}></div>
     {/* <AllPointsMap /> */}
-    <div id='features' >
-          <ListSubheader>{`All Points of Interest →`}</ListSubheader>
+    <section id='features' >
+          <section >{`All Points of Interest →`}
           {allPoints.map((point) => (
-            <ListItem key={`${point.id}`}>
-              <Link to={`/pointDetail/${point.id}`}>
-              <ListItemText primary={`${point.name}`} />
+            <li>
+              <Link to={`/pointDetail/${point.id}`} key={`${point.id}`}>
+               {`${point.name}`}
               </Link>
-            </ListItem>
+              </li>
           ))}
-    </div>
+          </section>
+    </section>
     </>
   );
 }

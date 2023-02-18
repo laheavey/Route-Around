@@ -98,34 +98,23 @@ export default function PointDetail() {
   return (
     <>
       <div 
+        id='map'
         ref={mapContainer} 
         className="map-container" 
         style={dataLoaded ? {width: '100%', height: '300px'} : {display: 'none'}} 
       >
       </div>
-      <List
-        sx={{
-        width: '100%',
-        bgcolor: 'background.paper',
-        position: 'relative',
-        overflow: 'auto',
-        maxHeight: 360,
-        '& ul': { padding: 0 }
-        }}
-        key={`${points.id}`}
-        subheader={<li />}>
-        <ul>
-          <ListSubheader>{`Point Detail → ${points.name}`}</ListSubheader>
-            <ListItem >
-              <ListItemAvatar>
-                <Avatar 
+      <section id="features">
+          <h3>{`Point Detail → ${points.name}`}</h3>
+            
+                {/* <Avatar 
                   variant="square" 
                   // alt={`${points.name}`} 
                   src={`${points.image_url}`}
-                  sx= {{ width: 120, height: 100 }}
-                />
-              </ListItemAvatar>
-              <IconButton 
+                  sx= {{ width: 100, height: 100 }}
+                /> */}
+              
+              {/* <IconButton 
                 aria-label="save" 
                 onClick={handleSaveClick}
                 style={saveLoaded ? {} : {display: 'none'}}
@@ -134,20 +123,17 @@ export default function PointDetail() {
                 ? <FavoriteOutlinedIcon />
                 : <FavoriteBorderOutlinedIcon />
                 }
-                </IconButton>
-              <ListItemText primary={`${points.name}`} secondary={`${points.street_address}`} />
-            </ListItem>
-        </ul>
-        <ul>
-          <ListItem>
-            <ListItemText secondary={`${points.description}`} />
-          </ListItem>
-          <ListItem>
-            <ListItemText primary={`${points.sources_cited}`} />
-          </ListItem>
-        </ul>
+                </IconButton> */}
+              {/* <ListItemText primary={`${points.name}`} secondary={`${points.street_address}`} /> */}
+
         
-    </List>  
+        
+          <li>{points.name}</li>
+         <li>{points.description}</li>
+        
+        
+     
+    </section>
     </>
   );
 }

@@ -6,6 +6,7 @@ import mapboxgl from '!mapbox-gl';
 
 import ActiveInfo from './ActiveInfo';
 
+// Map, info component
 export default function RouteDetail() {
   let lng;
   let lat;
@@ -127,9 +128,9 @@ export default function RouteDetail() {
     <div id="map" ref={mapContainer} style={dataLoaded ? {width: '100%', height: '300px'} : {display: 'none'}}>
     </div>
 
-    <div id='features' ref={ref}>
+    <section id='features' ref={ref}>
       <ActiveInfo />
-    </div>
+    </section>
     </div>
   );
 }

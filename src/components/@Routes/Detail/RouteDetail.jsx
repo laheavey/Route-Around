@@ -18,19 +18,7 @@ export default function RouteDetail() {
   return (
     <>
     <RouteMap  />
-    <List
-      sx={{
-        width: '100%',
-        bgcolor: 'background.paper',
-        position: 'relative',
-        overflow: 'auto',
-        maxHeight: 360,
-        '& ul': { padding: 0 }
-      }}
-      subheader={<li />}
-      >
-      <RouteInfo />
-    </List>
+    <RouteInfo />
     </>
   );
 }
