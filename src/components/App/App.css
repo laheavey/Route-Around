@@ -19,6 +19,8 @@ img {
   max-width: 100%;
 }
 
+
+
 /* --------------------------------------------------------------------------------
 Container
 -------------------------------------------------------------------------------- */
@@ -127,7 +129,7 @@ input {
 }
 
 /* --------------------------------------------------------------------------------
-Active Route Scrolling Sections
+Sections
 -------------------------------------------------------------------------------- */
 
 #features {
@@ -179,4 +181,68 @@ opacity: 1;
 section.test:last-child {
 border-bottom: none;
 margin-bottom: 200px;
+}
+
+/* --------------------------------------------------------------------------------
+Fonts & Text
+-------------------------------------------------------------------------------- */
+.detailh3 {
+  font-size: 0.75em;
+  padding: 0.75em;
+  /* padding-top: 0.75em;
+  padding-left: 0.75em;
+  padding-right: 0.75em; */
+  display: flex;
+  margin: 0em;
+}
+
+.box {
+  box-sizing: border-box;
+}
+
+.detailHeader {
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  padding-right: 0.75em;
+  padding-top: 0.75em;
+  margin-top: 0em;
+  margin-right: 0em;
+
+}
+
+.detailImg {
+  width: 40%;
+  padding-left: 1em;
+  padding-right: 1.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  float: left;
+}
+
+.detailh2 {
+  font-size: 1em;
+  /* padding-top: 1em; */
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  /* padding-bottom: 1em; */
+  margin: 0em;
+  /* display: inline-block; */
+}
+
+.detailList {
+  display: inline-block;
+  list-style-type: none;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  margin: 0em;
+  width: 45%;
+}
+
+.detailDescription {
+  padding-top: 0.5em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  padding-bottom: 0.75em;
+  margin: 0em;
 }

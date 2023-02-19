@@ -35,7 +35,7 @@ export default function Nav() {
       case '/allRoutes':
         pathname = 'All Routes';
         return pathname;
-      case '/activeRoute':
+      case `/activeRoute`:
         pathname = 'Active Route';
         return pathname;
       case '/dashboard':
@@ -48,6 +48,9 @@ export default function Nav() {
         pathname = 'User Profile';
         return pathname;
       case `/routeDetail/${params.id}`:
+        pathname = `Route Detail`;
+        return pathname;
+      case `/pointDetail/${params.id}`:
         pathname = `Route Detail`;
         return pathname;
       default:
