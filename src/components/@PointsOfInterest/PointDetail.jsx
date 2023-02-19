@@ -38,7 +38,7 @@ export default function PointDetail() {
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       center: [-93.09, 44.946944],
-      zoom: 12,
+      zoom: 13,
       // interactive: false,
       style: 'mapbox://styles/mapbox/streets-v11'
     });
@@ -113,6 +113,7 @@ export default function PointDetail() {
           <p className='detailDescription'>{points.description}</p>
         </section>
       </section>
+      <div className='grad'></div>
     </>
   );
 }

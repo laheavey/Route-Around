@@ -11,6 +11,17 @@ export default function Nav() {
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   const handleNavBarTitle = () => {
     pathname = location.pathname;
     switch(pathname) {

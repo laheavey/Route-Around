@@ -17,6 +17,7 @@ export default function RouteDetail() {
     <>
     <RouteDetailMap  />
     <RouteDetailInfo />
+    {/* <div className='grad'></div> */}
     </>
   );
 }

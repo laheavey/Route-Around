@@ -24,11 +24,16 @@ export default function Dashboard() {
       <section className='dash-pop'>
         <h2 className='top-h2'>{`Popular Routes →`}</h2>
         <ul className='dash-pop-list'>
-        {popRoutes.map((route) => (
-          <Link to={`/routeDetail/${route.route_id}`} key={`${route.route_id}`} >
-            <li>{route.route_name}</li>
-          </Link>
-        ))}
+        {popRoutes.map((route) => {
+          return (
+            <Link to={`/routeDetail/${route.route_id}`} key={`${route.route_id}`} >
+              <li>{route.route_name}</li>
+            </Link>
+          )
+        }
+        
+        
+        )}
         </ul>
       </section>
       <section className='dash-pop'>
@@ -42,6 +47,7 @@ export default function Dashboard() {
         </ul>
       </section>
     </section>
+    <div className='grad'></div>
     </>
   )
 };

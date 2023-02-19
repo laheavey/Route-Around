@@ -1,11 +1,12 @@
 import React, { useEffect, useRef} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+
 import mapboxgl from '!mapbox-gl';
 
 export default function AllRoutes() {
-  const mapContainer = useRef(null);
   const dispatch = useDispatch();
+  const mapContainer = useRef(null);
   const allRoutes = useSelector((store) => store.allRoutes)
 
   useEffect(() => {
@@ -15,7 +16,7 @@ export default function AllRoutes() {
         container: mapContainer.current,
         center: [-93.19426931505215, 44.9480407119586],
         zoom: 10,
-        interactive: false,
+        // interactive: false,
         style: 'mapbox://styles/mapbox/streets-v11'
       });
   },[])
@@ -24,8 +25,10 @@ export default function AllRoutes() {
   return (
     <>
     <div id='map' ref={mapContainer} style={{width: '100%', height: '300px'}}></div>
-      <section id='features'> 
-      <h1>{`All Routes →`}</h1>
+    <section className='flex-container dashboard' >
+      <section className='dash-pop'>
+      <h2 className='top-h2'>{`All Routes →`}</h2>
+      <ul className='all-route-list'>
       {allRoutes.map((route) => (
         <li>
           <Link to={`/routeDetail/${route.id}`} key={`${route.id}`}>
@@ -33,6 +36,8 @@ export default function AllRoutes() {
           </Link>
         </li>
       ))}
+      </ul>
+      </section>
     </section>
     <div className='grad'></div>
     </>

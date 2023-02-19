@@ -82,10 +82,12 @@ export default function UserEditDetails () {
   }
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column'}}>
+    <section className='flex-container activity'>
+            
+      <section className='user-edit-section'>
       <FormControl>
       <FormGroup>
-        <Typography sx={{ marginLeft: 2, marginTop: 2, marginBottom: 1}} variant="body2">{`Update Email Address →`}</Typography>
+      <h2 className='top-h2'>{`Update Email Address →`}</h2>
         <CardContent >
           { error && <Alert severity="error">New email address inputs must match.</Alert>}  
           <TextField
@@ -109,9 +111,13 @@ export default function UserEditDetails () {
           />
         </CardContent>
       </FormGroup>
-      <Divider />
+      </FormControl>
+      </section>
+
+      <section className='user-edit-section'>
+      <FormControl>
       <FormGroup>
-        <Typography sx={{ marginLeft: 2, marginTop: 2, marginBottom: 1}} variant="body2">{`Update Profile Image →`}</Typography>
+      <h2 className='top-h2'>{`Update Profile Image →`}</h2>
         <CardContent>
           <RadioGroup
             row
@@ -122,37 +128,38 @@ export default function UserEditDetails () {
           ><Box>
             <FormControlLabel 
               value="1" 
-              control={<Radio size="small"/>} 
-              label={<FaceIcon fontSize="large" color="warning"/>}
+              control={<Radio size="small" sx={{ paddingTop: 0 }}/>} 
+              label={<FaceIcon fontSize="large" color="warning" sx={{ lineHeight: 1 }}/>}
               labelPlacement="top"
+              sx={{ lineHeight: 1 }}
             />
             <FormControlLabel 
               value="2" 
-              control={<Radio size="small"/>} 
+              control={<Radio size="small" sx={{ paddingTop: 0 }}/>} 
               label={<Face2Icon fontSize="large" color="primary"/>}
               labelPlacement="top"
             />
             <FormControlLabel 
               value="3" 
-              control={<Radio size="small"/>} 
+              control={<Radio size="small" sx={{ paddingTop: 0 }}/>} 
               label={<Face3Icon fontSize="large" color="secondary"/>}
               labelPlacement="top"
             /></Box><Box>
             <FormControlLabel 
               value="4" 
-              control={<Radio size="small"/>} 
+              control={<Radio size="small" sx={{ paddingTop: 0 }}/>} 
               label={<Face4Icon fontSize="large" color="success"/>}
               labelPlacement="top"
             />
             <FormControlLabel 
               value="5" 
-              control={<Radio size="small"/>} 
+              control={<Radio size="small" sx={{ paddingTop: 0 }}/>} 
               label={<Face5Icon fontSize="large"color="action"/>}
               labelPlacement="top"
             />
             <FormControlLabel 
               value="6" 
-              control={<Radio size="small"/>} 
+              control={<Radio size="small" sx={{ paddingTop: 0 }}/>} 
               label={<Face6Icon fontSize="large" sx={{ color: pink[500] }} />}
               labelPlacement="top"
             /></Box>
@@ -169,6 +176,8 @@ export default function UserEditDetails () {
           </Box>
       </FormGroup>
       </FormControl>
-    </Box>
+      </section>
+      
+    </section>
   )
 }

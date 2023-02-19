@@ -20,7 +20,7 @@ export default function UserActivity () {
         <ul className='activity-list '>
           {savedPoints.map((save) => {
           return (
-            <li key={save.id}>
+            <li key={`save-${save.id}`}>
               <Link to={`/pointDetail/${save.poi_id}`}>
                 {save.name}
               </Link>
@@ -35,7 +35,7 @@ export default function UserActivity () {
         <ul className='activity-list '>
           {userRouteHistory.map((ride) => {
           return (
-            <li key={ride.route_id} >
+            <li key={`route-${ride.route_id}`} >
               <Link to={`/routeDetail/${ride.route_id}`}>
                 {ride.route_name}
               </Link>

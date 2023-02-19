@@ -161,7 +161,7 @@ Sections
 
 .details {
   flex-flow: row wrap;
-  margin-top: 5em;
+  margin-top: 3.5em;
   height: 10.5em;
 }
 
@@ -172,7 +172,7 @@ Sections
   width: 375px;
   position: absolute;
   top: 335px;
-  height: 330px;
+  height: 332px;
   background-color: #fafafa;
   flex-flow: column;
 }
@@ -202,7 +202,13 @@ Sections
   /* height: auto; */
 }
 
-.user-activity-section, .dash-pop {
+.route-detail-section {
+  display:block;
+  width: 100%;
+  /* margin-bottom: 1em; */
+}
+
+.user-activity-section, .dash-pop, .user-edit-section {
   display:block;
   width: 100%;
   margin-bottom: 1em;
@@ -217,11 +223,13 @@ Sections
   /* opacity: 100%; */
 }
 
-.dash-pop-list {
-
+.dash-pop-list, .all-point-list, .all-route-list, .activity-list {
   margin: 0em;
   column-count: 2;
+}
 
+.all-point-list {
+  column-gap: 30px;
 }
 
 .list-icon {
@@ -230,12 +238,11 @@ Sections
 }
 
 .dash-pop-list-item {
-  /* list-style-type: none; */
+  flex-wrap: nowrap;
   display: flex;
-  align-items: flex-start;
-  /* justify-content: space-around; */
+  align-items: center;
+  align-content: center;
   width: 100%;
-  /* margin: 0.2em; */
 }
 
 .activity-list {
@@ -250,6 +257,7 @@ Sections
   padding-bottom: 1em;
   margin: 0em;
   list-style-type: none;
+  /* font-weight: 50; */
 }
 
 .top-h2 {
@@ -264,15 +272,67 @@ Sections
   z-index: 2;
 }
 
+.route-detail-h2 {
+  display: inline-block;
+  font-size: 1em;
+  padding-left: 1.75em;
+  padding-right: 0.5em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  margin: 0em;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.route-detail-h3 {
+  display: inline-block;
+  font-size: 1em;
+  font-weight: normal;
+  /* padding-left: 1.75em; */
+  padding-right: 0.5em;
+  padding-top: 1em;
+  padding-bottom: 0.5em;
+  margin: 0em;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.route-detail-h4 {
+  display: block;
+  font-size: 1em;
+  /* padding-left: 1.75em;
+  padding-right: 0.5em; */
+  padding-top: 1em;
+  /* padding-bottom: 1em; */
+  margin: 0em;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.trip-start {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+   /* align-items: center; */
+  align-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  padding-bottom: 2em;
+}
+
 .user-detail-h2 {
   display: inline-block;
   font-size: 1em;
+  padding-left: 0.5em;
+  font-weight: normal;
 }
 
 .detailh2, .user-detail-h2 {
   /* font-size: 1.2em; */
   /* padding-top: 1em; */
-  padding-left: 0.5em;
+
   padding-right: 0.5em;
   /* padding-bottom: 1em; */
   margin: 0em;
@@ -350,7 +410,7 @@ Fonts & Text
 
 .ride-history, .saved-points {
   overflow-y: scroll;
-  height: 10em;
+  height: 11em;
 
 }
 
@@ -361,14 +421,14 @@ Fonts & Text
 
 
 .detailHeader {
-  text-align: center;
+  /* text-align: center; */
   display: flex;
   justify-content: space-around;
   padding-right: 0.75em;
   padding-top: 2em;
   margin-top: 0em;
   margin-right: 0em;
-
+  padding-left: 0.75em;
 }
 
 .detailImg {
@@ -383,11 +443,12 @@ Fonts & Text
 .detailh2 {
   font-size: 1em;
   /* padding-top: 1em; */
-  padding-left: 0.5em;
+  padding-left: 1em;
   padding-right: 0.5em;
   /* padding-bottom: 1em; */
   margin: 0em;
   /* display: inline-block; */
+  
 }
 
 .detailList {
@@ -404,5 +465,19 @@ Fonts & Text
   padding-left: 0.75em;
   padding-right: 0.75em;
   padding-bottom: 0.75em;
+  margin: 0em;
+}
+
+.smallText {
+  font-size: 0.85em;
+  font-weight: lighter;
+  color: #444;
+  padding-left: 2em;
+  margin: 0em;
+  line-height: 80%;
+}
+
+.route-desc {
+  padding-left: 1.7em;
   margin: 0em;
 }

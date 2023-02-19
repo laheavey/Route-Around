@@ -13,7 +13,8 @@ const userStrategy = require('../strategies/user.strategy');
   // console.log('req.body:', req.body);
   const sqlQuery =`
     SELECT "id", "route_name", "route_desc"
-    FROM "gtfs_routes"`
+    FROM "gtfs_routes"
+    ORDER BY "route_name" ASC;`
   pool.query(sqlQuery)
   .then((results) => {
     res.send(results.rows)
@@ -58,6 +59,8 @@ const userStrategy = require('../strategies/user.strategy');
     "gtfs_routes"."route_desc",
     "gtfs_routes"."route_url",
     "gtfs_routes"."route_color",
+    "gtfs_routes"."route_type",
+    "gtfs_routes"."agency_id",
     "poi_routes"."poi_id",
     "poi_details"."name" AS "poi_name"
   FROM "gtfs_routes"
@@ -72,6 +75,8 @@ const userStrategy = require('../strategies/user.strategy');
     "gtfs_routes"."route_desc",
     "gtfs_routes"."route_url",
     "gtfs_routes"."route_color",
+    "gtfs_routes"."route_type",
+    "gtfs_routes"."agency_id",
     "poi_routes"."poi_id",
     "poi_details"."name";`;
   const sqlValues = [req.params.id];
