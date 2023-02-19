@@ -34,7 +34,7 @@ export default function UserDetails () {
        setProfileImg(<Face4Icon fontSize="large" color="success"/>);
        break;
       case '5':
-       setProfileImg(<Face5Icon fontSize="large"color="action"/>);
+       setProfileImg(<Face5Icon fontSize="large" color="action"/>);
        break;
       case '6':
        setProfileImg(<Face6Icon fontSize="large" sx={{ color: pink[500] }} />);
@@ -43,18 +43,26 @@ export default function UserDetails () {
   }
 
   return (
-    <>
-      <section id='profile'>
-        {profileImg}
+    <div className='user-details'>
+      <section className='flex-container details'>
+      <section className='userImg'>
+      {/* <h2 className='detailh2 top-left'>User Details -></h2> */}
+      {profileImg}
         <Link to={`/edit/profile/${user.id}`}>
           Edit Details
         </Link>
       </section>
-      <section >
-        {"Username: "}{user.username} <br/>
-        {"Email: "}{user.email}<br/>
-        {"Account Created: "}{user.account_created}<br/>
+      <section className='userInfo'>
+      <ul className='userInfoList'>
+        <li>
+        <h2 className='user-detail-h2'>Username:</h2> {user.username}</li>
+        <li>
+        <h2 className='user-detail-h2'>Email:</h2> {user.email}</li>
+        <li>
+        <h2 className='user-detail-h2'>Account Created:</h2> {user.account_created}</li>
+      </ul>
       </section>
-    </>
+      </section>
+    </div>
   )
 }

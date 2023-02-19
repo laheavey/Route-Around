@@ -15,10 +15,10 @@ export default function UserProfile() {
   },[])
 
   return (
-    <div>
+    <>
       <UserDetails />
       <UserActivity />
-    </div>
+    </>
   )
 
 }

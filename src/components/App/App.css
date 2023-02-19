@@ -132,6 +132,103 @@ input {
 Sections
 -------------------------------------------------------------------------------- */
 
+/* #user-details, #user-activity{
+  width: 350px;
+  background-color: #fafafa;
+  position: absolute;
+  display: flex;
+  flex-flow: row wrap;
+} */
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.details {
+  flex-flow: row wrap;
+  margin-top: 5em;
+}
+
+.activity {
+  flex-flow: column wrap;
+  margin-top: 2em;
+}
+
+.flex-container > section {
+  /* display: flex; */
+  background-color: #fafafa;
+  color: black;
+  font-size: 0.75em;
+  opacity: 90%;
+  align-items: center;
+}
+
+.userImg {
+  display: flex;
+  flex-flow: column wrap;
+  width: 25%;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  /* text-align: center; */
+  height: 15em;
+}
+
+.user-activity-section {
+  display:block;
+  width: 80%;
+  margin: 0.5em;
+}
+
+.userInfo {
+  display: flex;
+  width: 55%;
+  height: 15em;
+}
+
+/* .userInfoList, .activity-list {
+  list-style-type: none;
+
+} */
+
+.activity-list {
+  padding-left: 4em;
+  padding-bottom: 1em;
+  margin: 0em;
+}
+
+.userInfoList {
+  padding: 0em;
+  list-style-type: none;
+}
+
+.top-h2 {
+  display: block;
+  font-size: 1em;
+  /* padding: 0.5em; */
+  padding-left: 2em;
+  padding-right: 0.5em;
+  padding-top: 1em;
+  margin: 0em;
+}
+
+.user-detail-h2 {
+  display: inline-block;
+}
+
+.detailh2, .user-detail-h2 {
+  font-size: 1em;
+  /* padding-top: 1em; */
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  /* padding-bottom: 1em; */
+  margin: 0em;
+  /* display: inline-block; */
+}
+
 #features {
   max-width: 375px;
   min-width: 350px;
@@ -189,6 +286,7 @@ Fonts & Text
 .detailh3 {
   font-size: 0.75em;
   padding: 0.75em;
+  font-weight: normal;
   /* padding-top: 0.75em;
   padding-left: 0.75em;
   padding-right: 0.75em; */

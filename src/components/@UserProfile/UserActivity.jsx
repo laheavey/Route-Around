@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import Divider from '@mui/material/Divider';
 
@@ -8,24 +9,46 @@ export default function UserActivity () {
   const savedPoints = useSelector((store) => store.savedPoints)
   
   return (
-    <section id='feature'>
-      <h2>{`Badges Earned →`}</h2>
+    
+      <section className='flex-container activity'>
+      <section className='user-activity-section'>
+      <h2 className='top-h2'>{`Badges Earned →`}</h2>
+      <ul className='activity-list'>
+        <li></li>
+      </ul>
+      </section>
       <Divider />
 
-      <h2>{`Saved Points of Interest →`}</h2>
+      <section className='user-activity-section'>
+      <h2 className='top-h2'>{`Saved Points of Interest →`}</h2>
+      <ul className='activity-list'>
       {savedPoints.map((save) => {
         return (
-          <p key={save.id}>{save.name}</p>
+          <li key={save.id}>
+            <Link to={`/pointDetail/${save.poi_id}`}>{save.name}</Link>
+          </li>
         )
       })}
+      </ul>
+      </section>
       <Divider />
 
-      <h2>{`Ride History →`}</h2>
+      <section className='user-activity-section'>
+      <h2 className='top-h2'>{`Ride History →`}</h2>
+      <ul className='activity-list'>
       {userRouteHistory.map((ride) => {
         return (
-          <p key={ride.route_id}>{ride.route_name}</p>
+          <li key={ride.route_id} >
+            <Link to={`/routeDetail/${ride.route_id}`}>
+            {ride.route_name}
+            </Link>
+            
+            </li>
         )
       })}
-    </section>
+      </ul>
+      </section>
+      </section>
+    
   )
 }
