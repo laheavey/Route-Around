@@ -1,38 +1,36 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 export default function RouteInfo () {
   const routeDetail = useSelector((store) => store.routeDetail) 
   const completedTrips = routeDetail.completed_trips;
 
   console.log('Route detail: ', routeDetail)
+  console.log('Route URL: ', routeDetail)
   
   return (
     <section id='features' >
-      
-        <h3>{`Route Detail →`}</h3>
-          <section >
-            <h6>{routeDetail.route_name}</h6>
+      <h1>{`Route Detail →`}</h1>
+        <h2>{routeDetail.route_name}</h2>
             {routeDetail.route_desc}
-          </section>
-      
-        {/* <ListItem >
-          <Link to={`${routeDetail.route_url}`}>
-          <ListItemText secondary={'Learn more at MetroTransit.org'} />
-          </Link>
-
-        </ListItem>
-        <ListItem>
-          <ListItemText secondary={`Begin Trip:`}/>
-        </ListItem>
-        <ListItem>
-          <Link to={`/activeRoute/${routeDetail.route_id}`}>
-          <ListItemText inset secondary={`Eastbound /`}/>
-          </Link>
-          <Link to={`/activeRoute/${routeDetail.route_id}`}>
-          <ListItemText secondary={`/ Westbound`} />
-          </Link>
-        </ListItem> */}
+          <li>
+            <a href={`${routeDetail.route_url}`}>
+            {'Learn more at MetroTransit.org'}
+            </a>
+          </li>
+        <h2>{`Begin Trip:`}</h2>
+          <li>
+            <Link to={`/activeRoute/${routeDetail.route_id}`}>
+            {`Eastbound /`}
+            </Link>
+          </li>
+          <li>
+            <Link to={`/activeRoute/${routeDetail.route_id}`}>
+            {`/ Westbound`}
+            </Link>
+          </li>
+        
       
       {/* Removing POI list for now, too long. */}
       {/* <ul>

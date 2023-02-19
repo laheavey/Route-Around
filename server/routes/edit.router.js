@@ -15,7 +15,7 @@ router.get('/profile/:id', rejectUnauthenticated, (req, res) => {
 
 /** ---------- UPDATE USER EMAIL & PROFILE PIC ---------- **/
 router.put('/profile/:id', rejectUnauthenticated, (req, res) => {
-  console.log('Req.body: ', req.body);
+  // console.log('Req.body: ', req.body);
   const sqlQuery = `
   UPDATE "user"
   SET "email" = $1, "profile_img" = $2
@@ -23,7 +23,6 @@ router.put('/profile/:id', rejectUnauthenticated, (req, res) => {
   const sqlValues = [req.body.email, req.body.profile_img, req.body.id];
   pool.query(sqlQuery,sqlValues)
   .then((response) => {
-    console.log('Success in PUT /edit/profile/:id!')
     res.sendStatus(200)
   })
   .catch((error) => {

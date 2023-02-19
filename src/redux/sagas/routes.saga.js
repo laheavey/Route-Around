@@ -32,7 +32,7 @@ function* fetchRouteDetail (action) {
       type: 'SET_ROUTE_DETAIL',
       payload: response.data
       // route_id, route_name, route_desc, route_url, 
-      // route_color, completed_on, poi_id, poi_name
+      // route_color, poi_id, poi_name
     })
   } catch (error) {
     console.error('Error in SAGA/fetchRouteDetail:', error);

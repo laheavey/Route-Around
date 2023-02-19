@@ -2,8 +2,15 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
+const encryptLib = require('../modules/encryption');
+const userStrategy = require('../strategies/user.strategy');
+
  /** ---------- GET POLYLINE (COORDINATES FOR MAP LINE) ---------- **/
- router.get('/:id', (req, res) => {
+ router.get('/:id', rejectUnauthenticated, (req, res) => {
+  // console.log('req.params:', req.params);
   const sqlQuery =`
   SELECT "shape_pt_lon", "shape_pt_lat"
   FROM "gtfs_shapes"
@@ -17,7 +24,6 @@ const router = express.Router();
   const sqlValues = [req.params.id];
   pool.query(sqlQuery, sqlValues)
   .then((results) => {
-    // console.log('results: ', results)
     res.send(results.rows)
   })
   .catch((error => {

@@ -1,42 +1,47 @@
 import React, { useEffect, useState, useRef} from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-// import { IconButton } from '@mui/material';
-// import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
-// import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 
 import PopularPoints from './PopularPoints.jsx';
-import LogOutButton from '../LogOutButton/LogOutButton';
 
 export default function PopularInfo() {
-  const user = useSelector((store) => store.user);
   const popRoutes = useSelector((store) => store.popRoutes);
   const popPoints = useSelector((store) => store.popPoints);
+  const savedPoints = useSelector((store) => store.savedPoints)
+  const [savedStatus, setSavedStatus] = useState(false);
   
+  const saveCheck = (popPoint) => {
+    savedPoints.map((save) => {
+      if (popPoint.id === save.poi_id) {
+        return 'saved';
+      } 
+      return 'unsaved';
+    })
+    console.log('popPoints: ', popPoints)
+  }
+
   return (
     <section id='features' >
-            {/* <LogOutButton />
-            <button><Link to={`profile/${user.id}`}>Profile</Link></button>
-            <button><Link to={`allPoints`}>All Points</Link></button> */}
-      <h3>{`Popular Routes →`}</h3>
-      {popRoutes.map((route) => (
-        <section>
-          {/* <IconButton>
-          <FavoriteBorderOutlinedIcon />
-          </IconButton> */}
-          <Link to={`/routeDetail/${route.route_id}`} key={`${route.route_id}`}>
-          <li>{route.route_name}</li>
-          </Link>
-          </section>
-      ))}
+      <h1 className='detailh3'>Dashboard →</h1>
 
-      <h3>{`Popular Points of Interest →`}</h3>
+      <section >
+      <h2 className='detailh2'>{`Popular Routes →`}</h2>
+      {popRoutes.map((route) => (
+        
+          <Link to={`/routeDetail/${route.route_id}`} key={`${route.route_id}`} >
+            <li>{route.route_name}</li>
+          </Link>
+        
+      ))}
+      </section>
+      <section>
+      <h2 className='detailh2'>{`Popular Points of Interest →`}</h2>
       {popPoints?.map((popPoint) => {
         return (
-          <PopularPoints popPoint={popPoint} key={popPoint.id} />
+          <PopularPoints popPoint={popPoint} key={popPoint.id} className={saveCheck(popPoint)} />
         )
-      }
-        )}
+      })}
+      </section>
     </section>
   );
-}
+};

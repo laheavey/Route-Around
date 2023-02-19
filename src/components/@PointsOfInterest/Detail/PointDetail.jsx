@@ -3,15 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import mapboxgl from '!mapbox-gl';
 import { useParams } from 'react-router-dom';
 
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListSubheader from '@mui/material/ListSubheader';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
 import { IconButton } from '@mui/material';
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 
 export default function PointDetail() {
   const [dataLoaded, setDataLoaded] = useState(false);
@@ -97,57 +91,47 @@ export default function PointDetail() {
 
   return (
     <>
-      <div 
-        ref={mapContainer} 
-        className="map-container" 
-        style={dataLoaded ? {width: '100%', height: '300px'} : {display: 'none'}} 
-      >
-      </div>
-      <List
-        sx={{
-        width: '100%',
-        bgcolor: 'background.paper',
-        position: 'relative',
-        overflow: 'auto',
-        maxHeight: 360,
-        '& ul': { padding: 0 }
-        }}
-        key={`${points.id}`}
-        subheader={<li />}>
-        <ul>
-          <ListSubheader>{`Point Detail → ${points.name}`}</ListSubheader>
-            <ListItem >
-              <ListItemAvatar>
-                <Avatar 
-                  variant="square" 
-                  // alt={`${points.name}`} 
-                  src={`${points.image_url}`}
-                  sx= {{ width: 120, height: 100 }}
-                />
-              </ListItemAvatar>
-              <IconButton 
-                aria-label="save" 
-                onClick={handleSaveClick}
-                style={saveLoaded ? {} : {display: 'none'}}
-              >
-                {savedStatus 
-                ? <FavoriteOutlinedIcon />
-                : <FavoriteBorderOutlinedIcon />
-                }
-                </IconButton>
-              <ListItemText primary={`${points.name}`} secondary={`${points.street_address}`} />
-            </ListItem>
-        </ul>
-        <ul>
-          <ListItem>
-            <ListItemText secondary={`${points.description}`} />
-          </ListItem>
-          <ListItem>
-            <ListItemText primary={`${points.sources_cited}`} />
-          </ListItem>
-        </ul>
+      <div id='map' ref={mapContainer} style={dataLoaded ? {width: '100%', height: '300px'} : {display: 'none'}}></div>
+      <section id="features" >
+      <p className='detailh3'>{`Point Detail → `}</p>
         
-    </List>  
+        
+
+        <img
+          alt={`${points.name}`} 
+          src={`${points.image_url}`}
+          className='detailImg box'
+        />
+        {/* <section className='box'> */}
+
+        {/* </section> */}
+        {/* <ul className='detailList box'>
+          <li>{points.name}</li>
+          <li className='smlText'>{points.street_address}</li>
+        </ul> */}
+      <section className='detailHeader' >
+        <IconButton 
+          aria-label="save" 
+          onClick={handleSaveClick}
+          style={saveLoaded ? {} : {display: 'none'}}
+          className="saveIcon"
+          sx={{ padding: 0 }}
+        >
+          {savedStatus 
+          ? <FavoriteOutlinedIcon />
+          : <FavoriteBorderOutlinedIcon />
+          }
+        </IconButton>
+        <h2 className='detailh2'>{`${points.name}`}</h2>
+        </section>
+        
+          <p className='detailh3 flex'>{points.street_address}</p>
+        
+
+        <section>
+        <p className='detailDescription'>{points.description}</p>
+        </section>
+      </section>
     </>
   );
 }

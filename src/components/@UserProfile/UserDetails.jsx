@@ -2,10 +2,6 @@ import React, { useState, useEffect} from "react";
 import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 
-import Box from '@mui/material/Box';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import List from '@mui/material/List';
 import { pink } from '@mui/material/colors';
 
 import FaceIcon from '@mui/icons-material/Face';
@@ -38,7 +34,7 @@ export default function UserDetails () {
        setProfileImg(<Face4Icon fontSize="large" color="success"/>);
        break;
       case '5':
-       setProfileImg(<Face5Icon fontSize="large"color="action"/>);
+       setProfileImg(<Face5Icon fontSize="large" color="action"/>);
        break;
       case '6':
        setProfileImg(<Face6Icon fontSize="large" sx={{ color: pink[500] }} />);
@@ -47,28 +43,26 @@ export default function UserDetails () {
   }
 
   return (
-    <>
-      <section >
-        {profileImg}
-        
-        
-        <Typography variant="caption" color="text.secondary" >
-          <Link to={`/edit/profile/${user.id}`}>
-        Edit Details
+    <div className='user-details'>
+      <section className='flex-container details'>
+      <section className='userImg'>
+      {/* <h2 className='detailh2 top-left'>User Details -></h2> */}
+      {profileImg}
+        <Link to={`/edit/profile/${user.id}`}>
+          Edit Details
         </Link>
-        </Typography>
       </section>
-      <section >
-        
-          
-          <Typography variant="body2" component="section" >
-            {"Username: "}{user.username} <br/>
-            {"Email: "}{user.email}<br/>
-            {"Account Created: "}{user.account_created}<br/>
-          </Typography>
-          
-        
+      <section className='userInfo'>
+      <ul className='userInfoList'>
+        <li>
+        <h2 className='user-detail-h2'>Username:</h2> {user.username}</li>
+        <li>
+        <h2 className='user-detail-h2'>Email:</h2> {user.email}</li>
+        <li>
+        <h2 className='user-detail-h2'>Account Created:</h2> {user.account_created}</li>
+      </ul>
       </section>
-    </>
+      </section>
+    </div>
   )
 }

@@ -10,19 +10,22 @@ export default function ActiveInfo () {
     <>
       {pointDetail?.map((point) => {
         return (
+          <>
           <section 
             key={`${point.id}`} 
             id={`${point.name}`}
             longitude={`${point.longitude}`}
             latitude={`${point.latitude}`}
-            className="test">
-            <h3>{`${point.name}`}</h3>
+            className="test"
+          >
+            <h1>{`${point.name}`}</h1>
             {point.address && <sup>{`${point.street_address}`}</sup>}
             <p>{`${point.short_desc}`}</p>
             {point.id !=8 && <Link to={`/pointDetail/${point.id}`}>Read More</Link>}
           </section>
+          
+          </>
         )
-
       })}
     </>
   )
