@@ -8,9 +8,6 @@ export default function RouteDetailInfo () {
   const [routeAgency, setRouteAgency] = useState('')
   // const completedTrips = routeDetail.completed_trips;
 
-  // console.log('routeType: ', routeType)
-  // console.log('routeAgency: ', routeAgency)
-
   useEffect(() => {
     evalRouteType();
     evalAgency();
@@ -63,35 +60,27 @@ export default function RouteDetailInfo () {
   }
   
   return (
-    <section className='flex-container dashboard' >
-      <section className='route-detail-section'>
-        <h2 className='route-detail-h2'>{`${routeDetail.route_name} `}</h2>
-        { routeType && <h3 className='route-detail-h3'> // {routeAgency} {routeType}</h3>}
-        
-          
-
-      </section>
-      <section className='route-detail-section'>
-      <h4 className='smallText'>Route Description</h4>
-      <p className='route-desc'>{routeDetail.route_desc}</p>
-      <a className='route-desc' href={`${routeDetail.route_url}`}>
-      {'See schedule & cost information'}
-      </a>
+    <section className='flex-container route-detail'>
+      <section className='rd-section'>
+        <h2 className='rd-h2'>{`${routeDetail.route_name} `}</h2>
+        { routeType && 
+          <h3 className='rd-h3'> // {routeAgency} {routeType}</h3>}
       </section>
 
-      <section className='trip-start'>
-        <h2 className='route-detail-h4'>{`Begin Trip:`}</h2>
-          
-            <Link to={`/activeRoute/${routeDetail.route_id}`}>
-            {`Westbound`} 
-            </Link>
-          
-          {` // `}
-            <Link to={`/activeRoute/${routeDetail.route_id}`}>
-            {`Eastbound`} 
-            </Link>
-          
-          </section>
+      <section className='rd-section'>
+        <h4 className='smallText'>Route Description</h4>
+        <p className='rd-description'>{routeDetail.route_desc}</p>
+        <a className='rd-description' href={`${routeDetail.route_url}`}>
+          {'See schedule & cost information'}
+        </a>
+      </section>
+
+      <section className='rd-trip-start'>
+        <h2 className='rd-h4'>{`Begin Trip:`}</h2>
+        <Link to={`/activeRoute/${routeDetail.route_id}`}>{`Westbound`}</Link>
+        {` // `}
+        <Link to={`/activeRoute/${routeDetail.route_id}`}>{`Eastbound`}</Link>
+      </section>
       
       {/* Removing POI list for now, too long. */}
       {/* <ul>

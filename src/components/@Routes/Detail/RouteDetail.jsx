@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import '../Routes.css';
 import RouteDetailMap from './RouteDetailMap';
 import RouteDetailInfo from './RouteDetailInfo';
 

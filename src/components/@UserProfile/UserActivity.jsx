@@ -7,17 +7,17 @@ export default function UserActivity () {
   const savedPoints = useSelector((store) => store.savedPoints)
   
   return (
-    <section className='flex-container activity'>
+    <section className='flex-container user-activity'>
 
-      <section className='user-activity-section badges-earned'>
+      <section className='ua-section badges-earned'>
         <h2 className='top-h2'>{`Badges Earned →`}</h2>
-        <ul className='activity-list '>
+        <ul className='ua-list'>
         </ul>
       </section>
 
-      <section className='user-activity-section saved-points'>
+      <section className='ua-section saved-points'>
         <h2 className='top-h2'>{`Saved Points of Interest →`}</h2>
-        <ul className='activity-list '>
+        <ul className='ua-list'>
           {savedPoints.map((save) => {
           return (
             <li key={`save-${save.id}`}>
@@ -30,9 +30,9 @@ export default function UserActivity () {
         </ul>
       </section>
 
-      <section className='user-activity-section ride-history'>
+      <section className='ua-section ride-history'>
         <h2 className='top-h2'>{`Ride History →`}</h2>
-        <ul className='activity-list '>
+        <ul className='ua-list'>
           {userRouteHistory.map((ride) => {
           return (
             <li key={`route-${ride.route_id}`} >

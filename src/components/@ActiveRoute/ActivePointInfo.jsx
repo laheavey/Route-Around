@@ -2,6 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import './ActiveRoute.css';
+
 // Point name, small description, in route order.
 export default function ActivePointInfo () {
   const pointDetail = useSelector((store) => store.pointDetail) 

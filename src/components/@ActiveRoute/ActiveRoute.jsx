@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import mapboxgl from '!mapbox-gl';
 
+import './ActiveRoute.css';
 import ActivePointInfo from './ActivePointInfo';
 
 // Map, info component

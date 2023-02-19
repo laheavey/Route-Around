@@ -42,7 +42,7 @@ export default function DashboardPointInfo({save}) {
   }
 
   return (
-    <section key={`${save.poi_id}`} className='dash-pop-list-item'>
+    <section key={`${save.poi_id}`} className='db-list-item'>
       <IconButton aria-label="save" onClick={handleSaveClick} sx={{ padding: 1 }}>
         {savedStatus 
         ? <FavoriteOutlinedIcon fontSize='small'/>

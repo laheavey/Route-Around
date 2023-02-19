@@ -25,7 +25,7 @@ import AllPoints from '../@PointsOfInterest/AllPoints';
 import RouteDetail from '../@Routes/Detail/RouteDetail';
 import PointDetail from '../@PointsOfInterest/PointDetail';
 import UserProfile from '../@UserProfile/UserProfile'
-import UserEdit from '../@UserProfile/UserEdit';
+import UserEdit from '../@UserProfile/UserEdit/UserEdit';
 import ActiveRoute from '../@ActiveRoute/ActiveRoute';
 
 import './App.css';

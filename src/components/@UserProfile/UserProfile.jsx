@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import './User.css';
 import UserActivity from './UserActivity';
 import UserDetails from './UserDetails'
 

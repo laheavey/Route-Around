@@ -82,9 +82,9 @@ export default function UserEditDetails () {
   }
 
   return (
-    <section className='flex-container activity'>
+    <section className='flex-container user-activity'>
             
-      <section className='user-edit-section'>
+      <section className='ue-section'>
       <FormControl>
       <FormGroup>
       <h2 className='top-h2'>{`Update Email Address →`}</h2>
@@ -114,7 +114,7 @@ export default function UserEditDetails () {
       </FormControl>
       </section>
 
-      <section className='user-edit-section'>
+      <section className='ue-section'>
       <FormControl>
       <FormGroup>
       <h2 className='top-h2'>{`Update Profile Image →`}</h2>

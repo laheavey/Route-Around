@@ -42,30 +42,30 @@ export default function UserDetails () {
   }
 
   return (
-    <section className='flex-container details'>
+    <section className='flex-container user-details'>
 
-      <section className='userImg'>
+      <section className='user-img'>
         <h2 className='top-h2'>{`User Detail →`}</h2>
-        <div className='userImgEdit'>
+        <div className='user-img-edit'>
           {profileImg}
-          <Link to={`/edit/profile/${user.id}`} className='smallLink'>
+          <Link to={`/edit/profile/${user.id}`} >
             Edit Details
           </Link>
         </div>
       </section>
 
-      <section className='userInfo'>
-        <ul className='userInfoList'>
+      <section className='user-info'>
+        <ul className='ud-list'>
           <li>
-            <h2 className='user-detail-h2'>Username:</h2> 
+            <h2 className='ud-h2'>Username:</h2> 
             {user.username}
           </li>
           <li>
-            <h2 className='user-detail-h2'>Email:</h2> 
+            <h2 className='ud-h2'>Email:</h2> 
             {user.email}
           </li>
           <li>
-            <h2 className='user-detail-h2'>Account Created:</h2> 
+            <h2 className='ud-h2'>Account Created:</h2> 
             {user.account_created}
           </li>
       </ul>

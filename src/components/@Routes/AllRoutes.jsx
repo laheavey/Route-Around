@@ -1,8 +1,9 @@
 import React, { useEffect, useRef} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-
 import mapboxgl from '!mapbox-gl';
+
+import './Routes.css';
 
 export default function AllRoutes() {
   const dispatch = useDispatch();
@@ -25,10 +26,10 @@ export default function AllRoutes() {
   return (
     <>
     <div id='map' ref={mapContainer} style={{width: '100%', height: '300px'}}></div>
-    <section className='flex-container dashboard' >
-      <section className='dash-pop'>
+    <section className='flex-container route-detail' >
+      <section className='ar-section'>
       <h2 className='top-h2'>{`All Routes →`}</h2>
-      <ul className='all-route-list'>
+      <ul className='ar-list'>
       {allRoutes.map((route) => (
         <li>
           <Link to={`/routeDetail/${route.id}`} key={`${route.id}`}>

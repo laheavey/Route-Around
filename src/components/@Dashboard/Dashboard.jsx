@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import './Dashboard.css';
 import DashboardMap from './DashboardMap.jsx';
 import DashboardPointInfo from './DashboardPointInfo.jsx';
 
@@ -21,9 +22,9 @@ export default function Dashboard() {
       <DashboardMap />
 
       <section className='flex-container dashboard' >
-      <section className='dash-pop'>
+      <section className='db-section'>
         <h2 className='top-h2'>{`Popular Routes →`}</h2>
-        <ul className='dash-pop-list'>
+        <ul className='db-list'>
         {popRoutes.map((route) => {
           return (
             <Link to={`/routeDetail/${route.route_id}`} key={`${route.route_id}`} >
@@ -36,9 +37,9 @@ export default function Dashboard() {
         )}
         </ul>
       </section>
-      <section className='dash-pop'>
+      <section className='db-section'>
         <h2 className='top-h2'>{`Saved Points of Interest →`}</h2>
-        <ul className='dash-pop-list list-icon'>
+        <ul className='db-list list-icon'>
         {savedPoints?.map((save) => {
           return (
           <DashboardPointInfo save={save} key={save.poi_id} />

@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import './Points.css';
+
 import mapboxgl from '!mapbox-gl';
 mapboxgl.accessToken = 'pk.eyJ1IjoibGFoZWF2ZXkiLCJhIjoiY2xkczZ5MzlsMDJhNTNwbWx6Nnk1bm1hNyJ9.7_Y-O03vhnebg8xOsSN0GQ';
 
@@ -41,10 +43,10 @@ export default function AllPoints() {
   return (
     <>
       <div id='map' ref={mapContainer} style={dataLoaded ? {width: '100%', height: '300px'} : {display: 'none'}}></div>
-      <section className='flex-container dashboard' >
-        <section className='dash-pop'>
+      <section className='flex-container all-points' >
+        <section className='ap-section'>
         <h2 className='top-h2'>{`All Points of Interest →`}</h2>
-        <ul className='all-point-list'>
+        <ul className='ap-list'>
         {allPoints.map((point) => {
           return (
             <li>

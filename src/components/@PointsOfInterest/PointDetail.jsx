@@ -1,7 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import mapboxgl from '!mapbox-gl';
 import { useParams } from 'react-router-dom';
+import mapboxgl from '!mapbox-gl';
+
+import './Points.css';
 
 import { IconButton } from '@mui/material';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
@@ -92,13 +94,12 @@ export default function PointDetail() {
     <>
       <div id='map' ref={mapContainer} style={dataLoaded ? {width: '100%', height: '300px'} : {display: 'none'}}></div>
       <section id="features" >
-        <img alt={`${points.name}`} src={`${points.image_url}`} className='detailImg box'/>
-        <section className='detailHeader'>
+        <img alt={`${points.name}`} src={`${points.image_url}`} className='box pd-img'/>
+        <section className='pd-header'>
           <IconButton 
             aria-label="save" 
             onClick={handleSaveClick}
             style={saveLoaded ? {} : {display: 'none'}}
-            className="saveIcon"
             sx={{ padding: 0 }}
           >
             {savedStatus 
@@ -106,11 +107,11 @@ export default function PointDetail() {
             : <FavoriteBorderOutlinedIcon />
             }
           </IconButton>
-          <h2 className='detailh2'>{`${points.name}`}</h2>
+          <h2 className='pd-h2'>{`${points.name}`}</h2>
         </section> 
-        <p className='detailh3 flex'>{points.street_address}</p>
+        <p className='pd-h3'>{points.street_address}</p>
         <section>
-          <p className='detailDescription'>{points.description}</p>
+          <p className='pd-description'>{points.description}</p>
         </section>
       </section>
       <div className='grad'></div>
