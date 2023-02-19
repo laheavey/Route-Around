@@ -5,7 +5,7 @@ import mapboxgl from '!mapbox-gl';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoibGFoZWF2ZXkiLCJhIjoiY2xkczZ5MzlsMDJhNTNwbWx6Nnk1bm1hNyJ9.7_Y-O03vhnebg8xOsSN0GQ';
 
-export default function MapDetail () {
+export default function RouteDetailMap () {
   const [dataLoaded, setDataLoaded] = useState(false);
   const lineCoordinates = useSelector((store) => store.line);
   const mapContainer = useRef(null);

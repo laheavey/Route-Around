@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import mapboxgl from '!mapbox-gl';
 
-import ActiveInfo from './ActiveInfo';
+import ActivePointInfo from './ActivePointInfo';
 
 // Map, info component
-export default function RouteDetail() {
+export default function ActiveRoute() {
   let lng;
   let lat;
 
@@ -123,10 +123,10 @@ export default function RouteDetail() {
 
   return (
     <>
-    <div id="map" ref={mapContainer} style={dataLoaded ? {width: '100%', height: '300px'} : {display: 'none'}}></div>
-    <section id='features' ref={ref}>
-      <ActiveInfo />
-    </section>
+      <div id="map" ref={mapContainer} style={dataLoaded ? {width: '100%', height: '300px'} : {display: 'none'}}></div>
+      <section id='features' ref={ref}>
+        <ActivePointInfo />
+      </section>
     </>
     
   );

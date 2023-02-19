@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 
 import { pink } from '@mui/material/colors';
-
 import FaceIcon from '@mui/icons-material/Face';
 import Face2Icon from '@mui/icons-material/Face2';
 import Face3Icon from '@mui/icons-material/Face3';
@@ -43,26 +42,35 @@ export default function UserDetails () {
   }
 
   return (
-    <div className='user-details'>
-      <section className='flex-container details'>
+    <section className='flex-container details'>
+
       <section className='userImg'>
-      {/* <h2 className='detailh2 top-left'>User Details -></h2> */}
-      {profileImg}
-        <Link to={`/edit/profile/${user.id}`}>
-          Edit Details
-        </Link>
+        <h2 className='top-h2'>{`User Detail →`}</h2>
+        <div className='userImgEdit'>
+          {profileImg}
+          <Link to={`/edit/profile/${user.id}`} className='smallLink'>
+            Edit Details
+          </Link>
+        </div>
       </section>
+
       <section className='userInfo'>
-      <ul className='userInfoList'>
-        <li>
-        <h2 className='user-detail-h2'>Username:</h2> {user.username}</li>
-        <li>
-        <h2 className='user-detail-h2'>Email:</h2> {user.email}</li>
-        <li>
-        <h2 className='user-detail-h2'>Account Created:</h2> {user.account_created}</li>
+        <ul className='userInfoList'>
+          <li>
+            <h2 className='user-detail-h2'>Username:</h2> 
+            {user.username}
+          </li>
+          <li>
+            <h2 className='user-detail-h2'>Email:</h2> 
+            {user.email}
+          </li>
+          <li>
+            <h2 className='user-detail-h2'>Account Created:</h2> 
+            {user.account_created}
+          </li>
       </ul>
       </section>
-      </section>
-    </div>
+      
+    </section>
   )
 }

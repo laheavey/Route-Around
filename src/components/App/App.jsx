@@ -20,10 +20,10 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Dashboard from '../@Dashboard/Dashboard';
-import AllRoutes from '../@Routes/AllRoutes/AllRoutes';
-import AllPoints from '../@PointsOfInterest/AllPoints/AllPoints';
+import AllRoutes from '../@Routes/AllRoutes';
+import AllPoints from '../@PointsOfInterest/AllPoints';
 import RouteDetail from '../@Routes/Detail/RouteDetail';
-import PointDetail from '../@PointsOfInterest/Detail/PointDetail';
+import PointDetail from '../@PointsOfInterest/PointDetail';
 import UserProfile from '../@UserProfile/UserProfile'
 import UserEdit from '../@UserProfile/UserEdit';
 import ActiveRoute from '../@ActiveRoute/ActiveRoute';

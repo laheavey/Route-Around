@@ -56,7 +56,6 @@ export default function PointDetail() {
       }
       return () => map.remove();
     });
-
   },[dataLoaded, saveLoaded])
 
   const savePoint = () => {
@@ -64,7 +63,7 @@ export default function PointDetail() {
       user_id: user.id,
       poi_id: id
     }
-    console.log('ADD Point Clicked: ', newPointSave);
+    // console.log('ADD Point Clicked: ', newPointSave);
     dispatch({ type: 'ADD_POI_SAVE', payload: newPointSave })
     setSavedStatus(true);
   }
@@ -74,7 +73,7 @@ export default function PointDetail() {
       user_id: user.id,
       poi_id: id
     }
-    console.log('DELETE Point Clicked: ', pointClicked);
+    // console.log('DELETE Point Clicked: ', pointClicked);
     dispatch({ type: 'DELETE_SAVED_POI', payload: pointClicked })
     setSavedStatus(false);
   }
@@ -82,10 +81,10 @@ export default function PointDetail() {
   const handleSaveClick = () => {
     if (savedStatus){
       unsavePoint();
-      console.log('Unsaved!')
+      // console.log('Unsaved!')
     } else {
       savePoint();
-      console.log('Saved!')
+      // console.log('Saved!')
     }
   }
 
@@ -93,43 +92,25 @@ export default function PointDetail() {
     <>
       <div id='map' ref={mapContainer} style={dataLoaded ? {width: '100%', height: '300px'} : {display: 'none'}}></div>
       <section id="features" >
-      <p className='detailh3'>{`Point Detail → `}</p>
-        
-        
-
-        <img
-          alt={`${points.name}`} 
-          src={`${points.image_url}`}
-          className='detailImg box'
-        />
-        {/* <section className='box'> */}
-
-        {/* </section> */}
-        {/* <ul className='detailList box'>
-          <li>{points.name}</li>
-          <li className='smlText'>{points.street_address}</li>
-        </ul> */}
-      <section className='detailHeader' >
-        <IconButton 
-          aria-label="save" 
-          onClick={handleSaveClick}
-          style={saveLoaded ? {} : {display: 'none'}}
-          className="saveIcon"
-          sx={{ padding: 0 }}
-        >
-          {savedStatus 
-          ? <FavoriteOutlinedIcon />
-          : <FavoriteBorderOutlinedIcon />
-          }
-        </IconButton>
-        <h2 className='detailh2'>{`${points.name}`}</h2>
-        </section>
-        
-          <p className='detailh3 flex'>{points.street_address}</p>
-        
-
+        <img alt={`${points.name}`} src={`${points.image_url}`} className='detailImg box'/>
+        <section className='detailHeader'>
+          <IconButton 
+            aria-label="save" 
+            onClick={handleSaveClick}
+            style={saveLoaded ? {} : {display: 'none'}}
+            className="saveIcon"
+            sx={{ padding: 0 }}
+          >
+            {savedStatus 
+            ? <FavoriteOutlinedIcon />
+            : <FavoriteBorderOutlinedIcon />
+            }
+          </IconButton>
+          <h2 className='detailh2'>{`${points.name}`}</h2>
+        </section> 
+        <p className='detailh3 flex'>{points.street_address}</p>
         <section>
-        <p className='detailDescription'>{points.description}</p>
+          <p className='detailDescription'>{points.description}</p>
         </section>
       </section>
     </>

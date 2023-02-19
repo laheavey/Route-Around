@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import RouteMap from './RouteMap';
-import RouteInfo from './RouteInfo';
+import RouteDetailMap from './RouteDetailMap';
+import RouteDetailInfo from './RouteDetailInfo';
 
 export default function RouteDetail() {
   const dispatch = useDispatch();
@@ -15,8 +15,8 @@ export default function RouteDetail() {
 
   return (
     <>
-    <RouteMap  />
-    <RouteInfo />
+    <RouteDetailMap  />
+    <RouteDetailInfo />
     </>
   );
 }

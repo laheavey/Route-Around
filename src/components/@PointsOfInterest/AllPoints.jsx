@@ -29,7 +29,6 @@ export default function AllPoints() {
           .setLngLat([point.longitude, point.latitude])
           .addTo(map)
           .setPopup(popup)
-        
       })
 
       map.on('load', () => {
@@ -40,17 +39,19 @@ export default function AllPoints() {
   // List of all points
   return (
     <>
-    <div id='map' ref={mapContainer} style={dataLoaded ? {width: '100%', height: '300px'} : {display: 'none'}}></div>
-    <section id='features' >
-      <h1>{`All Points of Interest →`}</h1>
-      {allPoints.map((point) => (
-        <li>
-          <Link to={`/pointDetail/${point.id}`} key={`${point.id}`}>
-            {`${point.name}`}
-          </Link>
-        </li>
-      ))}
-    </section>
+      <div id='map' ref={mapContainer} style={dataLoaded ? {width: '100%', height: '300px'} : {display: 'none'}}></div>
+      <section id='features' >
+        <h1>{`All Points of Interest →`}</h1>
+        {allPoints.map((point) => {
+          return (
+            <li>
+              <Link to={`/pointDetail/${point.id}`} key={`${point.id}`}>
+                {`${point.name}`}
+              </Link>
+            </li>
+          )
+        })}
+      </section>
     </>
   );
 }

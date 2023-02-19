@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-export default function RouteInfo () {
+export default function RouteDetailInfo () {
   const routeDetail = useSelector((store) => store.routeDetail) 
   const completedTrips = routeDetail.completed_trips;
 

@@ -5,7 +5,7 @@
   height: 35px;
   /* margin: 0 0 30px; */
   background-color: white;
-  opacity: 75%;
+  opacity: 85%;
   position: fixed;
   top: 0;
   align-items: center;
@@ -32,8 +32,9 @@
 
 .navBarTitle {
   display: inline-block;
-  font-size: 0.75em;
-  padding-top: 0.75em;
+  font-size: 0.7em;
+  font-weight: normal;
+  padding-top: 1em;
   padding-bottom: 0.75em;
   padding-left: 0.75em;
 }
@@ -54,8 +55,8 @@
   /* padding: 10px; */
   padding-top: 0.75em;
   padding-bottom: 0.75em;
-  padding-left: 0.75em;
-  padding-right: 0em;
+  padding-left: 1em;
+  padding-right: 0.75em;
   font-size: .75em;
   border: none;
   /* height: 35px; */

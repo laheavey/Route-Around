@@ -142,57 +142,101 @@ Sections
 
 .flex-container {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
 
+}
+
+.userImgEdit {
+  display: inline-flex;
+  flex-flow: column wrap;
+  padding: 1em 0em;
+  /* margin-top: 1.2em;
+  margin-left: 1em; */
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  /* justify-content: center; */
 }
 
 .details {
   flex-flow: row wrap;
   margin-top: 5em;
+  height: 10.5em;
+}
+
+.dashboard {
+  overflow-y: scroll;
+  /* display: block; */
+  max-width: 375px;
+  width: 375px;
+  position: absolute;
+  top: 335px;
+  height: 330px;
+  background-color: #fafafa;
+  flex-flow: column;
 }
 
 .activity {
   flex-flow: column wrap;
-  margin-top: 2em;
+  margin-top: 1em;
 }
 
 .flex-container > section {
-  /* display: flex; */
   background-color: #fafafa;
   color: black;
-  font-size: 0.75em;
-  opacity: 90%;
-  align-items: center;
+  font-size: 1em;
+  opacity: 100%;
+  /* align-items: center; */
 }
 
 .userImg {
   display: flex;
   flex-flow: column wrap;
-  width: 25%;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
+  width: 35%;
+  height: inherit;
+  /* align-items: center; */
+  /* align-content: center; */
+  /* justify-content: center; */
   /* text-align: center; */
-  height: 15em;
+  /* height: auto; */
 }
 
-.user-activity-section {
+.user-activity-section, .dash-pop {
   display:block;
-  width: 80%;
-  margin: 0.5em;
+  width: 100%;
+  margin-bottom: 1em;
 }
 
 .userInfo {
   display: flex;
-  width: 55%;
-  height: 15em;
+  width: 65%;
+  height: inherit;
+  /* justify-content: center; */
+  align-items: center;
+  /* opacity: 100%; */
 }
 
-/* .userInfoList, .activity-list {
-  list-style-type: none;
+.dash-pop-list {
 
-} */
+  margin: 0em;
+  column-count: 2;
+
+}
+
+.list-icon {
+  list-style-type: none;
+  padding-left: 1em;
+}
+
+.dash-pop-list-item {
+  /* list-style-type: none; */
+  display: flex;
+  align-items: flex-start;
+  /* justify-content: space-around; */
+  width: 100%;
+  /* margin: 0.2em; */
+}
 
 .activity-list {
   padding-left: 4em;
@@ -201,26 +245,32 @@ Sections
 }
 
 .userInfoList {
-  padding: 0em;
+  padding-left: 1em;
+  padding-top: 3.5em;
+  padding-bottom: 1em;
+  margin: 0em;
   list-style-type: none;
 }
 
 .top-h2 {
   display: block;
   font-size: 1em;
-  /* padding: 0.5em; */
-  padding-left: 2em;
+  padding-left: 1.75em;
   padding-right: 0.5em;
   padding-top: 1em;
+  padding-bottom: 0.5em;
   margin: 0em;
+  white-space: nowrap;
+  z-index: 2;
 }
 
 .user-detail-h2 {
   display: inline-block;
+  font-size: 1em;
 }
 
 .detailh2, .user-detail-h2 {
-  font-size: 1em;
+  /* font-size: 1.2em; */
   /* padding-top: 1em; */
   padding-left: 0.5em;
   padding-right: 0.5em;
@@ -286,10 +336,10 @@ Fonts & Text
 .detailh3 {
   font-size: 0.75em;
   padding: 0.75em;
-  font-weight: normal;
-  /* padding-top: 0.75em;
-  padding-left: 0.75em;
-  padding-right: 0.75em; */
+  font-weight: light;
+  padding-top: 0.75em;
+  padding-left: 1em;
+  padding-right: 0.75em;
   display: flex;
   margin: 0em;
 }
@@ -298,12 +348,24 @@ Fonts & Text
   box-sizing: border-box;
 }
 
+.ride-history, .saved-points {
+  overflow-y: scroll;
+  height: 10em;
+
+}
+
+.badges-earned {
+  overflow-x: scroll;
+  height: 8em;
+}
+
+
 .detailHeader {
   text-align: center;
   display: flex;
   justify-content: space-around;
   padding-right: 0.75em;
-  padding-top: 0.75em;
+  padding-top: 2em;
   margin-top: 0em;
   margin-right: 0em;
 
@@ -311,11 +373,11 @@ Fonts & Text
 
 .detailImg {
   width: 40%;
-  padding-left: 1em;
+  padding-left: 0.75em;
   padding-right: 1.5em;
-  padding-top: 0.5em;
+  padding-top: 2em;
   padding-bottom: 0.5em;
-  float: left;
+  float: right;
 }
 
 .detailh2 {
