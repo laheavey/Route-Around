@@ -9,11 +9,11 @@ export default function UserActivity () {
   return (
     <section className='flex-container user-activity'>
 
-      <section className='ua-section badges-earned'>
+      {/* <section className='ua-section badges-earned'>
         <h2 className='top-h2'>{`Badges Earned →`}</h2>
         <ul className='ua-list'>
         </ul>
-      </section>
+      </section> */}
 
       <section className='ua-section saved-points'>
         <h2 className='top-h2'>{`Saved Points of Interest →`}</h2>

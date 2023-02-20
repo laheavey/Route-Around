@@ -6,6 +6,7 @@ import './Nav.css';
 
 export default function Nav() {
   let pathname;
+  
   const params = useParams();
   const location = useLocation();
   const user = useSelector((store) => store.user);
@@ -26,25 +27,25 @@ export default function Nav() {
     pathname = location.pathname;
     switch(pathname) {
       case '/allRoutes':
-        pathname = 'Route Around > All Routes';
+        pathname = 'All Routes';
         return pathname;
       case `/activeRoute`:
-        pathname = 'Route Around > Active Route';
+        pathname = 'Active Route';
         return pathname;
       case '/dashboard':
-        pathname = 'Route Around > Dashboard';
+        pathname = 'Dashboard';
         return pathname;
       case '/allPoints':
-        pathname = 'Route Around > All Points';
+        pathname = 'All Points';
         return pathname;
       case `/profile/${user.id}`:
-        pathname = 'Route Around > User Profile';
+        pathname = 'User Profile';
         return pathname;
       case `/routeDetail/${params.id}`:
-        pathname = `Route Around > Route Detail`;
+        pathname = `Route Detail`;
         return pathname;
       case `/pointDetail/${params.id}`:
-        pathname = `Route Around > Point Detail`;
+        pathname = `Point Detail`;
         return pathname;
       default:
         pathname = 'Route Around';
@@ -63,14 +64,16 @@ export default function Nav() {
             {/* If a user is logged in, show these links */}
             {user.id && (
             <>
+              <Link className="navLink" to={`/about`}>About This App</Link>
               <Link className="navLink" to={`/`}>Dashboard</Link><br/>
               <Link className="navLink" to={`/profile/${user.id}`}>Profile</Link><br/>
               <Link className="navLink" to={`/allPoints`}>All Points</Link><br/>
-              <Link className="navLink" to={`/allRoutes`}>All Routes</Link><br/>
+              <Link className="navLink" to={`/allRoutes`}>All Routes</Link><br/><br/>
               <button className="navLink" onClick={() => dispatch({ type: 'LOGOUT' })}>Logout</button><br/>
             </>
           )}
-          <a className="navLink" to="/about">About This App</a>
+          
+          
         </div>
       </div>
       <div className="navBarTitle">{handleNavBarTitle()}</div>

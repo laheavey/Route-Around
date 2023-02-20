@@ -1,12 +1,12 @@
 .user-details {
   flex-flow: row wrap;
-  margin-top: 3.5em;
+  margin-top: 6em;
   height: 10.5em;
 }
 
 .user-img {
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: column nowrap;
   width: 35%;
   height: inherit;
 }
@@ -14,7 +14,7 @@
 .user-img-edit {
   display: inline-flex;
   flex-flow: column wrap;
-  padding: 1em 0em;
+  padding: 0.5em 0em;
   text-align: center;
   align-items: center;
   align-content: center;
@@ -29,7 +29,7 @@
 
 .ud-list {
   padding-left: 1em;
-  padding-top: 3.5em;
+  padding-top: 2.5em;
   padding-bottom: 1em;
   margin: 0em;
   list-style-type: none;
@@ -66,7 +66,7 @@
 }
 
 .ua-list {
-  padding-left: 4em;
+  /* padding-left: 4em; */
   padding-bottom: 1em;
   margin: 0em;
   column-count: 2;

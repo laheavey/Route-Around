@@ -19,10 +19,7 @@
   column-count: 2;
 }
 
-.list-icon {
-  list-style-type: none;
-  padding-left: 1em;
-}
+
 
 .db-list-item {
   flex-wrap: nowrap;

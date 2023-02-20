@@ -123,45 +123,51 @@ export default function UserEditDetails () {
             row
             value={userEdit.profile_img || ''}
             name="row-radio-buttons-group"
-            sx={{alignItems:"center", justifyContent: "space-around"}}
+            sx={{alignItems:"center", justifyContent: "space-around", alignContent: 'center'}}
             onChange={handleImgChange}
           ><Box>
             <FormControlLabel 
               value="1" 
-              control={<Radio size="small" sx={{ paddingTop: 0 }}/>} 
-              label={<FaceIcon fontSize="large" color="warning" sx={{ lineHeight: 1 }}/>}
+              control={<Radio size="small" sx={{ paddingTop: 0,marginLeft: 0 }}/>} 
+              label={<FaceIcon fontSize="large" color="warning" sx={{ marginLeft: 0 }}/>}
               labelPlacement="top"
-              sx={{ lineHeight: 1 }}
+
             />
             <FormControlLabel 
               value="2" 
               control={<Radio size="small" sx={{ paddingTop: 0 }}/>} 
               label={<Face2Icon fontSize="large" color="primary"/>}
               labelPlacement="top"
+              sx={{ marginLeft: 0 }}
             />
             <FormControlLabel 
               value="3" 
               control={<Radio size="small" sx={{ paddingTop: 0 }}/>} 
               label={<Face3Icon fontSize="large" color="secondary"/>}
               labelPlacement="top"
-            /></Box><Box>
+              sx={{ marginLeft: 0 }}
+            />
+            {/* </Box><Box> */}
             <FormControlLabel 
               value="4" 
               control={<Radio size="small" sx={{ paddingTop: 0 }}/>} 
               label={<Face4Icon fontSize="large" color="success"/>}
               labelPlacement="top"
+              sx={{ marginLeft: 0 }}
             />
             <FormControlLabel 
               value="5" 
               control={<Radio size="small" sx={{ paddingTop: 0 }}/>} 
               label={<Face5Icon fontSize="large"color="action"/>}
               labelPlacement="top"
+              sx={{ marginLeft: 0 }}
             />
             <FormControlLabel 
               value="6" 
               control={<Radio size="small" sx={{ paddingTop: 0 }}/>} 
               label={<Face6Icon fontSize="large" sx={{ color: pink[500] }} />}
               labelPlacement="top"
+              sx={{ marginLeft: 0 }}
             /></Box>
           </RadioGroup>
         </CardContent>

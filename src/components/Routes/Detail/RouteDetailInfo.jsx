@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 export default function RouteDetailInfo () {
+  const [dataLoaded, setDataLoaded] = useState(false);
   const routeDetail = useSelector((store) => store.routeDetail) 
   const [routeType, setRouteType] = useState('')
   const [routeAgency, setRouteAgency] = useState('')
@@ -11,7 +12,7 @@ export default function RouteDetailInfo () {
   useEffect(() => {
     evalRouteType();
     evalAgency();
-  },[routeType])
+  },[dataLoaded])
 
   const evalRouteType = () => {
     switch (routeDetail.route_type) {
@@ -57,6 +58,7 @@ export default function RouteDetailInfo () {
         setRouteAgency('Northstar Link');
         break;
     }
+    setDataLoaded(true);
   }
   
   return (
