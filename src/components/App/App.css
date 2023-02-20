@@ -91,6 +91,12 @@ Button
   color: #008183;
 }
 
+.btn-center {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
 /* --------------------------------------------------------------------------------
 Alert
 -------------------------------------------------------------------------------- */
@@ -111,14 +117,19 @@ Form Treatment
 -------------------------------------------------------------------------------- */
 
 .formPanel {
+  display: flex;
   box-sizing: border-box;
-  width: 400px;
-  max-width: 100%;
+  width: 80%;
+  /* max-width: 100%; */
   padding: 25px;
   margin: 0 auto 20px;
-  background-color: white;
-  border-radius: 3px;
-  box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
+  background-color: #fafafa;
+  margin-top: 3.5em;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  /* border-radius: 3px; */
+  /* box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4); */
 }
 
 input {
@@ -191,16 +202,27 @@ margin-bottom: 200px;
 Fonts & Text
 -------------------------------------------------------------------------------- */
 
-.top-h2 {
+.top-h2, .login-h1 {
   display: block;
   font-size: 1em;
+  margin: 0em;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.top-h2 {
   padding-left: 1.75em;
   padding-right: 0.5em;
   padding-top: 1em;
   padding-bottom: 0.5em;
+}
+
+.form-small-text {
+  font-size: 0.75em;
+  font-weight: lighter;
+  color: #444;
   margin: 0em;
-  white-space: nowrap;
-  z-index: 2;
+  padding-bottom: 4em;
 }
 
 .smallText {
@@ -210,4 +232,9 @@ Fonts & Text
   padding-left: 2em;
   margin: 0em;
   line-height: 80%;
+}
+
+.login-header {
+  display:block;
+  text-align: center;
 }

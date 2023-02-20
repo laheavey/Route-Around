@@ -20,35 +20,32 @@ export default function Dashboard() {
   return (
     <>
       <DashboardMap />
-
       <section className='flex-container dashboard' >
-      <section className='db-section'>
-        <h2 className='top-h2'>{`Popular Routes →`}</h2>
-        <ul className='db-list'>
-        {popRoutes.map((route) => {
-          return (
-            <Link to={`/routeDetail/${route.route_id}`} key={`${route.route_id}`} >
-              <li>{route.route_name}</li>
-            </Link>
-          )
-        }
+        <section className='db-section'>
+          <h2 className='top-h2'>{`Popular Routes →`}</h2>
+          <ul className='db-list'>
+          {popRoutes.map((route) => {
+            return (
+              <Link to={`/routeDetail/${route.route_id}`} key={`${route.route_id}`} >
+                <li>{route.route_name}</li>
+              </Link>
+            )
+          })}
+          </ul>
+        </section>
         
-        
-        )}
-        </ul>
+        <section className='db-section'>
+          <h2 className='top-h2'>{`Saved Points of Interest →`}</h2>
+          <ul className='db-list list-icon'>
+          {savedPoints?.map((save) => {
+            return (
+            <DashboardPointInfo save={save} key={save.poi_id} />
+            )
+          })}
+          </ul>
+        </section>
       </section>
-      <section className='db-section'>
-        <h2 className='top-h2'>{`Saved Points of Interest →`}</h2>
-        <ul className='db-list list-icon'>
-        {savedPoints?.map((save) => {
-          return (
-          <DashboardPointInfo save={save} key={save.poi_id} />
-          )
-        })}
-        </ul>
-      </section>
-    </section>
-    <div className='grad'></div>
+      <div className='grad'></div>
     </>
   )
 };
