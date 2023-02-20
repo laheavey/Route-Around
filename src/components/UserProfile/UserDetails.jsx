@@ -66,7 +66,7 @@ export default function UserDetails () {
           </li>
           <li>
             <h2 className='ud-h2'>Account Created:</h2> 
-            {user.account_created}
+            {/* {user.account_created} */}{`02/05/2023`}
           </li>
       </ul>
       </section>
