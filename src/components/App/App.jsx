@@ -14,14 +14,14 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AboutPage from '../AboutPage/AboutPage';
 import LoginPage from '../UserLogin/LoginPage';
 import RegistrationPage from '../UserLogin/RegistrationPage';
-import Dashboard from '../@Dashboard/Dashboard';
-import AllRoutes from '../@Routes/AllRoutes';
-import AllPoints from '../@PointsOfInterest/AllPoints';
-import RouteDetail from '../@Routes/Detail/RouteDetail';
-import PointDetail from '../@PointsOfInterest/PointDetail';
-import UserProfile from '../@UserProfile/UserProfile'
-import UserEdit from '../@UserProfile/UserEdit/UserEdit';
-import ActiveRoute from '../@ActiveRoute/ActiveRoute';
+import Dashboard from '../Dashboard/Dashboard';
+import AllRoutes from '../Routes/AllRoutes';
+import AllPoints from '../PointsOfInterest/AllPoints';
+import RouteDetail from '../Routes/Detail/RouteDetail';
+import PointDetail from '../PointsOfInterest/PointDetail';
+import UserProfile from '../UserProfile/UserProfile'
+import UserEdit from '../UserProfile/UserEdit/UserEdit';
+import ActiveRoute from '../ActiveRoute/ActiveRoute';
 
 import './App.css';
 
