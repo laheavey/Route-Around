@@ -109,6 +109,7 @@ router.get('/saved', rejectUnauthenticated, (req,res) => {
   // console.log('Req.user.id: ', req.user.id)
   const sqlQuery = `
   SELECT 
+    "poi_saves"."id",
     "poi_saves"."user_id",
     "poi_saves"."poi_id",
     "poi_details"."name"

@@ -1,0 +1,76 @@
+.route-detail {
+  overflow-y: scroll;
+  max-width: 375px;
+  width: 375px;
+  position: absolute;
+  top: 335px;
+  height: 332px;
+  background-color: #fafafa;
+  flex-flow: column;
+}
+
+.rd-section {
+  display:block;
+  width: 100%;
+}
+
+.rd-description {
+  padding-left: 1.7em;
+  margin: 0em;
+}
+
+.rd-trip-start {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  align-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  padding-bottom: 2em;
+}
+
+.rd-h2 {
+  display: inline-block;
+  font-size: 1em;
+  padding-left: 1.75em;
+  padding-right: 0.5em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  margin: 0em;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.rd-h3 {
+  display: inline-block;
+  font-size: 1em;
+  font-weight: normal;
+  padding-right: 0.5em;
+  padding-top: 1em;
+  padding-bottom: 0.5em;
+  margin: 0em;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.rd-h4 {
+  display: block;
+  font-size: 1em;
+  padding-top: 1em;
+  margin: 0em;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.ar-section {
+  display:block;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.ar-list {
+  margin: 0em;
+  column-count: 2;
+}

@@ -9,30 +9,24 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 
 import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
-import LandingPage from '../LandingPage/LandingPage';
-import LoginPage from '../LoginPage/LoginPage';
-import RegisterPage from '../RegisterPage/RegisterPage';
-import Dashboard from '../@Dashboard/Dashboard';
-import AllRoutes from '../@Routes/AllRoutes/AllRoutes';
-import AllPoints from '../@PointsOfInterest/AllPoints/AllPoints';
-import RouteDetail from '../@Routes/Detail/RouteDetail';
-import PointDetail from '../@PointsOfInterest/Detail/PointDetail';
-import UserProfile from '../@UserProfile/UserProfile'
-import UserEdit from '../@UserProfile/UserEdit';
-import ActiveRoute from '../@ActiveRoute/ActiveRoute';
+import LoginPage from '../UserLogin/LoginPage';
+import RegistrationPage from '../UserLogin/RegistrationPage';
+import Dashboard from '../Dashboard/Dashboard';
+import AllRoutes from '../Routes/AllRoutes';
+import AllPoints from '../PointsOfInterest/AllPoints';
+import RouteDetail from '../Routes/Detail/RouteDetail';
+import PointDetail from '../PointsOfInterest/PointDetail';
+import UserProfile from '../UserProfile/UserProfile'
+import UserEdit from '../UserProfile/UserEdit/UserEdit';
+import ActiveRoute from '../ActiveRoute/ActiveRoute';
 
 import './App.css';
 
 function App() {
   const dispatch = useDispatch();
-
   const user = useSelector(store => store.user);
 
   useEffect(() => {
@@ -42,17 +36,11 @@ function App() {
   return (
     <Router>
       <div>
-        
         <Switch>
-          {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
+
           <Redirect exact from="/" to="/home" />
 
-          {/* Visiting localhost:3000/about will show the about page. */}
-          <Route
-            // shows AboutPage at all times (logged in or not)
-            exact
-            path="/about"
-          >
+          <Route exact path="/about">
             <AboutPage />
           </Route>
 
@@ -60,137 +48,73 @@ function App() {
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
-          <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
-            exact
-            path="/dashboard"
-          >
+          <ProtectedRoute exact path="/dashboard">
             <Nav />
             <Dashboard />
           </ProtectedRoute>
 
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/info"
-          >
-            <Nav />
-            <InfoPage />
-          </ProtectedRoute>
-
-          <ProtectedRoute
-            // logged in shows AllRoutes else shows LoginPage
-            exact
-            path="/allRoutes"
-          >
+          <ProtectedRoute exact path="/allRoutes">
             <Nav />
             <AllRoutes />
           </ProtectedRoute>
 
-          <ProtectedRoute
-            // logged in shows AllPoints else shows LoginPage
-            exact
-            path="/allPoints"
-          >
+          <ProtectedRoute exact path="/allPoints">
             <Nav />
             <AllPoints />
           </ProtectedRoute>
 
-          <ProtectedRoute
-            // logged in shows RouteDetail else shows LoginPage
-            exact
-            path="/routeDetail/:id"
-          >
+          <ProtectedRoute exact path="/routeDetail/:id">
             <Nav />
             <RouteDetail />
           </ProtectedRoute>
 
-          <ProtectedRoute
-            // logged in shows PointDetail else shows LoginPage
-            exact
-            path="/pointDetail/:id"
-          >
+          <ProtectedRoute exact path="/pointDetail/:id">
             <Nav />
-          <PointDetail />
+            <PointDetail />
           </ProtectedRoute>
 
-          <ProtectedRoute
-            // logged in shows PointDetail else shows LoginPage
-            exact
-            path="/profile/:id"
-          >
+          <ProtectedRoute exact path="/profile/:id">
             <Nav />
-          <UserProfile />
+            <UserProfile />
           </ProtectedRoute>
 
-          <ProtectedRoute
-            // logged in shows PointDetail else shows LoginPage
-            exact
-            path="/activeRoute/:id"
-          >
+          <ProtectedRoute exact path="/activeRoute/:id">
             <Nav />
-          <ActiveRoute />
+            <ActiveRoute />
           </ProtectedRoute>
 
-          <ProtectedRoute
-            // logged in shows PointDetail else shows LoginPage
-            exact
-            path="/edit/profile/:id"
-          >
+          <ProtectedRoute exact path="/edit/profile/:id">
             <Nav />
-          <UserEdit />
+            <UserEdit />
           </ProtectedRoute>
 
-          <Route
-            exact
-            path="/login"
-          >
-            
-            {user.id ?
-              // If the user is already logged in, 
-              // redirect to the /user page
-              <Redirect to="/dashboard" />
-              :
-              // Otherwise, show the login page
-              <LoginPage />
+          <Route exact path="/login">
+            {user.id 
+            ? <Redirect to="/dashboard" />
+            : <LoginPage />
             }
           </Route>
 
-          <Route
-            exact
-            path="/registration"
-          >
-            {user.id ?
-              // If the user is already logged in, 
-              // redirect them to the /user page
-              <Redirect to="/dashboard" />
-              :
-              // Otherwise, show the registration page
-              <RegisterPage />
+          <Route exact path="/registration" >
+            {user.id 
+            ? <Redirect to="/dashboard" />
+            : <RegistrationPage />
             }
           </Route>
 
-          <Route
-            exact
-            path="/home"
-          >
-            {user.id ?
-              // If the user is already logged in, 
-              // redirect them to the /user page
-              <Redirect to="/dashboard" />
-              :
-              // Otherwise, show the Landing page
-              <LandingPage />
+          <Route exact path="/home">
+            {user.id 
+            ? <Redirect to="/dashboard" />
+            : <Redirect to="/login" />
             }
           </Route>
 
-          {/* If none of the other routes matched, we will show a 404. */}
           <Route>
             <h1>404</h1>
           </Route>
+
         </Switch>
       </div>
-      
     </Router>
   );
 }

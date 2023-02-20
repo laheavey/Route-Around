@@ -13,7 +13,8 @@ const userStrategy = require('../strategies/user.strategy');
   // console.log('req.body:', req.body);
   const sqlQuery =`
     SELECT "id", "route_name", "route_desc"
-    FROM "gtfs_routes"`
+    FROM "gtfs_routes"
+    ORDER BY "route_name" ASC;`
   pool.query(sqlQuery)
   .then((results) => {
     res.send(results.rows)
@@ -50,7 +51,7 @@ const userStrategy = require('../strategies/user.strategy');
 
  /** ---------- GET ROUTE DETAIL ---------- **/
  router.get('/:id', rejectUnauthenticated, (req, res) => {
-  // console.log('req.params: ',req.params)
+  console.log('req.params: ',req.params)
   const sqlQuery =`
   SELECT 
     "gtfs_routes"."id" AS "route_id",
@@ -58,13 +59,11 @@ const userStrategy = require('../strategies/user.strategy');
     "gtfs_routes"."route_desc",
     "gtfs_routes"."route_url",
     "gtfs_routes"."route_color",
-    "poi_routes"."poi_id",
-    "poi_details"."name" AS "poi_name"
+    "gtfs_routes"."route_type_name",
+    "gtfs_routes"."agency_name"
+
   FROM "gtfs_routes"
-  JOIN "poi_routes"
-    ON "poi_routes"."route_id" = "gtfs_routes"."id"
-  JOIN "poi_details"
-    ON "poi_details"."id" = "poi_routes"."poi_id"
+  
   WHERE "gtfs_routes"."id"=$1
   GROUP BY 
   "gtfs_routes"."id",
@@ -72,11 +71,12 @@ const userStrategy = require('../strategies/user.strategy');
     "gtfs_routes"."route_desc",
     "gtfs_routes"."route_url",
     "gtfs_routes"."route_color",
-    "poi_routes"."poi_id",
-    "poi_details"."name";`;
+    "gtfs_routes"."route_type_name",
+    "gtfs_routes"."agency_name";`;
   const sqlValues = [req.params.id];
   pool.query(sqlQuery, sqlValues)
   .then((results) => {
+    console.log(results)
     res.send(results.rows[0])
   })
   .catch((error => {

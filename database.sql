@@ -54,7 +54,7 @@ CREATE TABLE "gtfs_routes" (
     INSERT INTO "gtfs_routes" 
     ("id", "route_short_name", "route_name", "route_desc", "route_url", "route_color", "route_text_color",  "agency_id", "route_type", "route_sort_order")
     VALUES
-    (902, 'METRO Green Line', null, 'METRO Green Line', 'Green Line - Mpls - St Paul', 'https://www.metrotransit.org/route/green', '008144', 'ffffff', 0, 0, 3)
+    (902, 'METRO Green Line', null, 'METRO Green Line', 'Green Line - Mpls - St Paul', 'https://www.metrotransit.org/route/green', '008144', 'ffffff', 0, 0, 3);
     
     -- Reduce name columns
     UPDATE "gtfs_routes"

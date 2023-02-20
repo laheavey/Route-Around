@@ -1,0 +1,30 @@
+.dashboard {
+  background-color: #fafafa;
+  flex-flow: column;
+  overflow-y: scroll;
+  position: absolute;
+  top: 335px;
+  width: 375px;
+  height: 332px;
+}
+
+.db-section {
+  display:block;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.db-list {
+  margin: 0em;
+  column-count: 2;
+}
+
+
+
+.db-list-item {
+  flex-wrap: nowrap;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+}
