@@ -18,9 +18,10 @@ const userStrategy = require('../strategies/user.strategy');
     SELECT "shape_id"
     FROM "gtfs_shapes"
     WHERE "route_id" = $1
-    ORDER BY "shape_dist_traveled" DESC
+    ORDER BY "shape_pt_sequence" DESC
     LIMIT 1
-  );`
+  )
+  ORDER BY "shape_pt_sequence" ASC;`
   const sqlValues = [req.params.id];
   pool.query(sqlQuery, sqlValues)
   .then((results) => {

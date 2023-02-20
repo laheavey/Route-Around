@@ -9,64 +9,64 @@ export default function RouteDetailInfo () {
   const [routeAgency, setRouteAgency] = useState('')
   // const completedTrips = routeDetail.completed_trips;
 
-  useEffect(() => {
-    evalRouteType();
-    evalAgency();
-  },[dataLoaded])
+  // useEffect(() => {
+  //   evalRouteType();
+  //   evalAgency();
+  // },[dataLoaded])
 
-  const evalRouteType = () => {
-    switch (routeDetail.route_type) {
-      case '0':
-        setRouteType('Light Rail');
-        break;
-      case '2':
-        setRouteType('Commuter Rail');
-        break;
-      case '3':
-        setRouteType('Bus');
-        break;
-    }
-  }
+  // const evalRouteType = () => {
+  //   switch (routeDetail.route_type) {
+  //     case '0':
+  //       setRouteType('Light Rail');
+  //       break;
+  //     case '2':
+  //       setRouteType('Commuter Rail');
+  //       break;
+  //     case '3':
+  //       setRouteType('Bus');
+  //       break;
+  //   }
+  // }
 
-  const evalAgency = () => {
-    switch (routeDetail.agency_id) {
-      case '0':
-        setRouteAgency('Local');
-        break;
-      case '1':
-        setRouteAgency('Regional');
-        break;
-      case '2':
-        setRouteAgency('Regional');
-        break;
-      case '4':
-        setRouteAgency('Maple Grove Transit');
-        break;
-      case '5':
-        setRouteAgency('Plymouth');
-        break;
-      case '6':
-        setRouteAgency('SouthWest');
-        break;
-      case '10':
-        setRouteAgency('Airport');
-        break;
-      case '11':
-        setRouteAgency('University of Minnesota');
-        break;
-      case '15':
-        setRouteAgency('Northstar Link');
-        break;
-    }
-    setDataLoaded(true);
-  }
+  // const evalAgency = () => {
+  //   switch (routeDetail.agency_id) {
+  //     case '0':
+  //       setRouteAgency('Local');
+  //       break;
+  //     case '1':
+  //       setRouteAgency('Regional');
+  //       break;
+  //     case '2':
+  //       setRouteAgency('Regional');
+  //       break;
+  //     case '4':
+  //       setRouteAgency('Maple Grove Transit');
+  //       break;
+  //     case '5':
+  //       setRouteAgency('Plymouth');
+  //       break;
+  //     case '6':
+  //       setRouteAgency('SouthWest');
+  //       break;
+  //     case '10':
+  //       setRouteAgency('Airport');
+  //       break;
+  //     case '11':
+  //       setRouteAgency('University of Minnesota');
+  //       break;
+  //     case '15':
+  //       setRouteAgency('Northstar Link');
+  //       break;
+  //   }
+  //   setDataLoaded(true);
+  // }
   
   return (
     <section className='flex-container route-detail'>
       <section className='rd-section'>
         <h2 className='rd-h2'>{`${routeDetail.route_name} `}</h2>
-        { routeType && 
-          <h3 className='rd-h3'> // {routeAgency} {routeType}</h3>}
+
+          <h3 className='rd-h3'> // {routeDetail.agency_name} {routeDetail.route_type_name}</h3>
       </section>
 
       <section className='rd-section'>
