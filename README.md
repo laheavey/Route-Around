@@ -13,53 +13,53 @@ This was easily the biggest project I've built to date, and knowing that it was 
 ## Getting Started
 
 ### Prerequisites
--[React.js](https://beta.reactjs.org/) (built on version 17.0.2)
--Key for [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/guides/) API
--dotEnv file
--[Node.js](https://nodejs.org/en/docs/)
--Axios
--Redux
--Redux-Saga
--[Material-UI](https://mui.com/)
--Express
--Body-parser
--pg
--[Passport](https://www.passportjs.org/)
--Database manager (I utilized [Postico 2](https://eggerapps.at/postico2/))
+- [React.js](https://beta.reactjs.org/) (built on version 17.0.2)
+- Key for [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/guides/) API
+- dotEnv file
+- [Node.js](https://nodejs.org/en/docs/)
+- Axios
+- Redux
+- Redux-Saga
+- [Material-UI](https://mui.com/)
+- Express
+- Body-parser
+- pg
+- [Passport](https://www.passportjs.org/)
+- Database manager (I utilized [Postico 2](https://eggerapps.at/postico2/))
 
 ### Installation
 
-1. Using your package manager, install the dependencies.
+Using your package manager, install the dependencies.
 ```
 $ ~ npm install
 ```
 
-2. In your database manager, create a database named route_around. Use the provided database files to create the necessary tables for this project. Dummy data has been included for one transit line.
+In your database manager, create a database named route_around. Use the provided database files to create the necessary tables for this project. Dummy data has been included for one transit line and one point of interest.
 
-3. Populate your dotEnv file with:
+Populate your dotEnv file with:
 ```
 SERVER_SESSION_SECRET= 'string' 
 mapboxgl.accessToken= 'string'
 ```
 
-4. With your database set up - start the server.
+With your database set up, start the server.
 ```
 $ ~ npm run server
 ```
 
-5. With the server running - open another terminal window and start your client. Navigate to http://localhost:3000 if the run client script doesn't automatically open the application.
+With the server running, open another terminal window and start your client. Navigate to http://localhost:3000 if the run client script doesn't automatically open the application.
 ```
 $ ~ npm run client
 ```
 
 ### Built With
 
--[React.js](https://beta.reactjs.org/)
--[Node.js](https://nodejs.org/en/docs/)
--[Material-UI](https://mui.com/) - Form & Navbar Components/Styling
--[Passport](https://www.passportjs.org/) - Secure Login & Account Management
+- [React.js](https://beta.reactjs.org/)
+- [Node.js](https://nodejs.org/en/docs/)
+- [Material-UI](https://mui.com/): Form & Navbar components/styling
+- [Passport](https://www.passportjs.org/): Secure login & account management
 
-For a full list of dependencies - see the Package.json
+For a full list of dependencies, see the package.json
 
 
 
