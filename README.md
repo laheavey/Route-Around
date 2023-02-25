@@ -66,40 +66,29 @@ For a full list of dependencies, see the package.json
 
 ## Usage
 
-1. Log In/Register
-2. Dashboard
-3. All Routes
-4. Route Detail
-5. All Points of Interest
-6. Point of Interest Detail
-7. User Profile
-8. Edit User Profile
-9. Active Route
-
-
-1. Log In/Register: First view on open, toggles between Log In/Register depending on user account status. Registration only requires the user to create a username and password.
-2. Dashboard: Landing page once logged in. Shows a map of the Twin Cities, as well as popular routes and the users 'loved' points of interest (if any exist).
-3. All Routes: A list of all Metro Transit routes. Each route name is a link that sends the user to that route's detail page.
-4. Route Detail: Displays a map with the entire route drawn. Below that the user can see the following:
+1. **Log In/Register:** First view on open, toggles between Log In/Register depending on user account status. Registration only requires the user to create a username and password.
+2. **Dashboard:** Landing page once logged in. Shows a map of the Twin Cities, as well as popular routes and the users 'loved' points of interest (if any exist).
+3. **All Routes:** A list of all Metro Transit routes. Each route name is a link that sends the user to that route's detail page.
+4. **Route Detail:** Displays a map with the entire route drawn. Below that the user can see the following:
 - the name of the route
 - the Metro Transit agency responsible for operating that line
 - what kind of vehicle that route uses (light rail/bus)
 - a brief description of the route (start/end/major stops)
 - a link to additional fare & schedule info
 - a link to start the Active Route view
-5. All Points of Interest: A map with pins on the location of each point of interest, and list of all currently available points of interest. Each point name is a link that sends the user ot that point's detail page.
-6. Point of Interest Detail: Displays a map with a pin dropped on that point's location. Below, the user can see the following:
+5. **All Points of Interest:** A map with pins on the location of each point of interest, and list of all currently available points of interest. Each point name is a link that sends the user ot that point's detail page.
+6. **Point of Interest Detail:** Displays a map with a pin dropped on that point's location. Below, the user can see the following:
 - the name of the point of interest
 - an image of the point (either modern or historic)
 - a click-to-toggle heart icon to love/unlove the point
 - the current address (or indication of demolition)
 - a description of the point and any interesting facts
-7. User Profile: An individual user's profile page. It shows that user's current profile image, username, associated email address, and date of account creation. Below the user can find sections showing their recent activity and loved points.
-8. Edit User Profile: Allows the user to edit their profile image and/or update the email address they've listed.
-9. Active Route: A scrolly-telling split screen. The top half is a map with pins; the bottom half is a series of building names and brief facts about the location. As the user scrolls through the building names/descriptions a point becomes 'active' and the map flies to the corresponding pin. 
+7. **User Profile:** An individual user's profile page. It shows that user's current profile image, username, associated email address, and date of account creation. Below the user can find sections showing their recent activity and loved points.
+8. **Edit User Profile:** Allows the user to edit their profile image and/or update the email address they've listed.
+9. **Active Route:** A scrolly-telling split screen. The top half is a map with pins; the bottom half is a series of building names and brief facts about the location. As the user scrolls through the building names/descriptions a point becomes 'active' and the map flies to the corresponding pin. 
 
 ## Screenshots
-![1. Log In/Register](public/images/screenshots/1Login.png)
+1. Log In/Register ![1. Log In/Register](public/images/screenshots/1Login.png)
 ![2. Dashboard](public/images/screenshots/2Dashboard.png)
 ![3. All Routes](public/images/screenshots/3AllRoutes.png)
 ![4. Route Detail](public/images/screenshots/4RouteDetail.png)
