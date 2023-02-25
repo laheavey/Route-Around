@@ -99,15 +99,15 @@ For a full list of dependencies, see the package.json
 9. Active Route: A scrolly-telling split screen. The top half is a map with pins; the bottom half is a series of building names and brief facts about the location. As the user scrolls through the building names/descriptions a point becomes 'active' and the map flies to the corresponding pin. 
 
 ## Screenshots
-![1. Log In/Register](public/images/1Login.png)
-![2. Dashboard](public/images/2Dashboard.png)
-![3. All Routes](public/images/3AllRoutes.png)
-![4. Route Detail](public/images/4RouteDetail.png)
-![5. All Points of Interest](public/images/5AllPOI.png)
-![6. Point of Interest Detail](public/images/6PointDetail.png)
-![7. User Profile](public/images/7UserProfile.png)
-![8. Edit User Profile](public/images/8EditProfile.png)
-![9. Active Route](public/images/9ActiveRoute.gif)
+![1. Log In/Register](public/images/screenshots/1Login.png)
+![2. Dashboard](public/images/screenshots/2Dashboard.png)
+![3. All Routes](public/images/screenshots/3AllRoutes.png)
+![4. Route Detail](public/images/screenshots/4RouteDetail.png)
+![5. All Points of Interest](public/images/screenshots/5AllPOI.png)
+![6. Point of Interest Detail](public/images/screenshots/6PointDetail.png)
+![7. User Profile](public/images/screenshots/7UserProfile.png)
+![8. Edit User Profile](public/images/screenshots/8EditProfile.png)
+![9. Active Route](public/images/screenshots/9ActiveRoute.gif)
 
 ## Notes
 
