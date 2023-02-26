@@ -118,11 +118,11 @@ For a full list of dependencies, see the package.json
 **Challenges:** I had a tough time utilizing React with all of my Saga dispatches and getting the DOM to correctly render - this was definitely what took up the bulk of my time. For each route and POI's individual details (images, map line, map pin, etc.) I needed the DOM to render (or re-render) once those details had been set. This I was able to mostly solve - some of the map lines will occasionally occasionally connect their ends together, but I haven't been able to pinpoint the cause of this yet.
 
 **Future State:** There are a few changes I'd like to make, and a few features I'd like to implement at some point: 
-[ ] User Profile / Account Created: Ran out of time to code this, ideally this would be captured and stored on account registration. Right now, what displays is hard-coded.
-[ ] User Profile / Ride History: I didn't code this correctly and ran out of time to fix it. It's currently showing all routes ever marked as completed, not just for a specific user.
-[ ] User Profile / Badges: My wireframe had this as a feature, and I'd like to add some benchmarks/goals for user badges.
-[ ] Active Route / Trip Completion: These are currently hard-coded into my database. I need to add a button at the end of the 'Active Route' view to mark a trip completed.
-[ ] Active Route / Travel by Direction: Currently, the active route only runs one way. The database documents each route's direction, so I'd like to code in some logic to reverse the facts/points for each route.
+- [ ] User Profile / Account Created: Ran out of time to code this, ideally this would be captured and stored on account registration. Right now, what displays is hard-coded.
+- [ ] User Profile / Ride History: I didn't code this correctly and ran out of time to fix it. It's currently showing all routes ever marked as completed, not just for a specific user.
+- [ ] User Profile / Badges: My wireframe had this as a feature, and I'd like to add some benchmarks/goals for user badges.
+- [ ] Active Route / Trip Completion: These are currently hard-coded into my database. I need to add a button at the end of the 'Active Route' view to mark a trip completed.
+- [ ] Active Route / Travel by Direction: Currently, the active route only runs one way. The database documents each route's direction, so I'd like to code in some logic to reverse the facts/points for each route.
 
 ## Acknowledgement
 I am *incredible* grateful for the instructors, staff, and students at Prime Digital Academy - I can't imagine having learned all of this in such a short amount of time without all of their support. In particular, my instructor Matt, who has brought nothing but care and joy to the classroom every day.
