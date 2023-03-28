@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function UserActivity () {
   const userRouteHistory = useSelector((store) => store.routes.routeHistoryReducer);
-  const savedPoints = useSelector((store) => store.savedPoints)
+  const savedPoints = useSelector((store) => store.points.savedPointsReducer)
   
   return (
     <section className='flex-container user-activity'>

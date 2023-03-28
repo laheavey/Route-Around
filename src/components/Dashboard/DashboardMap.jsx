@@ -6,6 +6,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoibGFoZWF2ZXkiLCJhIjoiY2xkczZ5MzlsMDJhNTNwbWx6N
 
 export default function DashboardMap () {
   const mapContainer = useRef(null);
+
   useEffect(() => {
     const map = new mapboxgl.Map({
       container: mapContainer.current,
@@ -14,7 +15,6 @@ export default function DashboardMap () {
       // interactive: false,
       style: 'mapbox://styles/mapbox/streets-v11'
     });
-
   },[])
 
   return (

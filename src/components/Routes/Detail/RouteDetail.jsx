@@ -11,7 +11,7 @@ export default function RouteDetail() {
   const { id } = useParams();
 
   useEffect(() => {
-      dispatch({ type: 'FETCH_ROUTE_DETAIL/:id', payload: id});
+      dispatch({ type: 'SAGA/FETCH_ROUTE_DETAIL', payload: id});
   },[])
 
   return (

@@ -15,16 +15,16 @@ export default function PointDetail() {
   const [mapContent, setMapContent] = useState();
   const { id } = useParams();
   const mapContainer = useRef(null);
-  const points = useSelector((store) => store.points);
+  const points = useSelector((store) => store.points.pointDetailReducer);
   const user = useSelector((store) => store.user);
 
-  const savedPoints = useSelector((store) => store.savedPoints)
+  const savedPoints = useSelector((store) => store.points.savedPointsReducer)
   const [saveLoaded, setSaveLoaded] = useState(false)
   const [savedStatus, setSavedStatus] = useState(false);
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_POINT_DETAIL/:id', payload: id});
-    dispatch({ type: 'FETCH_SAVED_POIS', data: user.id})
+    dispatch({ type: 'SAGA/FETCH_POINT_DETAIL', payload: id});
+    dispatch({ type: 'SAGA/FETCH_SAVED_POIS', data: user.id})
   }, [])
 
   useEffect(() => {

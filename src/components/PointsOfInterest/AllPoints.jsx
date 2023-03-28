@@ -11,11 +11,11 @@ export default function AllPoints() {
   const dispatch = useDispatch();
   const mapContainer = useRef(null);
   const [dataLoaded, setDataLoaded] = useState(false);
-  const allPoints = useSelector((store) => store.allPoints)
+  const allPoints = useSelector((store) => store.points.allPointsReducer)
 
 
   useEffect(() => {
-      dispatch({ type: 'FETCH_ALL_POINTS' });
+      dispatch({ type: 'SAGA/FETCH_ALL_POINTS' });
 
       const map = new mapboxgl.Map({
         container: mapContainer.current,

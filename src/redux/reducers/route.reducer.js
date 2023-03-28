@@ -4,7 +4,8 @@ import { combineReducers } from "redux";
 const allRoutesReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_ALL_ROUTES':
-      return action.payload; // id, route_name, route_desc
+      return action.payload; 
+      // id, route_name, route_desc
     default:
       return state;
   }
@@ -14,7 +15,8 @@ const allRoutesReducer = (state = [], action) => {
 const popularRoutesReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_POPULAR_ROUTES':
-      return action.payload; // route_name, route_id
+      return action.payload; 
+      // route_name, route_id
     default:
       return state;
   }
@@ -23,7 +25,7 @@ const popularRoutesReducer = (state = [], action) => {
 // Run by fetchRouteDetail in routes.saga.js:
 const routeDetailReducer = (state = {}, action) => {
   switch (action.type) {
-    case 'SET_ROUTE_DETAIL/:id':
+    case 'SET_ROUTE_DETAIL':
       return action.payload;
       // route_id, route_name, route_desc, route_url, 
       // route_color, poi_id, poi_name
@@ -35,7 +37,7 @@ const routeDetailReducer = (state = {}, action) => {
 // Run by fetchUserRouteHistory in routes.saga.js:
 const routeHistoryReducer = (state = [], action) => {
   switch (action.type) {
-      case 'SET_USER_ROUTE_HISTORY/:id':
+      case 'SET_USER_ROUTE_HISTORY':
         return action.payload; 
         // route_id, route_name, route_desc, route_url, completed_trips
       default:

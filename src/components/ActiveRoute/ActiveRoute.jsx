@@ -19,12 +19,12 @@ export default function ActiveRoute() {
   const lineCoordinates = useSelector((store) => store.line);
   const dispatch = useDispatch();
   const { id } = useParams();
-  const pointDetail = useSelector((store) => store.pointDetail) 
+  const pointDetail = useSelector((store) => store.points.pointDetailReducer) 
   let activePointName = 'METRO Green Line'
 
   mapboxgl.accessToken = 'pk.eyJ1IjoibGFoZWF2ZXkiLCJhIjoiY2xkczZ5MzlsMDJhNTNwbWx6Nnk1bm1hNyJ9.7_Y-O03vhnebg8xOsSN0GQ';
   useEffect(() => {
-    dispatch({ type: 'FETCH_POINT_DETAIL/ROUTE/:id', payload: id})
+    dispatch({ type: 'SAGA/FETCH_POINTS_BY_ROUTE', payload: id})
     dispatch({ type: 'FETCH_LINE/:id', payload: id})
   },[])
 

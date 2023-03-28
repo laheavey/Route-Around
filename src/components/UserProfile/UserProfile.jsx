@@ -11,8 +11,8 @@ export default function UserProfile() {
   const user = useSelector((store) => store.user)
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_USER_ROUTE_HISTORY', payload: user.id});
-    dispatch({ type: 'FETCH_SAVED_POIS', data: user.id})
+    dispatch({ type: 'SAGA/FETCH_USER_ROUTE_HISTORY', payload: user.id});
+    dispatch({ type: 'SAGA/FETCH_SAVED_POIS', data: user.id})
   },[])
 
   return (

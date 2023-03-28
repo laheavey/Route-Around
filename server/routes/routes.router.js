@@ -50,7 +50,7 @@ const userStrategy = require('../strategies/user.strategy');
 });
 
  /** ---------- GET ROUTE DETAIL ---------- **/
- router.get('/:id', rejectUnauthenticated, (req, res) => {
+ router.get('/detail/:id', rejectUnauthenticated, (req, res) => {
   console.log('req.params: ',req.params)
   const sqlQuery =`
   SELECT 
@@ -80,7 +80,7 @@ const userStrategy = require('../strategies/user.strategy');
     res.send(results.rows[0])
   })
   .catch((error => {
-    console.log('Error in GET /routeDetail/:id: ', error);
+    console.log('Error in GET /routes/detail/:id: ', error);
     res.sendStatus(500);
   }))
 });

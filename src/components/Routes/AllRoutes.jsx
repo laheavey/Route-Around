@@ -11,7 +11,7 @@ export default function AllRoutes() {
   const allRoutes = useSelector((store) => store.routes.allRoutesReducer)
 
   useEffect(() => {
-      dispatch({ type: 'FETCH_ALL_ROUTES' });
+      dispatch({ type: 'SAGA/FETCH_ALL_ROUTES' });
 
       const map = new mapboxgl.Map({
         container: mapContainer.current,

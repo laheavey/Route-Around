@@ -10,11 +10,11 @@ export default function Dashboard() {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user)
   const popRoutes = useSelector((store) => store.routes.popularRoutesReducer);
-  const savedPoints = useSelector((store) => store.savedPoints)
+  const savedPoints = useSelector((store) => store.points.savedPointsReducer)
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_POPULAR_ROUTES' });
-    dispatch({ type: 'FETCH_SAVED_POIS', data: user.id})
+    dispatch({ type: 'SAGA/FETCH_POPULAR_ROUTES' });
+    dispatch({ type: 'SAGA/FETCH_SAVED_POIS', data: user.id})
   },[])
 
   return (
