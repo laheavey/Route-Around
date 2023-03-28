@@ -6,7 +6,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 /** ---------- GET POLYLINE (COORDINATES FOR MAP LINE) ---------- **/
 router.get('/:id', rejectUnauthenticated, (req, res) => {
   const sqlQuery =`
-    SELECT "shape_pt_lon", "shape_pt_lat"
+    SELECT "shape_pt_lon", "shape_pt_lat", "route_color"
     FROM "gtfs_shapes"
     WHERE "shape_id" = (
       SELECT "shape_id"

@@ -98,7 +98,8 @@ router.get('/route/:id', rejectUnauthenticated, (req, res) => {
       "poi_details"."image_url",
       "poi_details"."street_address",
       "poi_details"."longitude",
-      "poi_details"."latitude"
+      "poi_details"."latitude",
+      "poi_routes"."poi_order_num"
     FROM "poi_details"
     JOIN "poi_routes"
       ON "poi_details"."id" = "poi_routes"."poi_id"

@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 import './ActiveRoute.css';
 
 // Point name, small description, in route order.
-export default function ActivePointInfo () {
-  const pointDetail = useSelector((store) => store.points.pointsByRouteReducer) 
+export default function ActivePointInfo ({pointsByRoute}) {
+  // const pointDetail = useSelector((store) => store.points.pointsByRouteReducer) 
 
   return (
     <>
-      {pointDetail?.map((point) => {
+      {pointsByRoute.map((point) => {
         return (
           <section 
             key={`${point.id}`} 

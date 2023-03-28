@@ -75,6 +75,10 @@ function App() {
             <Nav />
             <ActiveRoute />
           </ProtectedRoute>
+            <ProtectedRoute exact path="/activeRoute/reverse/:id">
+              <Nav />
+              <ActiveRoute />
+            </ProtectedRoute>
 
           <ProtectedRoute exact path="/edit/profile/:id">
             <Nav />

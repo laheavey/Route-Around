@@ -273,14 +273,15 @@ Sections
 #features {
   /* max-width: 375px; */
   min-width: 350px;
-  width: 100%;
+  max-width: 100%;
   font-family: sans-serif;
   overflow-y: scroll;
   background-color: #fafafa;
   position: absolute;
   top: 335px;
-  height: 330px;
-  padding-left: 1em;
+  max-height: 60%;
+  padding-top: 2rem;
+  padding-left: 2em;
   padding-right: 1em;
 }
 

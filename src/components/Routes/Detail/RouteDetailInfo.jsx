@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function RouteDetailInfo () {
+  const location = useLocation();
   const [dataLoaded, setDataLoaded] = useState(false);
   const routeDetail = useSelector((store) => store.routes.routeDetailReducer) 
   const [routeType, setRouteType] = useState('')
   const [routeAgency, setRouteAgency] = useState('')
+
+  console.log('Location.pathname: ', location.pathname)
   // const completedTrips = routeDetail.completed_trips;
 
   // useEffect(() => {
@@ -81,7 +84,7 @@ export default function RouteDetailInfo () {
         <h2 className='rd-h4'>{`Begin Trip:`}</h2>
         <Link to={`/activeRoute/${routeDetail.route_id}`}>{`Westbound`}</Link>
         {` // `}
-        <Link to={`/activeRoute/${routeDetail.route_id}`}>{`Eastbound`}</Link>
+        <Link to={`/activeRoute/reverse/${routeDetail.route_id}`}>{`Eastbound`}</Link>
       </section>
       
       {/* Removing POI list for now, too long. */}

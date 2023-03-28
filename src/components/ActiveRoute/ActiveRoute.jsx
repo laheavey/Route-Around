@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useRouteMatch } from 'react-router-dom';
 import mapboxgl from '!mapbox-gl';
 import './ActiveRoute.css';
 import ActivePointInfo from './ActivePointInfo';
@@ -9,14 +9,15 @@ import ActivePointInfo from './ActivePointInfo';
 export default function ActiveRoute() {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const routeMatch = useRouteMatch();
   const ref = useRef();
   const map = useRef(null);
   const mapContainer = useRef(null);
   const [mapTest, setMapTest] = useState([0,0]);
   const [dataLoaded, setDataLoaded] = useState(false);
   const lineCoordinates = useSelector((store) => store.line);
-  const pointDetail = useSelector((store) => store.points.pointsByRouteReducer) 
-
+  const pointsByRoute = useSelector((store) => store.points.pointsByRouteReducer) 
+  let reversePointsByRoute = [...pointsByRoute].reverse()
   let activePointName = 'METRO Green Line'
   let lng;
   let lat;
@@ -27,14 +28,18 @@ export default function ActiveRoute() {
     dispatch({ type: 'FETCH_LINE/:id', payload: id})
   },[])
 
+
   useEffect(() => {
     // Builds map
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v12',
-      center: [-93.08674043028068, 44.94830546284459],
+      center: 
+        (routeMatch.path.includes('reverse') 
+      ? [-93.278596, 44.983472]
+      : [-93.08674043028068, 44.94830546284459]
+      ),
       zoom: 15,
-      // interactive: false
     });
 
     // On load, instructions for map (data sources for line)
@@ -46,8 +51,8 @@ export default function ActiveRoute() {
           'features': [{
             'type': 'Feature',
             'properties': {
-              // ↓ could use routeDetail.color but no hash - concatenate or fix table?
-              'color': '#000000' 
+              // ↓ tried lineCoordinates[0][2], not rendering, revisit.
+              'color': '#008144'
             },
             'geometry': {
               'type': 'LineString',
@@ -71,7 +76,7 @@ export default function ActiveRoute() {
       return () => map.remove(); // removes map
     })
 
-    pointDetail?.map((point) => {
+    pointsByRoute?.map((point) => {
       // Pop-ups that show when clicking individual markers
       let popup = new mapboxgl.Popup({ 
         offset: 25,
@@ -115,6 +120,8 @@ export default function ActiveRoute() {
     }
   }
 
+
+
   // On load, adds event listener for scroll
   useEffect(() => {
     const elemCurrent = ref.current
@@ -123,9 +130,13 @@ export default function ActiveRoute() {
 
   return (
     <>
-      <div id="map" ref={mapContainer} style={dataLoaded ? {width: '100%', height: '300px'} : {display: 'none'}}></div>
+      <div id="map" ref={mapContainer} style={dataLoaded ? {width: '100%', height: '38%'} : {display: 'none'}}></div>
       <section id='features' ref={ref}>
-        <ActivePointInfo />
+        {routeMatch.path.includes('reverse')
+        ? <ActivePointInfo pointsByRoute={reversePointsByRoute}/>
+        : <ActivePointInfo pointsByRoute={pointsByRoute}/>
+        }
+        
       </section>
     </>
     
