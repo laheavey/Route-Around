@@ -35,7 +35,7 @@ const pointDetailReducer = (state = {}, action) => {
 };
 
 // Run by fetchPointDetailSources in points.saga.js:
-const pointDetailSourcesReducer = (state = [], action) => {
+const pointDetailSourcesReducer = (state = {}, action) => {
   switch (action.type) {
     case 'SET_POINT_DETAIL_SOURCES':
       return action.payload; 

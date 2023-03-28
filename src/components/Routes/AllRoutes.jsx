@@ -12,7 +12,6 @@ export default function AllRoutes() {
 
   useEffect(() => {
       dispatch({ type: 'SAGA/FETCH_ALL_ROUTES' });
-
       const map = new mapboxgl.Map({
         container: mapContainer.current,
         center: [-93.19426931505215, 44.9480407119586],

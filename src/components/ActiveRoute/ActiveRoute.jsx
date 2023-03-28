@@ -2,25 +2,24 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import mapboxgl from '!mapbox-gl';
-
 import './ActiveRoute.css';
 import ActivePointInfo from './ActivePointInfo';
 
 // Map, info component
 export default function ActiveRoute() {
-  let lng;
-  let lat;
-
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const ref = useRef();
+  const map = useRef(null);
   const mapContainer = useRef(null);
   const [mapTest, setMapTest] = useState([0,0]);
-  const map = useRef(null);
-  const ref = useRef();
   const [dataLoaded, setDataLoaded] = useState(false);
   const lineCoordinates = useSelector((store) => store.line);
-  const dispatch = useDispatch();
-  const { id } = useParams();
-  const pointDetail = useSelector((store) => store.points.pointDetailReducer) 
+  const pointDetail = useSelector((store) => store.points.pointsByRouteReducer) 
+
   let activePointName = 'METRO Green Line'
+  let lng;
+  let lat;
 
   mapboxgl.accessToken = 'pk.eyJ1IjoibGFoZWF2ZXkiLCJhIjoiY2xkczZ5MzlsMDJhNTNwbWx6Nnk1bm1hNyJ9.7_Y-O03vhnebg8xOsSN0GQ';
   useEffect(() => {

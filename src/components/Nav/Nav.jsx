@@ -1,19 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useParams, useLocation } from 'react-router-dom';
 
 import './Nav.css';
 
 export default function Nav() {
-  let pathname;
-  
   const params = useParams();
   const location = useLocation();
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  let pathname;
   
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);

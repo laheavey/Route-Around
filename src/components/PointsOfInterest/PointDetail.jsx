@@ -28,15 +28,21 @@ export default function PointDetail() {
   }, [])
 
   useEffect(() => {
-    savedPoints.map((save) => {
-      if (points.id === save.poi_id) {
-        setSavedStatus(true)
-        console.log('Save check!')
-        setSaveLoaded(true)
-      } 
-      setSaveLoaded(true)
-    })
+    if (points) {
+      setDataLoaded(true)
+    }
 
+    if (savedPoints){
+      setSaveLoaded(true)
+      savedPoints.map((save) => {
+        if (points.id === save.poi_id) {
+          setSavedStatus(true)
+        } 
+      })
+    }
+  }, [points, savedPoints]);
+
+  useEffect(() => {
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       center: [-93.09, 44.946944],
@@ -47,7 +53,6 @@ export default function PointDetail() {
 
     map.on('load', () => {
       setMapContent(map);
-      setDataLoaded(true)
 
       const marker1 = new mapboxgl.Marker()
       .setLngLat([points.longitude, points.latitude])
@@ -58,7 +63,7 @@ export default function PointDetail() {
       }
       return () => map.remove();
     });
-  },[dataLoaded, saveLoaded])
+  },[points])
 
   const savePoint = () => {
     let newPointSave = {
@@ -66,7 +71,7 @@ export default function PointDetail() {
       poi_id: id
     }
     // console.log('ADD Point Clicked: ', newPointSave);
-    dispatch({ type: 'ADD_POI_SAVE', payload: newPointSave })
+    dispatch({ type: 'SAGA/ADD_POI_SAVE', payload: newPointSave })
     setSavedStatus(true);
   }
 
@@ -76,7 +81,7 @@ export default function PointDetail() {
       poi_id: id
     }
     // console.log('DELETE Point Clicked: ', pointClicked);
-    dispatch({ type: 'DELETE_SAVED_POI', payload: pointClicked })
+    dispatch({ type: 'SAGA/DELETE_SAVED_POI', payload: pointClicked })
     setSavedStatus(false);
   }
 
@@ -90,16 +95,19 @@ export default function PointDetail() {
     }
   }
 
+  if(!points) {
+    return null;
+  } else {
+
   return (
     <>
-      <div id='map' ref={mapContainer} style={dataLoaded ? {width: '100%', height: '300px'} : {display: 'none'}}></div>
+      <div id='map' ref={mapContainer} style={{width: '100%', height: '300px'}}></div>
       <section id="features" >
         <img alt={`${points.name}`} src={`${points.image_url}`} className='box pd-img'/>
         <section className='pd-header'>
           <IconButton 
             aria-label="save" 
             onClick={handleSaveClick}
-            style={saveLoaded ? {} : {display: 'none'}}
             sx={{ padding: 0 }}
           >
             {savedStatus 
@@ -114,11 +122,11 @@ export default function PointDetail() {
           <p className='pd-description'>{points.description}</p>
         </section>
         <section>
-          <p className='pd-h3'>Sources Cited:</p>
+          <h2 className='pd-h2'>Sources:</h2>
           <p>{points.sources_cited}</p>
         </section>
       </section>
       <div className='grad'></div>
     </>
   );
-}
+}}

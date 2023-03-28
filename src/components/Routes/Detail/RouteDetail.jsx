@@ -12,6 +12,7 @@ export default function RouteDetail() {
 
   useEffect(() => {
       dispatch({ type: 'SAGA/FETCH_ROUTE_DETAIL', payload: id});
+      dispatch({ type: 'FETCH_LINE/:id', payload: id});
   },[])
 
   return (

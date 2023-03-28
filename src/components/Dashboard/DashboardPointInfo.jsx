@@ -8,8 +8,8 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 
 export default function DashboardPointInfo({save}) {
   const dispatch = useDispatch();
-  const user = useSelector((store) => store.user);
   const [savedStatus, setSavedStatus] = useState(true);
+  const user = useSelector((store) => store.user);
 
   const savePoint = () => {
     let pointClicked = {
