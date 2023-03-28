@@ -20,7 +20,7 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
 });
 
 /** ---------- GET POPULAR ROUTES ---------- **/
-router.get('/popular', rejectUnauthenticated, (req, res) => {
+router.get('/popular', (req, res) => {
   const sqlQuery =`
     SELECT 
       "gtfs_routes"."route_name",

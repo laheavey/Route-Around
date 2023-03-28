@@ -82,9 +82,13 @@ export default function RouteDetailInfo () {
 
       <section className='rd-trip-start'>
         <h2 className='rd-h4'>{`Begin Trip:`}</h2>
-        <Link to={`/activeRoute/${routeDetail.route_id}`}>{`Westbound`}</Link>
-        {` // `}
-        <Link to={`/activeRoute/reverse/${routeDetail.route_id}`}>{`Eastbound`}</Link>
+        {location.pathname.includes('902')
+        ? <><Link to={`/activeRoute/${routeDetail.route_id}`}>{`Westbound`}</Link>
+          {` // `}
+          <Link to={`/activeRoute/reverse/${routeDetail.route_id}`}>{`Eastbound`}</Link></>
+        : <>{`Direction 1 // Direction 2`}</>
+        }
+
       </section>
       
       {/* Removing POI list for now, too long. */}

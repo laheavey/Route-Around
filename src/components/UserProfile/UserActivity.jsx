@@ -31,14 +31,14 @@ export default function UserActivity () {
       </section>
 
       <section className='ua-section ride-history'>
-        <h2 className='top-h2'>{`Ride History →`}</h2>
+        <h2 className='top-h2'>{`Recent Ride History →`}</h2>
         <ul className='ua-list'>
           {userRouteHistory.map((ride) => {
           return (
             <li key={`route-${ride.route_id}`} >
               <Link to={`/routeDetail/${ride.route_id}`}>
                 {ride.route_name}
-              </Link>
+              </Link> // {ride.completed_trips[0]}
             </li>
           )
           })}

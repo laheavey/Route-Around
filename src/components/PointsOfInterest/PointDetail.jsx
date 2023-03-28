@@ -128,7 +128,7 @@ export default function PointDetail() {
           <ul>
             {pointSources.map((source) => {
               return (
-                <a href={`${source.url}`}>
+                <a href={`${source.url}`} key={source.id}>
                 <li>
                   {source.name}
                 </li>
