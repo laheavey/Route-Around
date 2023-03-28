@@ -7,6 +7,7 @@ import ActivePointInfo from './ActivePointInfo';
 
 // Map, info component
 export default function ActiveRoute() {
+  document.title = 'RouteAround';
   const { id } = useParams();
   const dispatch = useDispatch();
   const routeMatch = useRouteMatch();

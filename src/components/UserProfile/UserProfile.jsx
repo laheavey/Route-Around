@@ -6,6 +6,7 @@ import UserActivity from './UserActivity';
 import UserDetails from './UserDetails'
 
 export default function UserProfile() {
+  document.title = 'RouteAround - User Profile';
   const dispatch = useDispatch();
   
   const user = useSelector((store) => store.user)

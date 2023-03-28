@@ -7,6 +7,7 @@ import RouteDetailMap from './RouteDetailMap';
 import RouteDetailInfo from './RouteDetailInfo';
 
 export default function RouteDetail() {
+  document.title = 'RouteAround - Route Detail';
   const dispatch = useDispatch();
   const { id } = useParams();
   const lineCoordinates = useSelector((store) => store.line);

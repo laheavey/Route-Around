@@ -10,6 +10,7 @@ import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 
 export default function PointDetail() {
+  document.title = 'RouteAround - Point Detail';
   const [dataLoaded, setDataLoaded] = useState(false);
   const dispatch = useDispatch();
   const [mapContent, setMapContent] = useState();

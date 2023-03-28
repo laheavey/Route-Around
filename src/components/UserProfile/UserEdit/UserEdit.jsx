@@ -6,6 +6,7 @@ import UserDetails from '../UserDetails'
 import UserEditDetails from './UserEditDetails'
 
 export default function UserEdit() {
+  document.title = 'RouteAround - Edit Profile';
   
   return (
     <>

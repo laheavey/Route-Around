@@ -7,6 +7,7 @@ import DashboardMap from './DashboardMap.jsx';
 import DashboardPointInfo from './DashboardPointInfo.jsx';
 
 export default function Dashboard() {
+  document.title = 'RouteAround - Dashboard';
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user)
   const popRoutes = useSelector((store) => store.routes.popularRoutesReducer);

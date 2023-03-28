@@ -8,11 +8,11 @@ import mapboxgl from '!mapbox-gl';
 mapboxgl.accessToken = 'pk.eyJ1IjoibGFoZWF2ZXkiLCJhIjoiY2xkczZ5MzlsMDJhNTNwbWx6Nnk1bm1hNyJ9.7_Y-O03vhnebg8xOsSN0GQ';
 
 export default function AllPoints() {
+  document.title = 'RouteAround - All Points';
   const dispatch = useDispatch();
   const mapContainer = useRef(null);
   const [dataLoaded, setDataLoaded] = useState(false);
   const allPoints = useSelector((store) => store.points.allPointsReducer)
-
 
   useEffect(() => {
       dispatch({ type: 'SAGA/FETCH_ALL_POINTS' });

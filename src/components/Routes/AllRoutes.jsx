@@ -6,6 +6,7 @@ import mapboxgl from '!mapbox-gl';
 import './Routes.css';
 
 export default function AllRoutes() {
+  document.title = 'RouteAround - All Routes';
   const dispatch = useDispatch();
   const mapContainer = useRef(null);
   const allRoutes = useSelector((store) => store.routes.allRoutesReducer)

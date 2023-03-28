@@ -1,6 +1,7 @@
 import React from 'react';
 
 function AboutPage() {
+  document.title = 'RouteAround - About';
   return (
     <div className="about-section">
       <section className='about-header'>
