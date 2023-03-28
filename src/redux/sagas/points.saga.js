@@ -39,6 +39,18 @@ function* fetchPointDetail (action) {
   }
 }
 
+function* fetchPointDetailSources (action) {
+  try {
+    const response = yield axios.get(`/points/detail/sources/${action.payload}`)
+    yield put({
+      type: 'SET_POINT_DETAIL_SOURCES',
+      payload: response.data // id, name, url, poi_id 
+    })
+  } catch (error) {
+    console.error('Error in fetchPointDetailSources:', error);
+  }
+}
+
 function* fetchPointDetailByRoute (action){
   try {
     const response = yield axios.get(`/points/route/${action.payload}`)
@@ -91,6 +103,7 @@ export default function* allPointsSaga() {
   yield takeLatest('FETCH_ALL_POINTS', fetchAllPoints);
   yield takeLatest('FETCH_POPULAR_POINTS', fetchPopularPoints);
   yield takeLatest('FETCH_POINT_DETAIL/:id', fetchPointDetail);
+  yield takeLatest('FETCH_POINT_DETAIL_SOURCES/:id', fetchPointDetailSources)
   yield takeLatest('FETCH_POINT_DETAIL/ROUTE/:id', fetchPointDetailByRoute)
   yield takeLatest('ADD_POI_SAVE', addPointSave);
   yield takeLatest('FETCH_SAVED_POIS', fetchPointSave);

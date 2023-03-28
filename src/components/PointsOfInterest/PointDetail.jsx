@@ -113,6 +113,10 @@ export default function PointDetail() {
         <section>
           <p className='pd-description'>{points.description}</p>
         </section>
+        <section>
+          <p className='pd-h3'>Sources Cited:</p>
+          <p>{points.sources_cited}</p>
+        </section>
       </section>
       <div className='grad'></div>
     </>

@@ -20,7 +20,7 @@ const userStrategy = require('../strategies/user.strategy');
     res.send(results.rows)
   })
   .catch((error => {
-    console.log('Error in GET /allPoints: ', error);
+    console.log('Error in GET /points/all: ', error);
     res.sendStatus(500);
   }))
 });
@@ -44,7 +44,7 @@ const userStrategy = require('../strategies/user.strategy');
     res.send(results.rows)
   })
   .catch((error => {
-    console.log('Error in GET /popular/points: ', error);
+    console.log('Error in GET /points/popular: ', error);
     res.sendStatus(500);
   }))
 });
@@ -70,7 +70,29 @@ const userStrategy = require('../strategies/user.strategy');
     res.send(results.rows[0])
   })
   .catch((error => {
-    console.log('Error in GET /points/:id: ', error);
+    console.log('Error in GET /points/detail/:id: ', error);
+    res.sendStatus(500);
+  }))
+});
+
+ /** ---------- GET POINT DETAIL SOURCES CITED ---------- **/
+ router.get('/detail/sources/:id', rejectUnauthenticated, (req, res) => {
+  // console.log('req.params: ', req.params)
+  const sqlQueryPoint =`
+    SELECT
+      "id",
+      "name",
+      "url",
+      "poi_id"
+    FROM "poi_sources"
+    WHERE "poi_id" = $1;`
+  const sqlValues = [req.params.id];
+  pool.query(sqlQueryPoint, sqlValues)
+  .then((results) => {
+    res.send(results.rows)
+  })
+  .catch((error => {
+    console.log('Error in GET /points/detail/sources/:id: ', error);
     res.sendStatus(500);
   }))
 });
@@ -98,7 +120,7 @@ router.get('/route/:id', rejectUnauthenticated, (req, res) => {
     res.send(results.rows)
   })
   .catch((error => {
-    console.log('Error in GET /route/:id: ', error);
+    console.log('Error in GET /points/route/:id: ', error);
     res.sendStatus(500);
   }))
 });
@@ -156,7 +178,7 @@ router.delete('/saved/delete', rejectUnauthenticated, (req,res) => {
     res.sendStatus(200);
   })
   .catch((error) => {
-    console.log('Error in DELETE /points/saved: ', error)
+    console.log('Error in DELETE /points/saved/delete: ', error)
   })
 })
 
