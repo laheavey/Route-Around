@@ -1,7 +1,7 @@
 .route-detail {
   overflow-y: scroll;
-  max-width: 375px;
-  width: 375px;
+  /* max-width: 375px; */
+  /* width: 375px; */
   position: absolute;
   top: 335px;
   height: 332px;

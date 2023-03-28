@@ -6,10 +6,11 @@ function* fetchAllRoutes () {
     const response = yield axios.get('/routes/all')
     yield put({
       type: 'SET_ALL_ROUTES',
-      payload: response.data // id, route_name, route_desc
+      payload: response.data 
+      // Array: id, route_name, route_desc
     })
   } catch (error) {
-    console.error('Error in SAGA/fetchAllRoutes:', error);
+    console.log('Error in fetchAllRoutes saga:', error);
   }
 }
 
@@ -18,38 +19,40 @@ function* fetchPopularRoutes () {
     const response = yield axios.get('/routes/popular')
     yield put({
       type: 'SET_POPULAR_ROUTES',
-      payload: response.data // route_name, route_id
+      payload: response.data 
+      // Array: route_name, route_id
     })
   } catch (error) {
-    console.error('Error in SAGA/fetchPopularRoutes:', error);
+    console.log('Error in fetchPopularRoutes saga:', error);
   }
 }
 
 function* fetchRouteDetail (action) {
   try {
-    const response = yield axios.get(`/routes/${action.payload}`)
+    const response = yield axios.get(`/routes/detail/${action.payload}`)
     yield put({
       type: 'SET_ROUTE_DETAIL',
       payload: response.data
-      // route_id, route_name, route_desc, route_url, 
-      // route_color, poi_id, poi_name
+      // Object: route_id, route_name, route_desc, route_url, route_color, 
+      // poi_id, poi_name
     })
   } catch (error) {
-    console.error('Error in SAGA/fetchRouteDetail:', error);
+    console.log('Error in fetchRouteDetail saga:', error);
   }
 }
 
-function* fetchRouteDetailPOI (action) {
-  try {
-    const response = yield axios.get(`/routes/point/${action.payload}`)
-    yield put({
-      type: 'SET_ROUTE_DETAIL/POI/:id',
-      payload: response.data
-    })
-  } catch (error) {
-    console.error('Error in fetchRouteDetailPOI: ', error)
-  }
-}
+// function* fetchRouteDetailPOI (action) {
+//   try {
+//     const response = yield axios.get(`/routes/point/${action.payload}`)
+//     yield put({
+//       type: 'SET_ROUTE_DETAIL_BY_POI_ID',
+//       payload: response.data
+//       //
+//     })
+//   } catch (error) {
+//     console.log('Error in fetchRouteDetailPOI saga: ', error)
+//   }
+// }
 
 function* fetchUserRouteHistory (action) {
   console.log('fetchUserRouteHistory: ', action.payload)
@@ -58,17 +61,17 @@ function* fetchUserRouteHistory (action) {
     yield put({
       type: 'SET_USER_ROUTE_HISTORY',
       payload: response.data
-      // 
+      // Array: route_id, route_name, route_desc, route_url, completed_trips
     })
   } catch (error) {
-    console.error('Error in fetchUserRouteHistory:', error);
+    console.log('Error in fetchUserRouteHistory saga:', error);
   }
 }
 
 export default function* fetchRouteDetailSaga() {
-  yield takeLatest('FETCH_ROUTE_DETAIL/:id', fetchRouteDetail);
-  yield takeLatest('FETCH_ROUTE_DETAIL/POI/:id', fetchRouteDetailPOI)
-  yield takeLatest('FETCH_POPULAR_ROUTES', fetchPopularRoutes);
-  yield takeLatest('FETCH_ALL_ROUTES', fetchAllRoutes);
-  yield takeLatest('FETCH_USER_ROUTE_HISTORY', fetchUserRouteHistory)
+  yield takeLatest('SAGA/FETCH_ALL_ROUTES', fetchAllRoutes);
+  yield takeLatest('SAGA/FETCH_POPULAR_ROUTES', fetchPopularRoutes);
+  yield takeLatest('SAGA/FETCH_ROUTE_DETAIL', fetchRouteDetail);
+  // yield takeLatest('SAGA/FETCH_ROUTE_DETAIL/POI/:id', fetchRouteDetailPOI)
+  yield takeLatest('SAGA/FETCH_USER_ROUTE_HISTORY', fetchUserRouteHistory)
 }

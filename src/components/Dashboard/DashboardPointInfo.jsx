@@ -8,8 +8,8 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 
 export default function DashboardPointInfo({save}) {
   const dispatch = useDispatch();
-  const user = useSelector((store) => store.user);
   const [savedStatus, setSavedStatus] = useState(true);
+  const user = useSelector((store) => store.user);
 
   const savePoint = () => {
     let pointClicked = {
@@ -17,7 +17,7 @@ export default function DashboardPointInfo({save}) {
       poi_id: save.poi_id
     }
     // console.log('ADD Point Clicked: ', pointClicked);
-    dispatch({ type: 'ADD_POI_SAVE', payload: pointClicked })
+    dispatch({ type: 'SAGA/ADD_POI_SAVE', payload: pointClicked })
     setSavedStatus(true);
   }
 
@@ -27,7 +27,7 @@ export default function DashboardPointInfo({save}) {
       poi_id: save.poi_id
     }
     // console.log('DELETE Point Clicked: ', pointClicked);
-    dispatch({ type: 'DELETE_SAVED_POI', payload: pointClicked })
+    dispatch({ type: 'SAGA/DELETE_SAVED_POI', payload: pointClicked })
     setSavedStatus(false);
   }
 

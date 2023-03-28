@@ -5,12 +5,10 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-
 import { useDispatch, useSelector } from 'react-redux';
 
 import Nav from '../Nav/Nav';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-
 import AboutPage from '../AboutPage/AboutPage';
 import LoginPage from '../UserLogin/LoginPage';
 import RegistrationPage from '../UserLogin/RegistrationPage';
@@ -22,7 +20,6 @@ import PointDetail from '../PointsOfInterest/PointDetail';
 import UserProfile from '../UserProfile/UserProfile'
 import UserEdit from '../UserProfile/UserEdit/UserEdit';
 import ActiveRoute from '../ActiveRoute/ActiveRoute';
-
 import './App.css';
 
 function App() {
@@ -44,10 +41,6 @@ function App() {
             <AboutPage />
           </Route>
 
-          {/* For protected routes, the view could show one of several things on the same route.
-            Visiting localhost:3000/user will show the UserPage if the user is logged in.
-            If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
-            Even though it seems like they are different pages, the user is always on localhost:3000/user */}
           <ProtectedRoute exact path="/dashboard">
             <Nav />
             <Dashboard />

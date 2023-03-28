@@ -8,11 +8,10 @@ import './Routes.css';
 export default function AllRoutes() {
   const dispatch = useDispatch();
   const mapContainer = useRef(null);
-  const allRoutes = useSelector((store) => store.allRoutes)
+  const allRoutes = useSelector((store) => store.routes.allRoutesReducer)
 
   useEffect(() => {
-      dispatch({ type: 'FETCH_ALL_ROUTES' });
-
+      dispatch({ type: 'SAGA/FETCH_ALL_ROUTES' });
       const map = new mapboxgl.Map({
         container: mapContainer.current,
         center: [-93.19426931505215, 44.9480407119586],

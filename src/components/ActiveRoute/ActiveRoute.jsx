@@ -2,29 +2,28 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import mapboxgl from '!mapbox-gl';
-
 import './ActiveRoute.css';
 import ActivePointInfo from './ActivePointInfo';
 
 // Map, info component
 export default function ActiveRoute() {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const ref = useRef();
+  const map = useRef(null);
+  const mapContainer = useRef(null);
+  const [mapTest, setMapTest] = useState([0,0]);
+  const [dataLoaded, setDataLoaded] = useState(false);
+  const lineCoordinates = useSelector((store) => store.line);
+  const pointDetail = useSelector((store) => store.points.pointsByRouteReducer) 
+
+  let activePointName = 'METRO Green Line'
   let lng;
   let lat;
 
-  const mapContainer = useRef(null);
-  const [mapTest, setMapTest] = useState([0,0]);
-  const map = useRef(null);
-  const ref = useRef();
-  const [dataLoaded, setDataLoaded] = useState(false);
-  const lineCoordinates = useSelector((store) => store.line);
-  const dispatch = useDispatch();
-  const { id } = useParams();
-  const pointDetail = useSelector((store) => store.pointDetail) 
-  let activePointName = 'METRO Green Line'
-
   mapboxgl.accessToken = 'pk.eyJ1IjoibGFoZWF2ZXkiLCJhIjoiY2xkczZ5MzlsMDJhNTNwbWx6Nnk1bm1hNyJ9.7_Y-O03vhnebg8xOsSN0GQ';
   useEffect(() => {
-    dispatch({ type: 'FETCH_POINT_DETAIL/ROUTE/:id', payload: id})
+    dispatch({ type: 'SAGA/FETCH_POINTS_BY_ROUTE', payload: id})
     dispatch({ type: 'FETCH_LINE/:id', payload: id})
   },[])
 

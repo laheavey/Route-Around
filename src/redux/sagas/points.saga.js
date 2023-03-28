@@ -6,10 +6,11 @@ function* fetchAllPoints () {
     const response = yield axios.get('/points/all')
     yield put({
       type: 'SET_ALL_POINTS',
-      payload: response.data // id, name
+      payload: response.data 
+      // Array: id, name, longitude, latitude
     })
   } catch (error) {
-    console.error('Error in fetchAllPoints:', error);
+    console.log('Error in fetchAllPoints saga:', error);
   }
 }
 
@@ -18,10 +19,11 @@ function* fetchPopularPoints () {
     const response = yield axios.get('/points/popular')
     yield put({
       type: 'SET_POPULAR_POINTS',
-      payload: response.data // name, id, count_saved
+      payload: response.data 
+      // Array: name, id, count_saved
     })
   } catch (error) {
-    console.error('Error in fetchPopularPoints:', error)
+    console.log('Error in fetchPopularPoints saga:', error)
   }
 }
 
@@ -31,11 +33,11 @@ function* fetchPointDetail (action) {
     yield put({
       type: 'SET_POINT_DETAIL',
       payload: response.data
-      // id, name, image_url, street address, longitude, latitude, 
+      // Object: id, name, image_url, street address, longitude, latitude, 
       // description, sources_cited
     })
   } catch (error) {
-    console.error('Error in fetchPointDetail:', error);
+    console.log('Error in fetchPointDetail saga:', error);
   }
 }
 
@@ -44,22 +46,25 @@ function* fetchPointDetailSources (action) {
     const response = yield axios.get(`/points/detail/sources/${action.payload}`)
     yield put({
       type: 'SET_POINT_DETAIL_SOURCES',
-      payload: response.data // id, name, url, poi_id 
+      payload: response.data 
+      // Array: id, name, url, poi_id 
     })
   } catch (error) {
-    console.error('Error in fetchPointDetailSources:', error);
+    console.log('Error in fetchPointDetailSources saga:', error);
   }
 }
 
-function* fetchPointDetailByRoute (action){
+function* fetchPointsByRoute (action){
   try {
     const response = yield axios.get(`/points/route/${action.payload}`)
     yield put({
-      type: 'SET_POINT_DETAIL/ROUTE/:id',
-      payload: response.data // id, name, short_desc
+      type: 'SET_POINTS_BY_ROUTE',
+      payload: response.data 
+      // Array: id, name, short_desc, image_url, street_address, longitude,
+      // latitude
     })
   } catch (error) {
-    console.error('Error in fetchPointDetail:', error);
+    console.log('Error in fetchPointsByRoute saga:', error);
   }
 }
 
@@ -68,10 +73,11 @@ function* fetchPointSave () {
     const response = yield axios.get('/points/saved')
     yield put({
       type: 'SET_SAVED_POIS',
-      payload: response.data // user_id, poi_id, name
+      payload: response.data 
+      // Array: id, user_id, poi_id, name
     })
   } catch (error) {
-    console.error('Error in fetchPointSave ', error)
+    console.log('Error in fetchPointSave saga: ', error)
   }
 }
 
@@ -80,10 +86,11 @@ function* addPointSave (action) {
     yield axios({
       method: 'POST',
       url: '/points/save',
-      data: action.payload // user_id, poi_id
+      data: action.payload 
+      // user_id, poi_id
     })
   } catch (error) {
-    console.log('Error in addPointSave: ', error)
+    console.log('Error in addPointSave saga: ', error)
   }
 }
 
@@ -92,20 +99,21 @@ function* deletePointSave (action) {
     yield axios({
       method: 'DELETE',
       url: '/points/saved/delete',
-      data: action.payload // user_id, poi_id
+      data: action.payload 
+      // user_id, poi_id
     })
   } catch (error) {
-    console.log('Error in deletePointSave: ', error)
+    console.log('Error in deletePointSave saga: ', error)
   }
 }
 
 export default function* allPointsSaga() {
-  yield takeLatest('FETCH_ALL_POINTS', fetchAllPoints);
-  yield takeLatest('FETCH_POPULAR_POINTS', fetchPopularPoints);
-  yield takeLatest('FETCH_POINT_DETAIL/:id', fetchPointDetail);
-  yield takeLatest('FETCH_POINT_DETAIL_SOURCES/:id', fetchPointDetailSources)
-  yield takeLatest('FETCH_POINT_DETAIL/ROUTE/:id', fetchPointDetailByRoute)
-  yield takeLatest('ADD_POI_SAVE', addPointSave);
-  yield takeLatest('FETCH_SAVED_POIS', fetchPointSave);
-  yield takeLatest('DELETE_SAVED_POI', deletePointSave);
+  yield takeLatest('SAGA/FETCH_ALL_POINTS', fetchAllPoints);
+  yield takeLatest('SAGA/FETCH_POPULAR_POINTS', fetchPopularPoints);
+  yield takeLatest('SAGA/FETCH_POINT_DETAIL', fetchPointDetail);
+  yield takeLatest('SAGA/FETCH_POINT_DETAIL_SOURCES', fetchPointDetailSources)
+  yield takeLatest('SAGA/FETCH_POINTS_BY_ROUTE', fetchPointsByRoute)
+  yield takeLatest('SAGA/ADD_POI_SAVE', addPointSave);
+  yield takeLatest('SAGA/FETCH_SAVED_POIS', fetchPointSave);
+  yield takeLatest('SAGA/DELETE_SAVED_POI', deletePointSave);
 }
