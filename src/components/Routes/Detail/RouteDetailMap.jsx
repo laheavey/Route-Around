@@ -4,11 +4,11 @@ import mapboxgl from '!mapbox-gl';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoibGFoZWF2ZXkiLCJhIjoiY2xkczZ5MzlsMDJhNTNwbWx6Nnk1bm1hNyJ9.7_Y-O03vhnebg8xOsSN0GQ';
 
-export default function RouteDetailMap () {
+export default function RouteDetailMap ({routeBundle}) {
   const mapContainer = useRef(null);
   const [dataLoaded, setDataLoaded] = useState(false);
-  const lineCoordinates = useSelector((store) => store.line);
-  const routeDetail = useSelector((store) => store.routes.routeDetailReducer)
+  // const lineCoordinates = useSelector((store) => store.line);
+  // const routeDetail = useSelector((store) => store.routes.routeDetailReducer)
 
   useEffect(() => {
     const map = new mapboxgl.Map({
@@ -26,11 +26,11 @@ export default function RouteDetailMap () {
           'features': [{
             'type': 'Feature',
             'properties': {
-              'color': routeDetail.route_color 
+              'color': routeBundle.routeDetail.route_color 
             },
             'geometry': {
               'type': 'LineString',
-              'coordinates': lineCoordinates
+              'coordinates': routeBundle.lineCoordinates
             }
           }]
         }
