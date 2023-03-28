@@ -42,7 +42,7 @@ export default function AllPoints() {
   // List of all points
   return (
     <>
-      <div id='map' ref={mapContainer} style={dataLoaded ? {width: '100%', height: '300px'} : {display: 'none'}}></div>
+      <div id='map' ref={mapContainer} style={dataLoaded ? {width: '100%', height: '38%'} : {display: 'none'}}></div>
       <section className='flex-container all-points' >
         <section className='ap-section'>
         <h2 className='top-h2'>{`All Points of Interest →`}</h2>

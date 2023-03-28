@@ -2,10 +2,13 @@
   background-color: #fafafa;
   flex-flow: column;
   overflow-y: scroll;
-  position: absolute;
-  top: 335px;
-  width: 375px;
-  height: 332px;
+  min-width: 350px;
+  max-width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 58%;
+  max-height: 58%;
 }
 
 .db-section {
@@ -18,8 +21,6 @@
   margin: 0em;
   column-count: 2;
 }
-
-
 
 .db-list-item {
   flex-wrap: nowrap;

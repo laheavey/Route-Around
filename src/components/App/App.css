@@ -277,10 +277,11 @@ Sections
   font-family: sans-serif;
   overflow-y: scroll;
   background-color: #fafafa;
-  position: absolute;
-  top: 335px;
-  max-height: 60%;
-  padding-top: 2rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  max-height: 58%;
+  height: 58%;
   padding-left: 2em;
   padding-right: 1em;
 }
@@ -301,11 +302,6 @@ section {
   line-height: 25px;
   opacity: 85%;
   font-size: 12px;
-}
-
-section.test {
-  opacity: 0.25;
-  border-bottom: 1px solid #ddd;
 }
 
 section.active {

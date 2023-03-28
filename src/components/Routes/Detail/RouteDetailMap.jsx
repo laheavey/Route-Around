@@ -51,7 +51,7 @@ export default function RouteDetailMap ({routeBundle}) {
 
   return (
     <>
-    <div id='map' ref={mapContainer} style={dataLoaded ? {width: '100%', height: '300px'} : {display: 'none'}}></div>
+    <div id='map' ref={mapContainer} style={dataLoaded ? {width: '100%', height: '38%'} : {display: 'none'}}></div>
     </>
   )
 }

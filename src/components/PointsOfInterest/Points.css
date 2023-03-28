@@ -1,18 +1,21 @@
 .all-points {
   overflow-y: scroll;
-  max-width: 375px;
-  width: 375px;
-  position: absolute;
-  top: 335px;
-  height: 332px;
+  min-width: 350px;
+  max-width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 58%;
+  max-height: 58%;
   background-color: #fafafa;
   flex-flow: column;
+  /* padding-bottom: 2rem; */
 }
 
 .ap-section {
   display:block;
   width: 100%;
-  margin-bottom: 1em;
+  margin-bottom: 2.5rem;
 }
 
 .ap-list {
@@ -69,4 +72,8 @@
   padding-right: 0.75em;
   padding-bottom: 0.75em;
   margin: 0em;
+}
+
+.sources-section {
+  padding-bottom: 3rem;
 }

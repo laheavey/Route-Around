@@ -1,46 +1,6 @@
-#features {
-  /* max-width: 375px; */
-  min-width: 350px;
-  font-family: sans-serif;
-  overflow-y: scroll;
-  background-color: #fafafa;
-  position: absolute;
-  top: 335px;
-  height: 60%;
-  /* height: auto; */
-  padding-left: 1em;
-  padding-right: 1em;
-  /* padding-bottom: 2em; */
-  /* opacity: 85%; */
-}
-
-#top {
-  position: relative;
-}
-
-#map {
-  position: fixed;
-  z-index: 1;
-  top: 35px; 
-  bottom: 0; 
-  width: 100%;
-}
-
-section {
-  /* margin: 5px 20px; */
-  line-height: 25px;
-  /* border-bottom: 1px solid #ddd; */
-  /* opacity: 0.25; */
-  opacity: 85%;
-  font-size: 13px;
-}
-
-section.active {
-opacity: 1;
-}
-
 section.test {
   opacity: 0.25;
+  padding-bottom: 2em;
   border-bottom: 1px solid #ddd;
 }
 

@@ -18,6 +18,6 @@ export default function DashboardMap () {
   },[])
 
   return (
-    <div id='map' ref={mapContainer} style={{width: '100%', height: '300px'}}></div>
+    <div id='map' ref={mapContainer} style={{width: '100%', height: '38%'}}></div>
   )
 }

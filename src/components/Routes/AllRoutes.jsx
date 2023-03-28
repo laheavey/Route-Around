@@ -24,7 +24,7 @@ export default function AllRoutes() {
   // List of all routes
   return (
     <>
-    <div id='map' ref={mapContainer} style={{width: '100%', height: '300px'}}></div>
+    <div id='map' ref={mapContainer} style={{width: '100%', height: '38%'}}></div>
     <section className='flex-container route-detail' >
       <section className='ar-section'>
       <h2 className='top-h2'>{`All Routes →`}</h2>

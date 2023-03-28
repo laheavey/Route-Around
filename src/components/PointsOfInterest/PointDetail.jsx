@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import mapboxgl from '!mapbox-gl';
 
 import './Points.css';
@@ -16,6 +16,7 @@ export default function PointDetail() {
   const { id } = useParams();
   const mapContainer = useRef(null);
   const points = useSelector((store) => store.points.pointDetailReducer);
+  const pointSources = useSelector((store) => store.points.pointDetailSourcesReducer);
   const user = useSelector((store) => store.user);
 
   const savedPoints = useSelector((store) => store.points.savedPointsReducer)
@@ -24,6 +25,7 @@ export default function PointDetail() {
 
   useEffect(() => {
     dispatch({ type: 'SAGA/FETCH_POINT_DETAIL', payload: id});
+    dispatch({ type: 'SAGA/FETCH_POINT_DETAIL_SOURCES', payload: id});
     dispatch({ type: 'SAGA/FETCH_SAVED_POIS', data: user.id})
   }, [])
 
@@ -40,7 +42,7 @@ export default function PointDetail() {
         } 
       })
     }
-  }, [points, savedPoints]);
+  }, [points, savedPoints, pointSources]);
 
   useEffect(() => {
     const map = new mapboxgl.Map({
@@ -63,7 +65,7 @@ export default function PointDetail() {
       }
       return () => map.remove();
     });
-  },[points])
+  },[points, pointSources])
 
   const savePoint = () => {
     let newPointSave = {
@@ -95,13 +97,13 @@ export default function PointDetail() {
     }
   }
 
-  if(!points) {
+  if(!points && !pointSources) {
     return null;
   } else {
 
   return (
     <>
-      <div id='map' ref={mapContainer} style={{width: '100%', height: '300px'}}></div>
+      <div id='map' ref={mapContainer} style={{width: '100%', height: '38%'}}></div>
       <section id="features" >
         <img alt={`${points.name}`} src={`${points.image_url}`} className='box pd-img'/>
         <section className='pd-header'>
@@ -121,9 +123,19 @@ export default function PointDetail() {
         <section>
           <p className='pd-description'>{points.description}</p>
         </section>
-        <section>
+        <section className='sources-section'>
           <h2 className='pd-h2'>Sources:</h2>
-          <p>{points.sources_cited}</p>
+          <ul>
+            {pointSources.map((source) => {
+              return (
+                <a href={`${source.url}`}>
+                <li>
+                  {source.name}
+                </li>
+                </a>
+              )
+            })}
+          </ul>
         </section>
       </section>
       <div className='grad'></div>
