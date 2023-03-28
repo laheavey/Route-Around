@@ -7,7 +7,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoibGFoZWF2ZXkiLCJhIjoiY2xkczZ5MzlsMDJhNTNwbWx6N
 
 export default function RouteDetailMap () {
   const [dataLoaded, setDataLoaded] = useState(false);
-  const routeDetail = useSelector((store) => store.routeDetail)
+  const routeDetail = useSelector((store) => store.routes.routeDetailReducer)
   const lineCoordinates = useSelector((store) => store.line);
   const mapContainer = useRef(null);
   const { id } = useParams();
@@ -30,7 +30,6 @@ export default function RouteDetailMap () {
           'features': [{
             'type': 'Feature',
             'properties': {
-              // ↓ could use routeDetail.color but no hash - concatenate or fix table?
               'color': routeDetail.route_color 
             },
             'geometry': {

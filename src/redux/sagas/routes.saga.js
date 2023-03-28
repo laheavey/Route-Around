@@ -6,7 +6,8 @@ function* fetchAllRoutes () {
     const response = yield axios.get('/routes/all')
     yield put({
       type: 'SET_ALL_ROUTES',
-      payload: response.data // id, route_name, route_desc
+      payload: response.data 
+      // Array: id, route_name, route_desc
     })
   } catch (error) {
     console.error('Error in SAGA/fetchAllRoutes:', error);
@@ -18,7 +19,8 @@ function* fetchPopularRoutes () {
     const response = yield axios.get('/routes/popular')
     yield put({
       type: 'SET_POPULAR_ROUTES',
-      payload: response.data // route_name, route_id
+      payload: response.data 
+      // Array: route_name, route_id
     })
   } catch (error) {
     console.error('Error in SAGA/fetchPopularRoutes:', error);
@@ -29,10 +31,10 @@ function* fetchRouteDetail (action) {
   try {
     const response = yield axios.get(`/routes/${action.payload}`)
     yield put({
-      type: 'SET_ROUTE_DETAIL',
+      type: 'SET_ROUTE_DETAIL/:id',
       payload: response.data
-      // route_id, route_name, route_desc, route_url, 
-      // route_color, poi_id, poi_name
+      // Object: route_id, route_name, route_desc, route_url, route_color, 
+      // poi_id, poi_name
     })
   } catch (error) {
     console.error('Error in SAGA/fetchRouteDetail:', error);
@@ -45,6 +47,7 @@ function* fetchRouteDetailPOI (action) {
     yield put({
       type: 'SET_ROUTE_DETAIL/POI/:id',
       payload: response.data
+      //
     })
   } catch (error) {
     console.error('Error in fetchRouteDetailPOI: ', error)
@@ -56,9 +59,9 @@ function* fetchUserRouteHistory (action) {
   try {
     const response = yield axios.get(`/routes/user/${action.payload}`)
     yield put({
-      type: 'SET_USER_ROUTE_HISTORY',
+      type: 'SET_USER_ROUTE_HISTORY/:id',
       payload: response.data
-      // 
+      // Array: route_id, route_name, route_desc, route_url, completed_trips
     })
   } catch (error) {
     console.error('Error in fetchUserRouteHistory:', error);

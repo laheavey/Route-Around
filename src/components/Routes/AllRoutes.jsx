@@ -8,7 +8,7 @@ import './Routes.css';
 export default function AllRoutes() {
   const dispatch = useDispatch();
   const mapContainer = useRef(null);
-  const allRoutes = useSelector((store) => store.allRoutes)
+  const allRoutes = useSelector((store) => store.routes.allRoutesReducer)
 
   useEffect(() => {
       dispatch({ type: 'FETCH_ALL_ROUTES' });

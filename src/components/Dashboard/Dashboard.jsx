@@ -9,7 +9,7 @@ import DashboardPointInfo from './DashboardPointInfo.jsx';
 export default function Dashboard() {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user)
-  const popRoutes = useSelector((store) => store.popRoutes);
+  const popRoutes = useSelector((store) => store.routes.popularRoutesReducer);
   const savedPoints = useSelector((store) => store.savedPoints)
 
   useEffect(() => {

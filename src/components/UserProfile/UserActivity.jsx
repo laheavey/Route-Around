@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 export default function UserActivity () {
-  const userRouteHistory = useSelector((store) => store.userRouteHistory);
+  const userRouteHistory = useSelector((store) => store.routes.routeHistoryReducer);
   const savedPoints = useSelector((store) => store.savedPoints)
   
   return (

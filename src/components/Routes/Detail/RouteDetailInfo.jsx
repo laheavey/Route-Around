@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function RouteDetailInfo () {
   const [dataLoaded, setDataLoaded] = useState(false);
-  const routeDetail = useSelector((store) => store.routeDetail) 
+  const routeDetail = useSelector((store) => store.routes.routeDetailReducer) 
   const [routeType, setRouteType] = useState('')
   const [routeAgency, setRouteAgency] = useState('')
   // const completedTrips = routeDetail.completed_trips;
