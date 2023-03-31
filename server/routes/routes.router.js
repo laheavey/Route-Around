@@ -6,7 +6,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 /** ---------- GET ALL ROUTES---------- **/
 router.get('/all', rejectUnauthenticated, (req, res) => {
   const sqlQuery =`
-    SELECT "id", "route_name", "route_desc"
+    SELECT "route_id", "route_name", "route_desc"
     FROM "gtfs_routes"
     ORDER BY "route_name" ASC;`;
   pool.query(sqlQuery)
@@ -24,12 +24,12 @@ router.get('/popular', (req, res) => {
   const sqlQuery =`
     SELECT 
       "gtfs_routes"."route_name",
-      "gtfs_routes"."id" AS "route_id",
-      COUNT("trips_completed"."route_id") AS "count_completed"
+      "gtfs_routes"."route_id",
+      COUNT("trips_completed"."gtfs_routes_id") AS "count_completed"
     FROM "gtfs_routes"
     JOIN "trips_completed"
-      ON "trips_completed"."route_id" = "gtfs_routes"."id"
-    GROUP BY "gtfs_routes"."route_name", "gtfs_routes"."id"
+      ON "trips_completed"."gtfs_routes_id" = "gtfs_routes"."id"
+    GROUP BY "gtfs_routes"."route_name", "gtfs_routes"."route_id"
     ORDER BY "count_completed" DESC
     LIMIT 4;`;
   pool.query(sqlQuery)
@@ -46,7 +46,7 @@ router.get('/popular', (req, res) => {
 router.get('/detail/:id', rejectUnauthenticated, (req, res) => {
   const sqlQuery =`
     SELECT 
-      "gtfs_routes"."id" AS "route_id",
+      "gtfs_routes"."route_id",
       "gtfs_routes"."route_name",
       "gtfs_routes"."route_desc",
       "gtfs_routes"."route_url",
@@ -54,9 +54,9 @@ router.get('/detail/:id', rejectUnauthenticated, (req, res) => {
       "gtfs_routes"."route_type_name",
       "gtfs_routes"."agency_name"
     FROM "gtfs_routes"
-    WHERE "gtfs_routes"."id"=$1
+    WHERE "gtfs_routes"."route_id"=$1
     GROUP BY 
-      "gtfs_routes"."id",
+      "gtfs_routes"."route_id",
       "gtfs_routes"."route_name",
       "gtfs_routes"."route_desc",
       "gtfs_routes"."route_url",
@@ -82,7 +82,7 @@ router.get('/point/:id', rejectUnauthenticated, (req, res) => {
       "gtfs_routes"."route_desc"
     FROM "poi_routes"
     JOIN "gtfs_routes"
-      ON "poi_routes"."route_id" = "gtfs_routes"."id"
+      ON "poi_routes"."gtfs_routes_id" = "gtfs_routes"."id"
     WHERE "poi_routes"."poi_id" = $1;`;
   const sqlValues = [req.params.id];
   pool.query(sqlQuery, sqlValues)
@@ -99,17 +99,17 @@ router.get('/point/:id', rejectUnauthenticated, (req, res) => {
 router.get('/user/:id', rejectUnauthenticated, (req, res) => {
   const sqlQuery =`
     SELECT 
-      "gtfs_routes"."id" AS "route_id",
+      "gtfs_routes"."route_id",
       "gtfs_routes"."route_name",
       "gtfs_routes"."route_desc",
       "gtfs_routes"."route_url",
       JSON_AGG("trips_completed"."completed_on") AS "completed_trips"
     FROM "gtfs_routes"
     JOIN "trips_completed"
-      ON "gtfs_routes"."id" = "trips_completed"."route_id"
+      ON "gtfs_routes"."id" = "trips_completed"."gtfs_routes_id"
     WHERE "trips_completed"."user_id"=$1
     GROUP BY 
-      "gtfs_routes"."id",
+      "gtfs_routes"."route_id",
       "gtfs_routes"."route_name",
       "gtfs_routes"."route_desc",
       "gtfs_routes"."route_url";`;

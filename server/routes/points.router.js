@@ -102,7 +102,9 @@ router.get('/route/:id', rejectUnauthenticated, (req, res) => {
     FROM "poi_details"
     JOIN "poi_routes"
       ON "poi_details"."id" = "poi_routes"."poi_id"
-    WHERE "poi_routes"."route_id" = $1
+    JOIN "gtfs_routes"
+      ON "poi_routes"."gtfs_routes_id" = "gtfs_routes"."id"
+    WHERE "gtfs_routes"."route_id" = $1
     ORDER BY "poi_routes"."poi_order_num" ASC;`;
   const sqlValues = [req.params.id];
   pool.query(sqlQueryPoint, sqlValues)

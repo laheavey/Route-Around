@@ -7,7 +7,7 @@ function* fetchAllRoutes () {
     yield put({
       type: 'SET_ALL_ROUTES',
       payload: response.data 
-      // Array: id, route_name, route_desc
+      // Array: route_id, route_name, route_desc
     })
   } catch (error) {
     console.log('Error in fetchAllRoutes saga:', error);

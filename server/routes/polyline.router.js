@@ -6,12 +6,14 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 /** ---------- GET POLYLINE (COORDINATES FOR MAP LINE) ---------- **/
 router.get('/:id', rejectUnauthenticated, (req, res) => {
   const sqlQuery =`
-    SELECT "shape_pt_lon", "shape_pt_lat", "route_color"
+    SELECT "shape_pt_lon", "shape_pt_lat"
     FROM "gtfs_shapes"
     WHERE "shape_id" = (
       SELECT "shape_id"
       FROM "gtfs_shapes"
-      WHERE "route_id" = $1
+      JOIN "gtfs_routes"
+        ON "gtfs_shapes"."gtfs_routes_id" = "gtfs_routes"."id"
+      WHERE "gtfs_routes"."route_id" = 902
       ORDER BY "shape_pt_sequence" DESC
       LIMIT 1
     )
