@@ -31,8 +31,8 @@ export default function AllRoutes() {
       <h2 className='top-h2'>{`All Routes →`}</h2>
       <ul className='ar-list'>
       {allRoutes.map((route) => (
-        <li key={`${route.id}`}>
-          <Link to={`/routeDetail/${route.id}`} >
+        <li key={`${route.route_id}`}>
+          <Link to={`/routeDetail/${route.route_id}`} >
           {route.route_name}
           </Link>
         </li>

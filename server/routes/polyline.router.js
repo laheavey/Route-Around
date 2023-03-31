@@ -13,7 +13,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
       FROM "gtfs_shapes"
       JOIN "gtfs_routes"
         ON "gtfs_shapes"."gtfs_routes_id" = "gtfs_routes"."id"
-      WHERE "gtfs_routes"."route_id" = 902
+      WHERE "gtfs_routes"."route_id" = $1
       ORDER BY "shape_pt_sequence" DESC
       LIMIT 1
     )
