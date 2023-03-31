@@ -33,8 +33,7 @@ function* fetchPointDetail (action) {
     yield put({
       type: 'SET_POINT_DETAIL',
       payload: response.data
-      // Object: id, name, image_url, street address, longitude, latitude, 
-      // description, sources_cited
+      // Object: id, name, image_url, street address, longitude, latitude, description
     })
   } catch (error) {
     console.log('Error in fetchPointDetail saga:', error);

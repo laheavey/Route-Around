@@ -52,8 +52,7 @@ router.get('/detail/:id', rejectUnauthenticated, (req, res) => {
       "street_address",
       "longitude",
       "latitude",
-      "description",
-      "sources_cited"
+      "description"
     FROM "poi_details"
     WHERE "id" = $1;`;
   const sqlValues = [req.params.id];
