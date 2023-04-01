@@ -2,7 +2,9 @@
 
 *Duration: Two Weeks*
 
-Route Around is a web application that showcases modern & historic points of interest located along MN Metro Transit routes. My goal for this project was to create a CRUD, RESTful API that promoted transit ridership, encouraged tourism in the Twin Cities, and helped develop a healthy sense of curiousity for the world around us. 
+[See Live Demo Here!](https://mighty-crag-14368.herokuapp.com/)
+
+Route Around is a web application that showcases modern & historic points of interest located along MN Metro Transit's Green Line lightrail. My goal for this project was to create a CRUD, RESTful API that promoted transit ridership, encouraged tourism in the Twin Cities, and helped develop a healthy sense of curiousity for the world around us. 
 
 ## Approach
 
@@ -119,13 +121,14 @@ For a full list of dependencies, see the package.json
 
 **Future State:** There are a few changes I'd like to make, and a few features I'd like to implement at some point: 
 - [ ] User Profile / Account Created: Ran out of time to code this, ideally this would be captured and stored on account registration. Right now, what displays is hard-coded.
-- [ ] User Profile / Ride History: I didn't code this correctly and ran out of time to fix it. It's currently showing all routes ever marked as completed, not just for a specific user.
+- [x] User Profile / Ride History: I didn't code this correctly and ran out of time to fix it. It's currently showing all routes ever marked as completed, not just for a specific user. *(confirmed completed 03/31/23)*
 - [ ] User Profile / Badges: My wireframe had this as a feature, and I'd like to add some benchmarks/goals for user badges.
 - [ ] Active Route / Trip Completion: These are currently hard-coded into my database. I need to add a button at the end of the 'Active Route' view to mark a trip completed.
-- [ ] Active Route / Travel by Direction: Currently, the active route only runs one way. The database documents each route's direction, so I'd like to code in some logic to reverse the facts/points for each route.
+- [x] Active Route / Travel by Direction: Currently, the active route only runs one way. The database documents each route's direction, so I'd like to code in some logic to reverse the facts/points for each route. *(Green Line completed 03/31/23)*
+- [ ] Active/All Routes: Right now, the Green Line is the only functional route tour. I'd love to add more at some point!
 
 ## Acknowledgement
-I am *incredible* grateful for the instructors, staff, and students at Prime Digital Academy - I can't imagine having learned all of this in such a short amount of time without all of their support. In particular, my instructor Matt, who has brought nothing but care and joy to the classroom every day.
+I am *incredibly* grateful for the instructors, staff, and students at Prime Digital Academy - I can't imagine having learned all of this in such a short amount of time without all of their support. In particular, my instructor Matt, who has brought nothing but care and joy to the classroom every day.
 
 Special shout-out to my partner for her endless support, love, and sanity checks! 
 
