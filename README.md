@@ -6,6 +6,21 @@
 
 Route Around is a web application that showcases modern & historic points of interest located along MN Metro Transit's Green Line lightrail. My goal for this project was to create a CRUD, RESTful API that promoted transit ridership, encouraged tourism in the Twin Cities, and helped develop a healthy sense of curiousity for the world around us. 
 
+### Table of Contents
+- [Approach](#approach)
+  - Final Wireframes & ERD
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Built With](#built-with)
+- [Usage](#usage)
+- [Screenshots](#screenshots)
+- [Notes](#notes)
+  - Thoughts
+  - Challenges
+  - Future State
+- [Acknowledgement](#acknowledgement)
+
 ## Approach
 
 This was easily the biggest project I've built to date, and knowing that it was coming down the line, I started thinking through the features I wanted and how I might implement CRUD very early on in the process. I developed a wireframe in Figma, an outline of the database structure I thought I'd need, and scope document highlighting my goals and timelines. Candidly, they were not particularly accurate the first time around, but after workshopping with my instructors and peers I landed on a solid plan to reach MVP (and what might come next).
