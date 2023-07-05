@@ -4,7 +4,7 @@
 
 [See Live Demo Here!](https://mighty-crag-14368.herokuapp.com/)
 
-Route Around is a web application that showcases modern & historic points of interest located along MN Metro Transit's Green Line lightrail. My goal for this project was to create a CRUD, RESTful API that promoted transit ridership, encouraged tourism in the Twin Cities, and helped develop a healthy sense of curiousity for the world around us. 
+Route Around is a full-stack web application that showcases modern & historic points of interest located along MN Metro Transit's Green Line. My goal for this project was to create an app using REST API architecture that promoted transit ridership, encouraged tourism in the Twin Cities, and helped develop a healthy sense of curiousity for the world around us. 
 
 ### Table of Contents
 - [Approach](#approach)
@@ -23,7 +23,17 @@ Route Around is a web application that showcases modern & historic points of int
 
 ## Approach
 
-This was easily the biggest project I've built to date, and knowing that it was coming down the line, I started thinking through the features I wanted and how I might implement CRUD very early on in the process. I developed a wireframe in Figma, an outline of the database structure I thought I'd need, and scope document highlighting my goals and timelines. Candidly, they were not particularly accurate the first time around, but after workshopping with my instructors and peers I landed on a solid plan to reach MVP (and what might come next).
+### Built With
+
+- [React.js](https://beta.reactjs.org/) / [Redux](https://react-redux.js.org/introduction/getting-started) / [Redux-Saga](https://redux-saga.js.org/docs/introduction/GettingStarted): State management
+- [Node.js](https://nodejs.org/en/docs/): Building the back-end
+- [Express](https://expressjs.com/en/4x/api.html) / [Axios](https://axios-http.com/docs/intro): Handling requests/responses to Mapbox API and database
+- [React.js](https://beta.reactjs.org/) / [Material-UI](https://mui.com/): Responsive front-end styling
+- [Passport](https://www.passportjs.org/): User authentication, secure login & account management
+- [Postico 2](https://eggerapps.at/postico2/): Database management
+- [Metro Transit GTFS](https://svc.metrotransit.org/index.html) / [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/guides/): Transit and map data
+  
+This was easily the biggest project I'd built to date, and knowing that it was coming down the line, I started thinking through the features I wanted and how I might implement CRUD very early on in the process. I developed a wireframe in Figma, an outline of the database structure I thought I'd need, and scope document highlighting my goals and timelines. Candidly, they were not particularly accurate the first time around, but after workshopping with my instructors and peers I landed on a solid plan to reach MVP (and what might come next).
 
 [Scope Document w/ Wireframes, First-Pass ERD](https://docs.google.com/document/d/1XGXvDvByzFVY3iMQnAQt6xVA3N8h_I7nvBNPS5x4HhM/edit?usp=sharing)
 
@@ -49,6 +59,7 @@ This was easily the biggest project I've built to date, and knowing that it was 
 - [Node-postgres](https://node-postgres.com/) (pg)
 - [Passport](https://www.passportjs.org/)
 
+For a full list of dependencies, see the package.json
 
 ### Installation
 
@@ -75,17 +86,9 @@ With the server running, open another terminal window and start your client. Nav
 $ ~ npm run client
 ```
 
-### Built With
 
-- [React.js](https://beta.reactjs.org/)
-- [Node.js](https://nodejs.org/en/docs/)
-- [Material-UI](https://mui.com/): Form & Navbar components/styling
-- [Passport](https://www.passportjs.org/): Secure login & account management
-- [Postico 2](https://eggerapps.at/postico2/): Database manager 
-- [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/guides/)
-- [Metro Transit General Transit Feed Specification (GTFS) data](https://svc.metrotransit.org/index.html)
 
-For a full list of dependencies, see the package.json
+
 
 ## Usage
 
