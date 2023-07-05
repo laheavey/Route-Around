@@ -8,11 +8,11 @@ Route Around is a full-stack web application that showcases modern & historic po
 
 ### Table of Contents
 - [Approach](#approach)
+  - [Built With](#built-with)
   - Final Wireframes & ERD
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
-  - [Built With](#built-with)
 - [Usage](#usage)
 - [Screenshots](#screenshots)
 - [Notes](#notes)
