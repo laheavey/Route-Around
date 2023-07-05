@@ -24,13 +24,13 @@ Route Around is a full-stack web application that showcases modern & historic po
 ## Approach
 
 ### Built With
-
-- [React.js](https://beta.reactjs.org/) / [Redux](https://react-redux.js.org/introduction/getting-started) / [Redux-Saga](https://redux-saga.js.org/docs/introduction/GettingStarted): State management
+- CSS3 / HTML5 / Javascript
 - [Node.js](https://nodejs.org/en/docs/): Building the back-end
 - [Express](https://expressjs.com/en/4x/api.html) / [Axios](https://axios-http.com/docs/intro): Handling requests/responses to Mapbox API and database
-- [React.js](https://beta.reactjs.org/) / [Material-UI](https://mui.com/): Responsive front-end styling
+- [React.js](https://beta.reactjs.org/) / [Redux](https://react-redux.js.org/introduction/getting-started) / [Redux-Saga](https://redux-saga.js.org/docs/introduction/GettingStarted): State management
+- [PostgreSQL](https://www.postgresql.org/) / [Postico 2](https://eggerapps.at/postico2/): Database and db management
 - [Passport](https://www.passportjs.org/): User authentication, secure login & account management
-- [Postico 2](https://eggerapps.at/postico2/): Database management
+- [React.js](https://beta.reactjs.org/) / [Material-UI](https://mui.com/): Responsive front-end styling
 - [Metro Transit GTFS](https://svc.metrotransit.org/index.html) / [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/guides/): Transit and map data
   
 This was easily the biggest project I'd built to date, and knowing that it was coming down the line, I started thinking through the features I wanted and how I might implement CRUD very early on in the process. I developed a wireframe in Figma, an outline of the database structure I thought I'd need, and scope document highlighting my goals and timelines. Candidly, they were not particularly accurate the first time around, but after workshopping with my instructors and peers I landed on a solid plan to reach MVP (and what might come next).
