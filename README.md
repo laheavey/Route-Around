@@ -2,7 +2,7 @@
 
 *Duration: Two Weeks*
 
-[See Live Demo Here!](https://mighty-crag-14368.herokuapp.com/)
+[See Live Demo Here!](https://route-around.fly.dev/)
 
 Route Around is a full-stack web application that showcases modern & historic points of interest located along MN Metro Transit's Green Line. My goal for this project was to create an app using REST API architecture that promoted transit ridership, encouraged tourism in the Twin Cities, and helped develop a healthy sense of curiousity for the world around us. 
 
